@@ -222,7 +222,57 @@
     .trades-note { color: var(--text-dim); font-size: 0.86rem; margin-top: 22px; font-style: italic; }
     @media (max-width: 860px) { .trades-grid { grid-template-columns: 1fr; } }
 
+    /* ---------- Case study feature ---------- */
+    .feature {
+      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+      background: linear-gradient(160deg, var(--surface-2), var(--bg-soft));
+      display: grid; grid-template-columns: 1.15fr 1fr; gap: 0;
+    }
+    .feature .body { padding: clamp(28px, 4vw, 44px); }
+    .feature .badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent-dim); border-radius: 999px; padding: 5px 12px; }
+    .feature h3 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 650; letter-spacing: -0.02em; line-height: 1.15; margin: 18px 0 6px; }
+    .feature .sub { color: var(--text-dim); font-size: 0.9rem; font-family: var(--mono); }
+    .feature .body > p { color: var(--text-mid); font-size: 1rem; margin-top: 16px; }
+    .feature ul { list-style: none; margin-top: 18px; display: flex; flex-direction: column; gap: 12px; }
+    .feature li { position: relative; padding-left: 24px; color: var(--text-mid); font-size: 0.96rem; }
+    .feature li::before { content: "→"; position: absolute; left: 0; top: 0; color: var(--accent); }
+    .feature li b { color: var(--text); font-weight: 600; }
+    .feature .aside {
+      border-left: 1px solid var(--border); padding: clamp(28px, 4vw, 40px);
+      background: rgba(52,211,153,0.03); display: flex; flex-direction: column; justify-content: center; gap: 20px;
+    }
+    .feature .metric .n { font-family: var(--serif); font-size: clamp(1.9rem, 3.4vw, 2.6rem); font-weight: 700; color: var(--accent); letter-spacing: -0.02em; line-height: 1; }
+    .feature .metric .t { color: var(--text-mid); font-size: 0.9rem; margin-top: 7px; }
+    .feature .aside .rule { height: 1px; background: var(--border); }
+    .feature-note { color: var(--text-dim); font-size: 0.85rem; margin-top: 18px; }
+    @media (max-width: 860px) {
+      .feature { grid-template-columns: 1fr; }
+      .feature .aside { border-left: 0; border-top: 1px solid var(--border); flex-direction: row; flex-wrap: wrap; gap: 26px; }
+      .feature .aside .rule { display: none; }
+    }
+
     /* ---------- Projects / What I build ---------- */
+    .proj-feature {
+      border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(26px, 4vw, 40px);
+      background: linear-gradient(160deg, var(--surface-2), var(--bg-soft)); margin-bottom: 18px;
+    }
+    .proj-feature .head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px; }
+    .proj-feature h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 650; letter-spacing: -0.02em; }
+    .proj-feature .result { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); border: 1px solid var(--accent-dim); border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+    .proj-feature > p { color: var(--text-mid); font-size: 1rem; margin-top: 14px; max-width: 75ch; }
+    .proj-feature .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 22px; }
+    .proj-feature .col .k { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
+    .proj-feature .col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .proj-feature .col li { position: relative; padding-left: 20px; color: var(--text-mid); font-size: 0.94rem; }
+    .proj-feature .col li::before { content: ""; position: absolute; left: 2px; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-dim); }
+    .proj-feature .col.mine li::before { background: var(--accent); box-shadow: 0 0 8px var(--accent-glow); }
+    .proj-feature .foot { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--border); }
+    .proj-feature .stack { display: flex; flex-wrap: wrap; gap: 7px; }
+    .proj-feature .stack span { font-family: var(--mono); font-size: 0.72rem; color: var(--text-dim); border: 1px solid var(--border); padding: 3px 9px; border-radius: 6px; }
+    .proj-feature .repo { font-size: 0.86rem; color: var(--accent); display: inline-flex; align-items: center; gap: 7px; margin-left: auto; }
+    .proj-feature .repo:hover { text-decoration: underline; }
+    @media (max-width: 720px) { .proj-feature .cols { grid-template-columns: 1fr; } .proj-feature .repo { margin-left: 0; } }
+
     .builds-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
     .build {
       border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 28px;
@@ -288,10 +338,10 @@
       <a href="#top" class="brand"><span class="dot"></span> Michael Lund</a>
       <nav class="nav-links" id="navLinks">
         <a href="#about">About</a>
+        <a href="#casestudy">Case Study</a>
         <a href="#experience">Experience</a>
         <a href="#trades">Trades</a>
-        <a href="#builds">What I Build</a>
-        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
         <a href="#contact" class="nav-cta">Get in touch</a>
       </nav>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -327,9 +377,9 @@
         <!-- Stats -->
         <div class="stats reveal">
           <div class="stat"><div class="num">$500<span class="unit">K</span></div><div class="lbl">Intraday equities book managed</div></div>
-          <div class="stat"><div class="num">~2<span class="unit">×</span></div><div class="lbl">Avg winning day vs. losing day</div></div>
+          <div class="stat"><div class="num">$25<span class="unit">MM</span></div><div class="lbl">Series B raise supported at NeuroSync</div></div>
+          <div class="stat"><div class="num">2<span class="unit">nd</span></div><div class="lbl">Duke FinTech Trading Competition (Sharpe-scored)</div></div>
           <div class="stat"><div class="num">4<span class="unit">/4</span></div><div class="lbl">Junior traders mentored to profitability</div></div>
-          <div class="stat"><div class="num">~2<span class="unit">hrs</span></div><div class="lbl">Daily busywork removed by tools I built</div></div>
         </div>
       </div>
     </section>
@@ -357,6 +407,39 @@
               <li>Teach it forward — leverage multiplies when the team levels up.</li>
             </ul>
           </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CASE STUDY ================= -->
+    <section id="casestudy">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="eyebrow reveal">Featured Work Sample</span>
+          <h2 class="title reveal">A chief-of-staff case study, start to finish.</h2>
+          <p class="lead reveal">As part of a Chief of Staff interview at Bolto (a payroll fintech), I was handed an ambiguous, high-stakes question and roughly four hours. This is what "own the work nobody else has picked up" looks like on paper.</p>
+        </div>
+        <div class="feature reveal">
+          <div class="body">
+            <span class="badge">Leadership Briefing · Prepared in ~4 hours</span>
+            <h3>Wage Garnishments: What Bolto Must Do to Support Them Correctly</h3>
+            <div class="sub">A large customer with Illinois &amp; Florida employees is onboarding — and there's no garnishment product today.</div>
+            <p>I researched an unfamiliar legal-and-operational domain against primary sources, mapped what the payroll partner (Check) actually automates versus what the company would own, and turned it into a decision leadership could act on — not a survey of options.</p>
+            <ul>
+              <li><b>Cut through to the real problem:</b> "The math is the easy part — the challenge is moving money to the right place on the right clock, and answering the court."</li>
+              <li><b>Gave a phased recommendation:</b> launch child support end-to-end now, run everything else on a written manual playbook, and let real order volume decide the first thing worth building.</li>
+              <li><b>Made it verifiable:</b> every material claim carries a confidence marker and resolves to a tiered source list — statutes cited to the statute, not to commentary.</li>
+              <li><b>Wrote for the reader:</b> inline glossary, a capability map, a competitor teardown, per-stakeholder questions, and a first-order processing checklist.</li>
+            </ul>
+            <p class="feature-note">Prepared as a hypothetical internal briefing for an interview exercise — not legal advice. Full 15-page briefing available on request.</p>
+          </div>
+          <div class="aside">
+            <div class="metric"><div class="n">15</div><div class="t">pages, fully sourced (33 primary references)</div></div>
+            <div class="rule"></div>
+            <div class="metric"><div class="n">~4 hrs</div><div class="t">from cold start to leadership-ready</div></div>
+            <div class="rule"></div>
+            <div class="metric"><div class="n">3</div><div class="t">jurisdictions reconciled — federal, IL &amp; FL</div></div>
+          </div>
         </div>
       </div>
     </section>
@@ -398,6 +481,19 @@
           </article>
 
           <article class="job reveal">
+            <div class="when">2023 — 2024<span class="loc">Durham, NC</span></div>
+            <div>
+              <div class="role">CTO / Full-Stack Engineer</div>
+              <div class="company">FinTech Stealth Startup</div>
+              <ul>
+                <li>Engineered a full-stack decentralized application (dApp) to tokenize fixed-income securities for a mobile trading platform.</li>
+                <li>Integrated frontend (React / Swift) and backend (Node.js / Python) with Provenance Blockchain functionality.</li>
+                <li>Ran deep research into smart-contract programming in Rust and data-security measures (BlockVault, Encrypted Object Store).</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="job reveal">
             <div class="when">Jun 2023 — Aug 2023<span class="loc">New York, NY</span></div>
             <div>
               <div class="role">Product Management Intern</div>
@@ -406,6 +502,31 @@
                 <li>Owned all product deliverables for a cross-functional intern capstone built on Suncor's business needs — user stories, PRD, and roadmap — and ran daily standups to coordinate the engineering team.</li>
                 <li>Managed sprint planning in Jira and Confluence and prototyped in Figma, translating requirements into a prioritized backlog.</li>
                 <li>Partnered with engineers to ship a full-stack digital prototype, iterating through continuous stakeholder feedback.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="job reveal">
+            <div class="when">Jun 2022 — Aug 2022<span class="loc">Palo Alto, CA</span></div>
+            <div>
+              <div class="role">Finance Associate</div>
+              <div class="company">NeuroSync <span class="tag">· Neuro-Technology Co.</span></div>
+              <ul>
+                <li>Crafted the pitch deck for a successful Series B round, helping secure $25MM through targeted market research and product strategy.</li>
+                <li>Built a 50-slide Confidential Information Memorandum (CIM) giving detailed insight to prospective investors.</li>
+                <li>Ran financial analysis to inform strategic decisions on performance and growth trajectory.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="job reveal">
+            <div class="when">Jan 2022 — Aug 2022<span class="loc">New York, NY</span></div>
+            <div>
+              <div class="role">Project Management Intern, Marketing</div>
+              <div class="company">Options AI <span class="tag">· Stock-Trading FinTech Co.</span></div>
+              <ul>
+                <li>Established a strategic partnership with trading-software company TrendSpider, driving customer acquisition and funded-account growth through an incentivized-funding program.</li>
+                <li>Launched and managed targeted digital and social campaigns with UTM tracking, using Google Analytics to evaluate performance and refine targeting.</li>
               </ul>
             </div>
           </article>
@@ -459,14 +580,49 @@
       </div>
     </section>
 
-    <!-- ================= WHAT I BUILD ================= -->
-    <section id="builds">
+    <!-- ================= PROJECTS ================= -->
+    <section id="projects">
       <div class="wrap">
         <div class="section-head">
-          <span class="eyebrow reveal">What I Build</span>
-          <h2 class="title reveal">Tools that turn friction into leverage.</h2>
-          <p class="lead reveal">When a problem repeats, I build it away. A CS foundation plus an AI-assisted "vibe-coding" workflow lets me ship working tools fast.</p>
+          <span class="eyebrow reveal">Projects &amp; Tools</span>
+          <h2 class="title reveal">Things I've built — from a competition-winning strategy to daily leverage.</h2>
+          <p class="lead reveal">A CS foundation plus an AI-assisted "vibe-coding" workflow lets me ship working tools fast. When a problem repeats, I build it away.</p>
         </div>
+
+        <!-- Featured: Math 585 -->
+        <div class="proj-feature reveal">
+          <div class="head">
+            <h3>Crypto Sentiment + Random Forest Trading Strategy</h3>
+            <span class="result">🏆 2nd — Duke FinTech Trading Competition</span>
+          </div>
+          <p>A Duke Math 585 capstone (team of 4): a BTC/ETH strategy that fuses a Random Forest price model with local FinBERT news sentiment and Google Trends data to predict 15-day-average returns, then sizes positions by conviction. Backtested on QuantConnect, it placed 2nd in Duke's FinTech Trading Competition — which is judged on risk-adjusted return (Sharpe ratio), not raw P&amp;L, so the finish reflects disciplined sizing rather than a lucky bet.</p>
+          <div class="cols">
+            <div class="col mine">
+              <div class="k">What I owned</div>
+              <ul>
+                <li>Designed and coded the piecewise "importance" function that converts a predicted move into a confidence weight — blended with a modified Kelly criterion for position sizing, and part of the final winning strategy.</li>
+                <li>Researched and implemented the Google Trends alternative-data signal (pytrends) inside the QuantConnect backtest.</li>
+                <li>Structured the team into role-based workstreams and edited the final report.</li>
+              </ul>
+            </div>
+            <div class="col">
+              <div class="k">The strategy (team)</div>
+              <ul>
+                <li>Random Forest direction/magnitude model on 15-day-average returns to cut daily noise, benchmarked against linear regression.</li>
+                <li>Local FinBERT sentiment pipeline (run in-house, no external data sharing) plus dynamic "working-memory" market features.</li>
+                <li>Drawdown / liquidation risk controls; backtest held up through the 2021–22 crypto crash where buy-and-hold fell sharply.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="foot">
+            <div class="stack"><span>Python</span><span>Random Forest</span><span>FinBERT</span><span>QuantConnect</span><span>Kelly Criterion</span><span>pytrends</span></div>
+            <a class="repo" href="https://github.com/rmr327/CryptoSentimentBertRfStrat" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 00-3.79 23.4c.6.1.82-.26.82-.58v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.4 11.4 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.62-2.81 5.64-5.49 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0012 .5z"/></svg>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
         <div class="builds-grid">
           <article class="build reveal">
             <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4zM4 12h10M4 16h10M4 20h7M18 12v8M15 17l3 3 3-3"/></svg></div>
@@ -509,6 +665,13 @@
             <p>A rapid-response research artifact pairing each new tariff rate with its most exposed equities — pre-built so that when a catalyst hit, the trade was already scoped.</p>
             <div class="stack"><span>Research</span><span>Macro mapping</span><span>Excel</span></div>
           </article>
+
+          <article class="build reveal">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16M8 15l3-4 3 2 4-6"/><circle cx="8" cy="15" r="1"/><circle cx="11" cy="11" r="1"/><circle cx="14" cy="13" r="1"/></svg></div>
+            <h3>Monte Carlo short-squeeze simulator</h3>
+            <p>A personal-project model that predicts short squeezes from alternative data — social sentiment, trading volumes, and earnings surprises — and flagged the TDOC squeeze ahead of the move.</p>
+            <div class="stack"><span>Python</span><span>Monte Carlo</span><span>Alt-data</span></div>
+          </article>
         </div>
       </div>
     </section>
@@ -529,6 +692,14 @@
                 <span class="chip">Python</span><span class="chip">Java</span><span class="chip">C</span>
                 <span class="chip">SQL</span><span class="chip">Excel &amp; VBA</span><span class="chip">Vibe Coding</span>
                 <span class="chip">Claude / LLM APIs</span><span class="chip">Web Scraping</span>
+                <span class="chip">React / Node.js</span><span class="chip">Rust &amp; Blockchain</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="k">Quant &amp; Analytics</div>
+              <div class="chips">
+                <span class="chip">Quantitative Analysis</span><span class="chip">Statistical Modeling</span>
+                <span class="chip">Performance Analytics</span><span class="chip">Machine Learning</span>
               </div>
             </div>
             <div class="skill-group">
@@ -541,6 +712,7 @@
             <div class="skill-group">
               <div class="k">Product &amp; Operations</div>
               <div class="chips">
+                <span class="chip">Process Design</span><span class="chip">Agile</span>
                 <span class="chip">Figma</span><span class="chip">Jira</span><span class="chip">Confluence</span>
                 <span class="chip">PRDs &amp; Roadmapping</span><span class="chip">Sprint Planning</span>
               </div>
@@ -563,7 +735,7 @@
               <div class="meta">May 2024 · GPA 3.4</div>
               <div class="divider"></div>
               <div class="row"><b>Awards</b>Air Force ROTC Full Scholarship · Academic &amp; Physical Excellence Awards · Dean's List with Distinction</div>
-              <div class="row"><b>Leadership &amp; Activities</b>Duke Men's Varsity Cheer — Founding Member, Cheer Leadership Council · Duke Sports Analytics Club · Duke FinTech Club</div>
+              <div class="row"><b>Leadership &amp; Activities</b>Founder, Difmo LLC (DJ &amp; event services) · Duke Men's Varsity Cheer — Founding Member, Cheer Leadership Council · ACC Professional Development Academy (1 of 7 Duke reps) · Duke Sports Analytics Club · Duke FinTech Club</div>
             </div>
           </div>
         </div>
@@ -649,7 +821,7 @@
     }
 
     // Active nav link via scroll spy
-    const sections = ['about','experience','trades','builds','skills','contact']
+    const sections = ['about','casestudy','experience','trades','projects','skills','contact']
       .map(id => document.getElementById(id)).filter(Boolean);
     const navAnchors = new Map(
       [...document.querySelectorAll('.nav-links a')]
