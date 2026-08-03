@@ -190,76 +190,68 @@
     .filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 26px; }
     .filter-cap { color: var(--text-dim); font-size: 0.85rem; }
 
-    /* ---------- Case study feature ---------- */
-    .feature {
-      border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
-      background: linear-gradient(160deg, var(--surface-2), var(--bg-soft));
-      display: grid; grid-template-columns: 1.15fr 1fr; gap: 0; margin-bottom: 18px;
+    /* ---------- Projects grid ---------- */
+    .pgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 900px) { .pgrid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .pgrid { grid-template-columns: 1fr; } }
+    .pcard {
+      position: relative; display: flex; flex-direction: column; text-align: left; width: 100%;
+      font: inherit; color: inherit; cursor: pointer; overflow: hidden;
+      border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);
+      padding: 24px; min-height: 250px;
+      transition: border-color .25s ease, transform .25s ease, background .25s ease;
     }
-    .feature .body { padding: clamp(28px, 4vw, 44px); }
-    .card-tags { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-    .feature .badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); border: 1px solid var(--border-2); border-radius: 999px; padding: 5px 12px; }
-    .feature h3 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 650; letter-spacing: -0.02em; line-height: 1.15; margin: 18px 0 6px; }
-    .feature .sub { color: var(--text-dim); font-size: 0.9rem; font-family: var(--mono); }
-    .feature .body > p { color: var(--text-mid); font-size: 1rem; margin-top: 16px; }
-    .feature ul { list-style: none; margin-top: 18px; display: flex; flex-direction: column; gap: 12px; }
-    .feature li { position: relative; padding-left: 24px; color: var(--text-mid); font-size: 0.96rem; }
-    .feature li::before { content: "→"; position: absolute; left: 0; top: 0; color: var(--operate); }
-    .feature li b { color: var(--text); font-weight: 600; }
-    .feature .aside {
-      border-left: 1px solid var(--border); padding: clamp(28px, 4vw, 40px);
-      background: var(--operate-glow); display: flex; flex-direction: column; justify-content: center; gap: 20px;
-    }
-    .feature .metric .n { font-family: var(--serif); font-size: clamp(1.9rem, 3.4vw, 2.6rem); font-weight: 700; color: var(--operate); letter-spacing: -0.02em; line-height: 1; }
-    .feature .metric .t { color: var(--text-mid); font-size: 0.9rem; margin-top: 7px; }
-    .feature .aside .rule { height: 1px; background: var(--border); }
-    .feature-cta { margin-top: 24px; }
-    .feature-note { color: var(--text-dim); font-size: 0.85rem; margin-top: 16px; }
-    @media (max-width: 860px) {
-      .feature { grid-template-columns: 1fr; }
-      .feature .aside { border-left: 0; border-top: 1px solid var(--border); flex-direction: row; flex-wrap: wrap; gap: 26px; }
-      .feature .aside .rule { display: none; }
+    .pcard:hover, .pcard:focus-visible { border-color: var(--border-2); transform: translateY(-4px); outline: none; }
+    .pcard:focus-visible { box-shadow: 0 0 0 2px var(--accent-dim); }
+    .pcard.flag { background: linear-gradient(165deg, rgba(52,211,153,0.10), var(--surface) 62%); border-color: var(--accent-dim); }
+    .pcard .track-tag { position: absolute; top: 20px; right: 20px; }
+    .pcard .num { font-family: var(--serif); font-size: 2.7rem; font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: transparent; -webkit-text-stroke: 1px var(--border-2); }
+    .pcard.flag .num { -webkit-text-stroke-color: var(--accent-dim); }
+    .pbody { margin-top: auto; }
+    .pcard h3 { font-size: 1.16rem; font-weight: 650; letter-spacing: -0.01em; margin-top: 20px; padding-right: 78px; }
+    .pmeta { font-family: var(--mono); font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.03em; margin-top: 9px; }
+    .psummary { color: var(--text-mid); font-size: 0.9rem; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .4s ease, opacity .3s ease, margin-top .3s ease; }
+    .popen { font-family: var(--mono); font-size: 0.76rem; color: var(--accent); max-height: 0; opacity: 0; overflow: hidden; transition: max-height .4s ease, opacity .3s ease, margin-top .3s ease; }
+    .pcard:hover .psummary, .pcard:focus-visible .psummary { max-height: 220px; opacity: 1; margin-top: 14px; }
+    .pcard:hover .popen, .pcard:focus-visible .popen { max-height: 40px; opacity: 1; margin-top: 14px; }
+    @media (hover: none) {
+      .psummary { max-height: 220px; opacity: 1; margin-top: 14px; }
+      .popen { max-height: 40px; opacity: 1; margin-top: 14px; }
     }
 
-    /* ---------- Projects ---------- */
-    .proj-feature {
-      border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(26px, 4vw, 40px);
-      background: linear-gradient(160deg, var(--surface-2), var(--bg-soft)); margin-bottom: 18px;
+    /* ---------- Project dossier modal ---------- */
+    body.modal-open { overflow: hidden; }
+    .modal { position: fixed; inset: 0; z-index: 100; display: none; }
+    .modal.open { display: block; }
+    .modal .ov { position: absolute; inset: 0; background: rgba(4,6,8,0.74); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
+    .modal .panel {
+      position: relative; z-index: 1; max-width: 800px; margin: 6vh auto; max-height: 88vh; overflow-y: auto;
+      background: var(--bg-soft); border: 1px solid var(--border-2); border-radius: var(--radius); padding: clamp(26px, 4vw, 46px);
     }
-    .proj-feature .head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; }
-    .proj-feature h3 { font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: 650; letter-spacing: -0.02em; }
-    .proj-feature .result { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); border: 1px solid var(--accent-dim); border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
-    .proj-feature > p { color: var(--text-mid); font-size: 1rem; margin-top: 14px; max-width: 78ch; }
-    .proj-feature .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 22px; }
-    .proj-feature .col .k { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
-    .proj-feature .col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .proj-feature .col li { position: relative; padding-left: 20px; color: var(--text-mid); font-size: 0.94rem; }
-    .proj-feature .col li::before { content: ""; position: absolute; left: 2px; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-dim); }
-    .proj-feature .col.mine li::before { background: var(--accent); box-shadow: 0 0 8px var(--accent-glow); }
-    .proj-feature .foot { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--border); }
-    .proj-feature .stack { display: flex; flex-wrap: wrap; gap: 7px; }
-    .proj-feature .stack span { font-family: var(--mono); font-size: 0.72rem; color: var(--text-dim); border: 1px solid var(--border); padding: 3px 9px; border-radius: 6px; }
-    .proj-feature .repo { font-size: 0.86rem; color: var(--accent); display: inline-flex; align-items: center; gap: 7px; margin-left: auto; }
-    .proj-feature .repo:hover { text-decoration: underline; }
-    @media (max-width: 720px) { .proj-feature .cols { grid-template-columns: 1fr; } .proj-feature .repo { margin-left: 0; } }
-
-    .builds-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-    article.build {
-      position: relative;
-      border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 28px;
-      background: var(--surface); transition: border-color .25s ease, transform .25s ease;
+    @media (max-width: 640px) { .modal .panel { margin: 0; min-height: 100vh; max-height: 100vh; border-radius: 0; } }
+    .modal .close {
+      position: sticky; top: 0; float: right; margin: -6px -6px 0 0; z-index: 2;
+      width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border-2); background: var(--surface);
+      color: var(--text-mid); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all .2s ease;
     }
-    article.build:hover { border-color: var(--border-2); transform: translateY(-3px); }
-    article.build .track-tag { position: absolute; top: 22px; right: 22px; }
-    article.build .ico { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-glow); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
-    article.build .ico svg { width: 21px; height: 21px; stroke: var(--accent); }
-    article.build.op .ico { background: var(--operate-glow); }
-    article.build.op .ico svg { stroke: var(--operate); }
-    article.build h3 { font-size: 1.12rem; font-weight: 600; letter-spacing: -0.01em; padding-right: 74px; }
-    article.build p { color: var(--text-mid); font-size: 0.94rem; margin-top: 9px; }
-    article.build .stack { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
-    article.build .stack span { font-family: var(--mono); font-size: 0.72rem; color: var(--text-dim); border: 1px solid var(--border); padding: 3px 9px; border-radius: 6px; }
-    @media (max-width: 720px) { .builds-grid { grid-template-columns: 1fr; } }
+    .modal .close:hover { color: var(--text); border-color: var(--accent); }
+    .dossier .ey { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+    .dossier .ey.op { color: var(--operate); }
+    .dossier h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 650; letter-spacing: -0.02em; line-height: 1.14; margin: 12px 0 8px; }
+    .dossier .dmeta { font-family: var(--mono); font-size: 0.8rem; color: var(--text-dim); }
+    .dossier .over { color: var(--text-mid); font-size: 1.02rem; margin-top: 18px; }
+    .dossier h4 { font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin: 26px 0 12px; }
+    .dossier ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .dossier li { position: relative; padding-left: 22px; color: var(--text-mid); font-size: 0.96rem; }
+    .dossier li::before { content: "→"; position: absolute; left: 0; top: 0; color: var(--accent); }
+    .dossier li b { color: var(--text); font-weight: 600; }
+    .dossier .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 8px; }
+    .dossier .cols .team li::before { content: ""; left: 2px; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-dim); }
+    @media (max-width: 640px) { .dossier .cols { grid-template-columns: 1fr; } }
+    .dossier .stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .dossier .stack span { font-family: var(--mono); font-size: 0.74rem; color: var(--text-dim); border: 1px solid var(--border); padding: 4px 10px; border-radius: 6px; }
+    .dossier .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    .dossier .note { color: var(--text-dim); font-size: 0.84rem; margin-top: 18px; }
 
     /* ---------- Experience timeline ---------- */
     .timeline { display: flex; flex-direction: column; gap: 0; }
@@ -413,127 +405,212 @@
       <div class="wrap">
         <div class="section-head">
           <span class="eyebrow reveal">Projects &amp; Work Samples</span>
-          <h2 class="title reveal">Proof of work a résumé can't hold.</h2>
-          <p class="lead reveal">The clearest signal I can give is the work itself — the things I've <strong style="color:var(--accent)">built</strong> and the operator calls I've <strong style="color:var(--operate)">made</strong>. Filter by whichever you came to see; it applies to my experience below, too.</p>
+          <h2 class="title reveal">The work, not the résumé lines.</h2>
+          <p class="lead reveal">Hover a card for the short version — open it for the full dossier. The Build / Operate filter applies to my experience below, too.</p>
           <div class="filter-row reveal">
             <div class="filter" role="tablist" aria-label="Filter work by type">
               <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
               <button class="filter-btn" data-filter="build" role="tab" aria-selected="false"><span class="ft-dot build"></span>Build</button>
               <button class="filter-btn" data-filter="operate" role="tab" aria-selected="false"><span class="ft-dot operate"></span>Operate</button>
             </div>
-            <span class="filter-cap">Build = engineered it. Operate = ran it, sized it, decided it.</span>
           </div>
         </div>
 
-        <!-- Featured (Operate): Case study -->
-        <div class="feature reveal" data-track="operate">
-          <div class="body">
-            <div class="card-tags">
-              <span class="badge">Leadership Briefing · ~4 hrs, cold start</span>
-              <span class="track-tag operate">Operate</span>
+        <div class="pgrid">
+          <button class="pcard flag reveal" data-track="operate" data-dossier="d-cos">
+            <span class="track-tag operate">Operate</span>
+            <span class="num">01</span>
+            <div class="pbody">
+              <h3>Chief of Staff Case Study</h3>
+              <div class="pmeta">2026 · interview take-home</div>
+              <p class="psummary">A payroll-compliance domain I'd never touched, turned into a decision leadership could act on — in about four hours, fully sourced.</p>
+              <span class="popen">open dossier →</span>
             </div>
-            <h3>Wage Garnishments: What the Company Must Do to Support Them Correctly</h3>
-            <div class="sub">A large customer with Illinois &amp; Florida employees is onboarding — and there's no garnishment product yet.</div>
-            <p>A take-home exercise from a Chief of Staff interview process at a payroll-tech company. Dropped into an unfamiliar legal-and-operational domain with about four hours, I mapped what the underlying payroll platform automates versus what the company would own end-to-end, and turned it into a decision leadership could act on — not a survey of options.</p>
+          </button>
+
+          <button class="pcard reveal" data-track="build" data-dossier="d-os">
+            <span class="track-tag build">Build</span>
+            <span class="num">02</span>
+            <div class="pbody">
+              <h3>Trading Operating System</h3>
+              <div class="pmeta">2024–present · Trillium</div>
+              <p class="psummary">A daily system to trade by — report cards, reviews, automation, and AI workflows that separate luck from skill. Other traders adopted it.</p>
+              <span class="popen">open dossier →</span>
+            </div>
+          </button>
+
+          <button class="pcard reveal" data-track="build" data-dossier="d-feed">
+            <span class="track-tag build">Build</span>
+            <span class="num">03</span>
+            <div class="pbody">
+              <h3>Claude Market-News Feed</h3>
+              <div class="pmeta">2024–present · Trillium</div>
+              <p class="psummary">Scrapers + language-model APIs that pull and summarize market-moving news faster than I could read the source. I wasn't assigned it.</p>
+              <span class="popen">open dossier →</span>
+            </div>
+          </button>
+
+          <button class="pcard reveal" data-track="build" data-dossier="d-crypto">
+            <span class="track-tag build">Build</span>
+            <span class="num">04</span>
+            <div class="pbody">
+              <h3>Crypto Sentiment + RF Strategy</h3>
+              <div class="pmeta">2024–25 · Duke · 🏆 2nd, FinTech Trading Competition</div>
+              <p class="psummary">A BTC/ETH strategy fusing a Random Forest model, FinBERT sentiment, and alt-data — 2nd in a Sharpe-scored competition. I owned the sizing layer.</p>
+              <span class="popen">open dossier →</span>
+            </div>
+          </button>
+
+          <button class="pcard reveal" data-track="build" data-dossier="d-dash">
+            <span class="track-tag build">Build</span>
+            <span class="num">05</span>
+            <div class="pbody">
+              <h3>Sell-Through Dashboard</h3>
+              <div class="pmeta">2026 · ticket-resale business</div>
+              <p class="psummary">A Claude dashboard that models sell-through targets before an event, so the team plans releases instead of dumping inventory. They run it themselves.</p>
+              <span class="popen">open dossier →</span>
+            </div>
+          </button>
+
+          <button class="pcard reveal" data-track="operate" data-dossier="d-difmo">
+            <span class="track-tag operate">Operate</span>
+            <span class="num">06</span>
+            <div class="pbody">
+              <h3>Difmo — DJ &amp; Events Company</h3>
+              <div class="pmeta">Duke · first business I built &amp; ran</div>
+              <p class="psummary">My first business: resident DJ at Duke's main nightclub, a mix played at Coach K's season opener, and events across campus.</p>
+              <span class="popen">open dossier →</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- ===== Dossier templates ===== -->
+        <template id="d-cos">
+          <div class="dossier">
+            <span class="ey op">Work Sample · Operate</span>
+            <h2>Wage Garnishments: What the Company Must Do to Support Them Correctly</h2>
+            <div class="dmeta">2026 · take-home from a Chief of Staff interview process</div>
+            <p class="over">A take-home exercise from a Chief of Staff interview process at a payroll-tech company. Dropped into an unfamiliar legal-and-operational domain with about four hours, I mapped what the underlying payroll platform automates versus what the company would own end-to-end, and turned it into a decision leadership could act on — not a survey of options.</p>
+            <h4>What the briefing does</h4>
             <ul>
-              <li><b>Cut through to the real problem:</b> "The math is the easy part — the challenge is moving money to the right place on the right clock, and answering the court."</li>
-              <li><b>Gave a phased recommendation:</b> launch child support end-to-end now, run everything else on a written manual playbook, and let real order volume decide the first thing worth building.</li>
-              <li><b>Made it verifiable:</b> every material claim carries a confidence marker and resolves to a tiered source list — statutes cited to the statute, not to commentary.</li>
-              <li><b>Wrote for the reader:</b> inline glossary, a capability map, a competitor teardown, per-stakeholder questions, and a first-order processing checklist.</li>
+              <li><b>Cuts to the real problem:</b> "The math is the easy part — the challenge is moving money to the right place on the right clock, and answering the court."</li>
+              <li><b>Gives a phased recommendation:</b> launch the common order type end-to-end now, run everything else on a written manual playbook, and let real volume decide the first thing worth building.</li>
+              <li><b>Is verifiable:</b> every material claim carries a confidence marker and resolves to a tiered source list — statutes cited to the statute, not to commentary.</li>
+              <li><b>Is written for the reader:</b> inline glossary, a capability map, a competitor teardown, per-stakeholder questions, and a first-order processing checklist.</li>
             </ul>
-            <div class="feature-cta">
+            <div class="stack"><span>Domain research</span><span>Primary sources</span><span>Ops strategy</span><span>Decision memo</span></div>
+            <div class="actions">
               <a class="btn btn-primary" href="assets/Wage_Garnishment_Case_Study_Michael_Lund.pdf" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h7l5 5v13H7zM14 3v5h5M9 13h6M9 17h6"/></svg>
                 Read the briefing (PDF)
               </a>
             </div>
-            <p class="feature-note">A take-home exercise completed during an interview process — not a role I held, and not legal advice. Company names are redacted.</p>
+            <p class="note">A take-home exercise completed during an interview process — not a role I held, and not legal advice. Company names are redacted.</p>
           </div>
-          <div class="aside">
-            <div class="metric"><div class="n">15</div><div class="t">pages, fully sourced (33 primary references)</div></div>
-            <div class="rule"></div>
-            <div class="metric"><div class="n">~4 hrs</div><div class="t">from cold start to leadership-ready</div></div>
-            <div class="rule"></div>
-            <div class="metric"><div class="n">3</div><div class="t">jurisdictions reconciled — federal, IL &amp; FL</div></div>
-          </div>
-        </div>
+        </template>
 
-        <!-- Featured (Build): Math 585 -->
-        <div class="proj-feature reveal" data-track="build">
-          <span class="track-tag build">Build</span>
-          <div class="head">
-            <h3>Crypto Sentiment + Random Forest Trading Strategy</h3>
-            <span class="result">🏆 2nd — Duke FinTech Trading Competition</span>
+        <template id="d-os">
+          <div class="dossier">
+            <span class="ey">Project · Build</span>
+            <h2>Trading Operating System</h2>
+            <div class="dmeta">2024–present · Trillium · designed, built &amp; iterated solo</div>
+            <p class="over">Daily P&amp;L is noisy, so I built a personal operating system to separate luck from skill and focus on the behaviors I could actually control. It started as a daily report card and grew into morning prep, end-of-day reviews, weekly pattern analysis, automated reporting, and AI workflows that summarize notes and surface recurring errors.</p>
+            <h4>What it does</h4>
+            <ul>
+              <li><b>Daily report card</b> tracking thesis, execution, risk management, mistakes, and emotional state.</li>
+              <li><b>Morning prep and end-of-day reviews</b>, plus weekly pattern analysis to catch recurring behavior.</li>
+              <li><b>AI note-summarization</b> that condenses heavy daily note-taking and flags the mistakes I keep repeating.</li>
+              <li><b>Automated reporting</b> on adherence and my green-to-red day ratio, so the system grades itself.</li>
+            </ul>
+            <h4>The hard part</h4>
+            <p class="over" style="margin-top:0">Making it rigorous enough to produce honest insight without being so heavy I'd stop using it. I repeatedly cut fields that didn't change decisions, added prompts around recurring mistakes, and adjusted the reports as my trading evolved. After rebuilding my process and moving to a stronger desk, I ran twice as many green days as red over a six-week stretch. The best validation: other traders started asking to see it and adapting parts for their own workflow.</p>
+            <div class="stack"><span>Claude</span><span>Python</span><span>Automation</span><span>Systems design</span><span>Atomic Habits</span></div>
           </div>
-          <p>A Duke Math 585 capstone (team of 4): a BTC/ETH strategy that fuses a Random Forest price model with local FinBERT news sentiment and Google Trends data to predict 15-day-average returns, then sizes positions by conviction. Backtested on QuantConnect, it placed 2nd in Duke's FinTech Trading Competition — which is judged on risk-adjusted return (Sharpe ratio), not raw P&amp;L, so the finish reflects disciplined sizing rather than a lucky bet.</p>
-          <div class="cols">
-            <div class="col mine">
-              <div class="k">What I owned</div>
-              <ul>
-                <li>Designed and coded the piecewise "importance" function that converts a predicted move into a confidence weight — blended with a modified Kelly criterion for position sizing, and part of the final winning strategy.</li>
-                <li>Researched and implemented the Google Trends alternative-data signal (pytrends) inside the QuantConnect backtest.</li>
-                <li>Structured the team into role-based workstreams and edited the final report.</li>
-              </ul>
-            </div>
-            <div class="col">
-              <div class="k">The strategy (team)</div>
-              <ul>
-                <li>Random Forest direction/magnitude model on 15-day-average returns to cut daily noise, benchmarked against linear regression.</li>
-                <li>Local FinBERT sentiment pipeline (run in-house, no external data sharing) plus dynamic "working-memory" market features.</li>
-                <li>Drawdown / liquidation risk controls; backtest held up through the 2021–22 crypto crash where buy-and-hold fell sharply.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="foot">
-            <div class="stack"><span>Python</span><span>Random Forest</span><span>FinBERT</span><span>QuantConnect</span><span>Kelly Criterion</span><span>pytrends</span></div>
-            <a class="repo" href="https://github.com/rmr327/CryptoSentimentBertRfStrat" target="_blank" rel="noopener">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a12 12 0 00-3.79 23.4c.6.1.82-.26.82-.58v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.4 11.4 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.62-2.81 5.64-5.49 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0012 .5z"/></svg>
-              View on GitHub
-            </a>
-          </div>
-        </div>
+        </template>
 
-        <div class="builds-grid">
-          <article class="build reveal" data-track="build">
-            <span class="track-tag build">Build</span>
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4zM4 12h10M4 16h10M4 20h7M18 12v8M15 17l3 3 3-3"/></svg></div>
-            <h3>Bloomberg-style market-news feed</h3>
-            <p>A real-time news terminal that aggregates and ranks catalysts, shaving critical seconds off intra-trade information processing when the tape is moving.</p>
+        <template id="d-feed">
+          <div class="dossier">
+            <span class="ey">Project · Build</span>
+            <h2>Claude-Powered Market-News Feed</h2>
+            <div class="dmeta">2024–present · Trillium · built from scratch, unassigned</div>
+            <p class="over">A market-news feed I wired together from web scrapers and language-model APIs that <b>pull and summarize</b> market-moving news faster than I could read through the source. Nobody assigned it — I hit a bottleneck in my own process and built the thing that removed it.</p>
+            <h4>What it does</h4>
+            <ul>
+              <li>Scrapes sources continuously and uses language-model APIs to pull and summarize catalysts as they break.</li>
+              <li>Compresses minutes of reading into a glance, shaving critical seconds off intra-trade information processing.</li>
+              <li>Set the template for how I work now: see a bottleneck, build the tool that kills it, keep it running.</li>
+            </ul>
             <div class="stack"><span>Claude</span><span>Web scrapers</span><span>LLM APIs</span><span>Python</span></div>
-          </article>
+            <p class="note">Kept private as a live trading edge, so the tuning stays under wraps — described here by what it does, not how it's built.</p>
+          </div>
+        </template>
 
-          <article class="build reveal op" data-track="operate">
-            <span class="track-tag operate">Operate</span>
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-            <h3>Personal operating system</h3>
-            <p>An Atomic-Habits-based system of routines, rules, and scorecards with trade-prep and review tooling — the operating discipline behind consistent daily execution.</p>
-            <div class="stack"><span>Systems design</span><span>Habit loops</span><span>Review cadence</span></div>
-          </article>
+        <template id="d-crypto">
+          <div class="dossier">
+            <span class="ey">Project · Build · 🏆 2nd, Duke FinTech Trading Competition</span>
+            <h2>Crypto Sentiment + Random Forest Trading Strategy</h2>
+            <div class="dmeta">2024–25 · Duke Math 585 capstone · team of 4</div>
+            <p class="over">A BTC/ETH strategy that fuses a Random Forest price model with local FinBERT news sentiment and Google Trends data to predict 15-day-average returns, then sizes positions by conviction. Backtested on QuantConnect, it placed 2nd in Duke's FinTech Trading Competition — judged on risk-adjusted return (Sharpe ratio), not raw P&amp;L, so the finish reflects disciplined sizing rather than a lucky bet.</p>
+            <div class="cols">
+              <div class="mine">
+                <h4>What I owned</h4>
+                <ul>
+                  <li>Designed and coded the piecewise "importance" function that converts a predicted move into a confidence weight — blended with a modified Kelly criterion for sizing, and part of the final winning strategy.</li>
+                  <li>Researched and implemented the Google Trends alt-data signal (pytrends) in the QuantConnect backtest.</li>
+                  <li>Structured the team into role-based workstreams and edited the final report.</li>
+                </ul>
+              </div>
+              <div class="team">
+                <h4>The strategy (team)</h4>
+                <ul>
+                  <li>Random Forest direction/magnitude model on 15-day-average returns to cut daily noise, benchmarked against linear regression.</li>
+                  <li>Local FinBERT sentiment pipeline (in-house, no external data sharing) plus dynamic "working-memory" features.</li>
+                  <li>Drawdown / liquidation risk controls; the backtest held up through the 2021–22 crypto crash where buy-and-hold fell sharply.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="stack"><span>Python</span><span>Random Forest</span><span>FinBERT</span><span>QuantConnect</span><span>Kelly Criterion</span><span>pytrends</span></div>
+            <div class="actions">
+              <a class="btn btn-ghost" href="https://github.com/rmr327/CryptoSentimentBertRfStrat" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M12 .5a12 12 0 00-3.79 23.4c.6.1.82-.26.82-.58v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.4 11.4 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.62-2.81 5.64-5.49 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0012 .5z"/></svg>
+                View on GitHub
+              </a>
+            </div>
+          </div>
+        </template>
 
-          <article class="build reveal" data-track="build">
-            <span class="track-tag build">Build</span>
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 5v14l4-2 4 2 4-2V5M8 9h8M8 13h5"/></svg></div>
-            <h3>Notes aggregator</h3>
-            <p>Consolidates scattered daily note-taking into one structured pipeline — reclaimed roughly two hours a day of manual work and made review actually reviewable.</p>
-            <div class="stack"><span>Claude</span><span>Automation</span><span>Python</span></div>
-          </article>
-
-          <article class="build reveal" data-track="build">
-            <span class="track-tag build">Build</span>
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 014 4c0 1.5-.8 2.4-1.6 3.2S13 11.6 13 13h-2c0-1.8.9-2.8 1.7-3.6S14 7.9 14 7a2 2 0 00-4 0H8a4 4 0 014-4z"/><circle cx="12" cy="17" r="1"/></svg></div>
-            <h3>AI trading coach</h3>
-            <p>Analyzes daily report cards to surface behavioral patterns and recurring leaks — turning self-review into a feedback loop that flags mistakes before they compound.</p>
-            <div class="stack"><span>Claude</span><span>Behavioral analysis</span><span>Data pipeline</span></div>
-          </article>
-
-          <article class="build reveal" data-track="build">
-            <span class="track-tag build">Build</span>
-            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
-            <h3>Resale inventory dashboard</h3>
-            <p>A Claude-powered dashboard for a 20-person ticket-resale business — visualizing inventory and sell-through so the team gets a real-time read to drive buy-and-sell decisions.</p>
+        <template id="d-dash">
+          <div class="dossier">
+            <span class="ey">Project · Build</span>
+            <h2>Sell-Through Dashboard</h2>
+            <div class="dmeta">2026 · built for a ~20-person ticket-resale business</div>
+            <p class="over">I spent a week shadowing a friend's ~20-person ticket-resale business to learn how they moved inventory, then built them a Claude-powered dashboard that models sell-through targets in the weeks before an event — so the team can plan how to release inventory over days instead of dumping it and hoping. It was the first thing I built for them, and it stuck.</p>
+            <h4>What it does</h4>
+            <ul>
+              <li>Models sell-through targets ahead of an event to guide how inventory is released over time.</li>
+              <li>Gives the team a planning tool they run on their own — it isn't a real-time system and doesn't drive live buy/sell decisions.</li>
+              <li>Came out of a week of shadowing: get inside the system fast, find the one thing that moves it, build the tool before anyone asks.</li>
+            </ul>
             <div class="stack"><span>Claude</span><span>Dashboards</span><span>Analytics</span></div>
-          </article>
-        </div>
+            <p class="note">Related: watching a few live drops, I flagged that the team worked off memory so steps slipped under pressure, and proposed systematizing each person's responsibilities per drop.</p>
+          </div>
+        </template>
+
+        <template id="d-difmo">
+          <div class="dossier">
+            <span class="ey op">Project · Operate</span>
+            <h2>Difmo — DJ &amp; Events Company</h2>
+            <div class="dmeta">Duke · the first business I built and ran</div>
+            <p class="over">Once bars reopened after Covid, I started my own DJ and events service company at Duke. I became the resident DJ at Shooters, Duke's main nightclub, and played events for clubs and social organizations across campus — the first thing I built and ran as my own business.</p>
+            <h4>Highlights</h4>
+            <ul>
+              <li>Resident DJ at Shooters, Duke's main nightclub.</li>
+              <li>One of my mixes was played at Coach K's Countdown to Craziness, Duke Basketball's sold-out season opener.</li>
+              <li>Booked and played events for campus clubs and social organizations — sourcing, scheduling, and delivering the night end-to-end.</li>
+            </ul>
+            <div class="stack"><span>Entrepreneurship</span><span>Events</span><span>DJ / production</span></div>
+          </div>
+        </template>
       </div>
     </section>
 
@@ -784,6 +861,17 @@
     </section>
   </main>
 
+  <!-- ================= PROJECT DOSSIER MODAL ================= -->
+  <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Project details">
+    <div class="ov" data-close></div>
+    <div class="panel">
+      <button class="close" data-close aria-label="Close dossier">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
   <!-- ================= FOOTER ================= -->
   <footer class="site">
     <div class="wrap">
@@ -844,6 +932,37 @@
       });
     }
     filterBtns.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
+
+    // Project dossier modal
+    const modal = document.getElementById('modal');
+    const modalBody = document.getElementById('modal-body');
+    const panel = modal.querySelector('.panel');
+    let lastFocus = null;
+    function openDossier(id) {
+      const tpl = document.getElementById(id);
+      if (!tpl) return;
+      lastFocus = document.activeElement;
+      modalBody.innerHTML = '';
+      modalBody.appendChild(tpl.content.cloneNode(true));
+      modal.classList.add('open');
+      document.body.classList.add('modal-open');
+      modal.setAttribute('aria-hidden', 'false');
+      panel.scrollTop = 0;
+      modal.querySelector('.close').focus();
+    }
+    function closeDossier() {
+      modal.classList.remove('open');
+      document.body.classList.remove('modal-open');
+      modal.setAttribute('aria-hidden', 'true');
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    document.querySelectorAll('.pcard').forEach(c =>
+      c.addEventListener('click', () => openDossier(c.dataset.dossier)));
+    modal.querySelectorAll('[data-close]').forEach(el =>
+      el.addEventListener('click', closeDossier));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('open')) closeDossier();
+    });
 
     // Reveal on scroll
     const revealEls = document.querySelectorAll('.reveal');
