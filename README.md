@@ -6,10 +6,11 @@ A fast, single-page personal portfolio built as static HTML/CSS/JS. No build ste
 
 ```
 .
-├── index.html                     # The entire site (styles + scripts inlined)
+├── index.html                                  # The entire site (styles + scripts inlined)
 ├── assets/
-│   ├── Michael_Lund_Resume.pdf    # Linked by the "Download résumé" buttons
-│   └── favicon.svg                # Browser-tab icon (ML monogram)
+│   ├── Michael_Lund_Resume.pdf                 # Linked by the "Download résumé" buttons
+│   ├── Wage_Garnishment_Case_Study_Michael_Lund.pdf  # Redacted case-study work sample
+│   └── favicon.svg                             # Browser-tab icon (ML monogram)
 └── README.md
 ```
 
@@ -45,3 +46,4 @@ python3 -m http.server 8000
 
 - Fully responsive, keyboard-accessible, and respects `prefers-reduced-motion`.
 - The phone number from the résumé is intentionally **not** published on the site; contact routes through email and LinkedIn.
+- The case-study PDF is a **redacted** version of the original: the two company names it referenced are blacked out and the underlying text removed (true redaction, not just an overlay), so nothing is recoverable by copy/paste or search.
