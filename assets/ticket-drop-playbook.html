@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ticket-Drop Operations Playbook — Michael Lund</title>
+<style>
+:root{--bg:#0a0a0b;--surface:#141417;--border:#26262b;--border2:#34343b;--text:#f2f2f3;--mid:#c4c4cc;--dim:#8a8a94;--accent:#34d399;--accent-dim:#1f8f6b;
+--serif:'Iowan Old Style','Palatino Linotype','Georgia',serif;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;--mono:'SFMono-Regular',ui-monospace,Menlo,Consolas,monospace;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.62;-webkit-font-smoothing:antialiased;padding:0 0 80px}
+.wrap{max-width:820px;margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+header.top{border-bottom:1px solid var(--border);padding:clamp(40px,7vw,80px) 0 clamp(28px,4vw,44px);margin-bottom:20px;background:linear-gradient(180deg,#0e1512,var(--bg))}
+.eyb{font-family:var(--mono);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--serif);font-size:clamp(2rem,5vw,3rem);font-weight:700;letter-spacing:-.02em;line-height:1.05;margin:14px 0 10px}
+.sub{color:var(--mid);font-size:1.05rem;max-width:60ch}
+.byline{font-family:var(--mono);font-size:.82rem;color:var(--dim);margin-top:16px}
+h2.role{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:700;letter-spacing:-.02em;margin:52px 0 4px;padding-top:28px;border-top:1px solid var(--border)}
+.rmeta{font-family:var(--mono);font-size:.82rem;color:var(--accent);letter-spacing:.03em;margin-bottom:8px}
+h3.sec{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:30px 0 14px}
+h4.phase{font-size:1.02rem;font-weight:650;color:var(--text);margin:24px 0 12px}
+p.over{color:var(--mid);font-size:1rem;margin:8px 0}
+p.warn{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.32);color:#f6b0b0;border-radius:10px;padding:12px 16px;font-size:.92rem;margin:16px 0}
+ul{list-style:none;margin:6px 0 8px}
+li{position:relative;padding-left:24px;color:var(--mid);font-size:.97rem;margin-bottom:9px}
+li::before{content:"";position:absolute;left:3px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent-dim)}
+li.sub{padding-left:40px;font-size:.92rem;color:var(--dim)}
+li.sub::before{left:22px;top:10px;width:5px;height:5px;border-radius:1px;background:var(--border2)}
+footer{color:var(--dim);font-size:.82rem;border-top:1px solid var(--border);margin-top:56px;padding-top:24px}
+</style></head><body>
+<header class="top"><div class="wrap">
+<div class="eyb">Operations Playbook · Work Sample</div>
+<h1>Role Checklists for Ticket Drops</h1>
+<div class="sub">A before · during · after operating system that gives every role a repeatable checklist, so nothing slips under the pressure of a live drop.</div>
+<div class="byline">Built with the founder to systematize live-drop execution · Michael Lund</div>
+</div></header>
+<main class="wrap">
+<h2 class="role">Operations Manager</h2>
+<div class="rmeta">CEO / Founder  ·  In-Office</div>
+<h3 class="sec">Role Overview</h3>
+<p class="over">The Operations Manager is the firm’s ultimate decision-maker. He sets buying strategy, manages partner firm relationships, controls final approval on all high-priority purchases, and determines how the team deploys capital across any given drop. On important events he runs his own lane in addition to overseeing the other Traders. On lower-priority events he delegates approval authority and monitors from a distance. The goal is to stay out of operational minutiae so he can focus on strategy — but the current reality is that he remains the most critical hands-on player during significant drops.</p>
+<h3 class="sec">Responsibilities</h3>
+<ul>
+<li>Own the Go/No-Go decision on every event the firm pursues</li>
+<li>Set overall drop strategy: which software, which partner firms, which Traders run which lanes</li>
+<li>Retain final approval authority on high-priority buys; delegate on lower-priority events with explicit instruction</li>
+<li>Communicate real-time criteria changes to Tech during drops with precision</li>
+<li>Set initial price floors and market targets post-checkout; hand off to Inventory Manager</li>
+<li>Consult with Inventory Manager on significant hold/liquidate decisions</li>
+<li>Own partner firm relationships and coordinate profit-sharing on joint buys</li>
+<li>Conduct post-drop debrief with Traders to refine criteria and strategy</li>
+</ul>
+<h3 class="sec">Action Checklist</h3>
+<h4 class="phase">Days Before the Drop</h4>
+<ul>
+<li>Review intern research sheets validated by a Trader; confirm demand read, risks, and resale estimates are sound</li>
+<li>Issue Go/No-Go on each event; communicate decisions to the full team</li>
+<li>Prioritize events when multiple drops overlap the same day; assign Trader lane ownership</li>
+<li>Determine buying strategy per event: proprietary accounts vs. partner firm lanes vs. both</li>
+<li>Confirm partner firm contacts and software availability for high-priority events</li>
+<li>Set initial account criteria (sections, rows, quantities, price caps); send to Tech</li>
+</ul>
+<h4 class="phase">Night Before the Drop</h4>
+<ul>
+<li>Run gameplan session with all Traders: lock in target sections, price ranges, and max spend per event</li>
+<li>Confirm lane assignments for each Trader, including virtual Trader’s independent lane</li>
+<li>Explicitly state which events you retain final approval on vs. which are delegated to Traders</li>
+<li>Set price floor targets per ticket type; send to Inventory Manager for post-drop relay to Pricers</li>
+<li>Confirm presale codes are sourced and distributed to Tech</li>
+</ul>
+<h4 class="phase">30–60 Minutes Before Drop</h4>
+<ul>
+<li>Confirm Tech has loaded correct criteria, accounts, settings, and links</li>
+<li>Brief Traders on approval authority one final time; no ambiguity on who approves what</li>
+<li>Confirm partner firm contacts are on standby; open communication channels</li>
+<li>Open buyer dashboard; verify cart feed is live and filtering correctly</li>
+</ul>
+<h4 class="phase">During the Drop</h4>
+<p class="warn">⚠  Highest-pressure phase. Ops Manager owns all critical decisions. Do not let communication lag.</p>
+<ul>
+<li>Monitor queue position updates from Tech; stay alert as accounts approach queue exit</li>
+<li>Review carted tickets on dashboard as they populate; approve or reject in real time</li>
+<li>Communicate criteria changes to Tech immediately and precisely; confirm Tech has made the change</li>
+<li>Manage partner firm lanes directly: relay buy/pass decisions through the appropriate contact</li>
+<li>For delegated events: confirm assigned Trader is actively monitoring and approving</li>
+<li>Oversee checkout: confirm auto-checkout is functioning; step in manually if it fails</li>
+</ul>
+<h4 class="phase">After the Drop</h4>
+<ul>
+<li>Review all purchased inventory; confirm orders match approved carts</li>
+<li>Complete and send Pricing Slip to Inventory Manager: event, section, quantity, price floor, market target per ticket type</li>
+<li>Notify partner firm of purchased inventory and confirm profit-share split</li>
+<li>Debrief with Traders: what worked, what criteria to change, any tech issues to log</li>
+</ul>
+<h2 class="role">Research Analyst</h2>
+<div class="rmeta">Intern  ·  In-Office  ·  Two Analysts on Team</div>
+<h3 class="sec">Role Overview</h3>
+<p class="over">Research Analysts own the intelligence pipeline that drives every buying decision. Their job is to identify events worth pursuing, build a complete research sheet for each one, and deliver it to a Trader for validation before it reaches the Ops Manager. With a defined process, two sharp interns can cover the firm’s full event pipeline at current drop volume, freeing Traders from spending time on research and letting them focus on execution. Quality and completeness of research sheets directly determines the quality of buying decisions.</p>
+<h3 class="sec">Responsibilities</h3>
+<ul>
+<li>Monitor onsale announcements daily across all major artists, venues, and ticketing platforms</li>
+<li>Build complete research sheets for all candidate events within the week of the drop</li>
+<li>Source and secure presale codes for relevant events</li>
+<li>Submit completed sheets to the designated Trader reviewer — not directly to the Ops Manager</li>
+<li>Track actual resale prices post-drop vs. estimates to improve future accuracy</li>
+</ul>
+<h3 class="sec">Action Checklist</h3>
+<h4 class="phase">Research Sheet Completion (Per Event)</h4>
+<ul>
+<li>Artist / Tour name</li>
+<li>Venue and City</li>
+<li>Onsale Date(s) — presale windows and public onsale</li>
+<li>Face Value for each ticket type (GA, Floor, Lower Bowl, Upper Bowl, VIP, etc.)</li>
+<li>Estimated Resale value per ticket type — based on comparable past events and current secondary market signals</li>
+<li>Demand Read — fan base strength, presale queue velocity, social media signals, artist momentum</li>
+<li>Risks — platinum/dynamic pricing, limited inventory, anti-account measures, soft demand indicators</li>
+<li>Target Sections / Ticket Types — ranked by ROI priority</li>
+<li>Dollar Recommendation ($ Rec) — expected profit per ticket at estimated resale</li>
+<li>Confidence rating (1–10)</li>
+<li>Action recommendation: Pursue / Monitor / Pass</li>
+</ul>
+<h4 class="phase">Submission &amp; Follow-Up</h4>
+<ul>
+<li>Submit completed research sheet to Trader reviewer at least 2 days before drop</li>
+<li>Address any feedback from Trader reviewer before sheet is passed to Ops Manager</li>
+<li>Source and confirm presale codes; log them and share with Ops Manager and Tech</li>
+<li>Flag any last-minute onsale structure changes (new presale windows, platinum announcements, venue changes)</li>
+<li>Monitor secondary market leading up to the drop; update estimated resale if market moves significantly</li>
+</ul>
+<h4 class="phase">Post-Drop Accuracy Tracking</h4>
+<ul>
+<li>Log actual sell prices vs. estimated resale for each ticket type purchased</li>
+<li>Record variance and note factors that caused the deviation (demand, market saturation, timing)</li>
+<li>Flag any new events identified during post-drop period for the next research cycle</li>
+</ul>
+<h2 class="role">Trader / Buyer</h2>
+<div class="rmeta">Two Traders  ·  One In-Office, One Virtual  ·  Also Validates Research</div>
+<h3 class="sec">Role Overview</h3>
+<p class="over">Traders are the firm’s execution layer. During drops they run independent lanes — managing their assigned queue, monitoring carted tickets, and approving purchases within their delegated authority. Outside of drops, each Trader serves as a research reviewer: spot-checking intern research sheets before they reach the Ops Manager, validating demand reads and resale estimates. The virtual Trader operates fully independently in their lane but stays in active communication with the Ops Manager on patterns and strategy changes. Post-checkout, Traders complete a standardized Pricing Slip and hand off all post-drop responsibility to the Inventory Manager.</p>
+<h3 class="sec">Responsibilities</h3>
+<ul>
+<li>Review and validate intern research sheets as the designated Trader reviewer before Ops Manager sees them</li>
+<li>Run an independent buying lane during drops with full execution responsibility</li>
+<li>Communicate patterns, section observations, and strategy input to Ops Manager in real time during drops</li>
+<li>Exercise delegated approval authority on lower-priority events; escalate on high-priority ones</li>
+<li>Complete a Pricing Slip immediately after checkout and send to Inventory Manager</li>
+<li>Hand off all post-checkout responsibilities to Inventory Manager — no direct management of Pricers</li>
+</ul>
+<h3 class="sec">Action Checklist</h3>
+<h4 class="phase">Research Review (Ongoing, Between Drops)</h4>
+<ul>
+<li>Receive completed research sheet from intern analyst</li>
+<li>Verify demand read is grounded in real signals (not just artist popularity)</li>
+<li>Validate estimated resale against current secondary market comps for comparable events</li>
+<li>Check that target sections and $ Rec align with realistic account carting expectations</li>
+<li>Approve sheet and forward to Ops Manager, or return to intern with specific feedback</li>
+</ul>
+<h4 class="phase">Night Before the Drop</h4>
+<ul>
+<li>Attend gameplan session with Ops Manager; align on target sections, price ranges, and spend limits</li>
+<li>Confirm your lane assignment and the software / accounts you’re responsible for</li>
+<li>Clarify approval authority: confirm whether you have delegated final approval or must flag to Ops Manager</li>
+<li>Review the research sheet for your assigned event(s); internalize key targets and risk flags</li>
+</ul>
+<h4 class="phase">30–60 Minutes Before Drop</h4>
+<ul>
+<li>Open and log into buyer dashboard; confirm cart feed is live and updating</li>
+<li>Confirm your lane is active: correct accounts, correct software, correct criteria loaded</li>
+<li>Establish communication with Tech: confirm alert method when accounts approach queue exit</li>
+<li>Open communication with Ops Manager (in-person, call, or Discord for virtual Trader)</li>
+</ul>
+<h4 class="phase">During the Drop</h4>
+<ul>
+<li>Monitor Tech alerts on queue position; increase attention as accounts approach the front</li>
+<li>Review carted tickets as they populate: assess section, row, quantity, and price against targets</li>
+<li>For delegated events: approve or pass promptly and independently</li>
+<li>For Ops Manager-controlled events: surface key cart details quickly; do not approve without sign-off</li>
+<li>Communicate unexpected results (wrong sections, poor rows, overpriced carts) to Ops Manager immediately</li>
+<li>Report patterns observed in your lane to Ops Manager in real time (e.g., “Floor is selling through fast, GA still available”)</li>
+</ul>
+<h4 class="phase">After the Drop</h4>
+<ul>
+<li>Confirm all approved orders have checked out successfully; flag any failures to Ops Manager immediately</li>
+<li>Complete Pricing Slip for every event purchased and send to Inventory Manager via Discord:</li>
+<li class="sub">Event name and date</li>
+<li class="sub">Section and row for each lot</li>
+<li class="sub">Quantity per lot</li>
+<li class="sub">Price floor (minimum acceptable sale price)</li>
+<li class="sub">Market target (where to list initially)</li>
+<li class="sub">Auto-Pricer approved: Yes / No</li>
+<li>Do not send pricing instructions directly to Pricers — all post-checkout pricing communication goes through Inventory Manager</li>
+<li>Note any underperforming sections or quantities for criteria refinement; share in post-drop debrief</li>
+</ul>
+<h2 class="role">Tech</h2>
+<div class="rmeta">Tech Lead  ·  In-Office</div>
+<h3 class="sec">Role Overview</h3>
+<p class="over">Tech is the operational backbone of every drop. The Tech lead is responsible for deploying accounts, managing queue entry, monitoring queue position, and communicating status to Traders and the Ops Manager in real time. Critically, Tech is also the firm’s earliest warning system — advance notice on queue position is what gives Buyers time to prepare. During a drop, Tech takes and implements criteria changes from the Ops Manager only — not from Traders — and confirms every change back verbally to prevent miscommunication. Tech also owns the ongoing relationship with the auto-checkout software developer and tracks all technical issues for resolution.</p>
+<h3 class="sec">Responsibilities</h3>
+<ul>
+<li>Own all account deployment, configuration, and queue management</li>
+<li>Proactively communicate queue position to Traders and Ops Manager throughout the drop</li>
+<li>Receive and implement criteria changes from Ops Manager only; confirm each change back verbally</li>
+<li>Monitor cart output to confirm accounts are hitting the correct sections and quantities</li>
+<li>Log all criteria changes and technical issues during drops for post-drop review</li>
+<li>Own ongoing communication with the auto-checkout software developer; escalate bugs and track fixes</li>
+</ul>
+<h3 class="sec">Action Checklist</h3>
+<h4 class="phase">Night Before / Early Prep</h4>
+<ul>
+<li>Receive final criteria document from Ops Manager; confirm you understand all parameters</li>
+<li>Verify all accounts are loaded and correctly formatted in accounts.csv</li>
+<li>Confirm presale codes are accurate and entered correctly in settings</li>
+</ul>
+<h4 class="phase">30–60 Minutes Before Drop</h4>
+<ul>
+<li>Open all task sheets; verify all event links are correct and resolving</li>
+<li>Confirm account criteria matches the finalized Ops Manager instructions exactly: sections, rows, quantities, price caps</li>
+<li>Confirm all software settings are correct: queue timing, retry behavior, account rotation</li>
+<li>Start tasks once queue opens at :46; confirm accounts are entering queue at a high rate</li>
+<li>Flag any entry rate issues to Ops Manager immediately — do not wait</li>
+<li>Confirm communication is open with Ops Manager and all active Traders</li>
+</ul>
+<h4 class="phase">During the Drop</h4>
+<p class="warn">⚠  Tech is the earliest warning system. Proactive communication is the most important thing you do during a drop.</p>
+<ul>
+<li>Report queue position to Buyers and Ops Manager at regular intervals throughout the drop</li>
+<li>Alert Buyers with sufficient advance notice when accounts are approaching queue exit — do not wait until they’re through</li>
+<li>Monitor cart output continuously; confirm accounts are carting the correct sections and quantities</li>
+<li>Receive criteria changes from Ops Manager only; implement immediately and confirm the change back verbally</li>
+<li>Flag any account failures, account lockouts, or software errors to Ops Manager without delay</li>
+<li>Log every criteria change made during the drop with a timestamp</li>
+</ul>
+<h4 class="phase">After the Drop</h4>
+<ul>
+<li>Confirm all accounts have fully exited queues and all tasks are stopped</li>
+<li>Export and save a log of all accounts that successfully carted and checked out</li>
+<li>Report any account bans, flags, or checkout failures to Ops Manager</li>
+<li>Submit timestamped log of all criteria changes and any technical issues to Ops Manager</li>
+<li>Log any auto-checkout failures or bugs; communicate to software developer with reproduction details</li>
+</ul>
+<h2 class="role">Pricer</h2>
+<div class="rmeta">Managed by Inventory Manager  ·  Remote VA Team</div>
+<h3 class="sec">Role Overview</h3>
+<p class="over">Pricers are responsible for listing inventory on secondary market platforms and actively managing prices to drive sell-through at optimal value. They receive all instructions exclusively through the Inventory Manager via Discord — not directly from Traders. For liquid markets and General Admission inventory, Pricers configure and monitor the Auto-Pricer tool within approved floor bounds. For premium and illiquid inventory, they manage prices manually with closer oversight. Pricers do not make floor-adjustment decisions independently — they surface market movement to the Inventory Manager and execute on instructions.</p>
+<h3 class="sec">Responsibilities</h3>
+<ul>
+<li>List all purchased inventory on applicable secondary market platforms upon receipt of Pricing Slip from Inventory Manager</li>
+<li>Monitor competing listings and adjust prices to remain competitive within approved floor bounds</li>
+<li>Configure and monitor Auto-Pricer tool for GA and liquid inventory within approved bounds</li>
+<li>Manage premium and illiquid inventory manually; never use Auto-Pricer on these without explicit approval</li>
+<li>Alert Inventory Manager when market moves significantly and await guidance before adjusting floors</li>
+<li>Never drop below the price floor without explicit Inventory Manager approval</li>
+</ul>
+<h3 class="sec">Action Checklist</h3>
+<h4 class="phase">Initial Listing (After Each Drop)</h4>
+<p class="warn">⚠  Do not list any inventory until Pricing Slip is received from Inventory Manager. Do not accept instructions directly from Traders.</p>
+<ul>
+<li>Receive Pricing Slip from Inventory Manager via Discord; confirm you have: event, section, quantity, price floor, market target, and Auto-Pricer approval status for each lot</li>
+<li>List all inventory on applicable platforms at the instructed market target price</li>
+<li>For GA and liquid inventory where Auto-Pricer is approved: configure tool within the provided price floor; confirm it is active and functioning</li>
+<li>For premium and illiquid inventory: list manually at instructed price; do not configure Auto-Pricer</li>
+<li>Verify all listings are live and accurate: confirm section, row, quantity, and price for every listing</li>
+<li>Notify Inventory Manager via Discord once all initial listings are confirmed live</li>
+</ul>
+<h4 class="phase">Ongoing Price Management</h4>
+<ul>
+<li>Monitor competing listings on the secondary market continuously during active selling periods</li>
+<li>Adjust prices to remain competitive: match or undercut comparable listings to drive sell-through within floor bounds</li>
+<li>Alert Inventory Manager via Discord when market is moving significantly — up or down — before making any floor-adjacent adjustments</li>
+<li>For Auto-Priced inventory: monitor tool behavior; flag any anomalies or listings outside expected bounds to Inventory Manager</li>
+<li>Execute price changes promptly when instructed by Inventory Manager</li>
+<li>Never drop below the price floor without explicit written approval from Inventory Manager in Discord</li>
+</ul>
+<h2 class="role">Inventory Manager</h2>
+<div class="rmeta">Remote  ·  Philippines  ·  Manages VA / Pricer Team  ·  Reports to Ops Manager</div>
+<h3 class="sec">Role Overview</h3>
+<p class="over">The Inventory Manager is the post-drop command center. Once Traders complete checkout and send Pricing Slips, the Inventory Manager owns everything: relaying instructions to Pricers, monitoring sell-through, managing repricing decisions within approved floors, and escalating only significant decisions to the Ops Manager. This role is the critical link that removes Traders from all post-checkout communication, letting them focus on the next drop. The Inventory Manager manages the Pricer VA team directly and has real operational leverage through that team. Significant floor-adjustment decisions, hold strategies, and pre-event liquidation calls require Ops Manager consultation.</p>
+<h3 class="sec">Responsibilities</h3>
+<ul>
+<li>Receive Pricing Slips from Traders and relay instructions to Pricers — the sole communication bridge between Traders and Pricers</li>
+<li>Monitor sell-through across all active inventory; maintain a running view of what is moving vs. stagnant</li>
+<li>Authorize routine price adjustments within approved floor bounds; communicate to Pricers via Discord</li>
+<li>Escalate significant decisions to Ops Manager: large floor drops, hold strategies, liquidation at a loss</li>
+<li>Track total inventory value, sold revenue, and outstanding lots per event</li>
+<li>Coordinate with Fulfillment on tickets sold and pending transfer</li>
+<li>Manage the Pricer VA team: assign inventory, monitor listing quality, address errors</li>
+</ul>
+<h3 class="sec">Action Checklist</h3>
+<h4 class="phase">Post-Drop Setup (After Each Drop)</h4>
+<ul>
+<li>Receive Pricing Slip from each Trader via Discord for every event purchased</li>
+<li>Log all purchased inventory: event, section, row, quantity, price floor, market target, Auto-Pricer status</li>
+<li>Relay complete pricing instructions to the assigned Pricer(s) via Discord; confirm they have everything needed to list</li>
+<li>Confirm with Pricers that all listings are live and match the Pricing Slip instructions</li>
+<li>Flag any inventory requiring special handling: partner firm splits, delayed listing, or hold strategy — confirm with Ops Manager before instructing Pricers</li>
+</ul>
+<h4 class="phase">Ongoing Inventory &amp; Sell Strategy</h4>
+<ul>
+<li>Monitor sell-through across all active inventory; identify which lots are moving and which are stagnant</li>
+<li>Receive market movement alerts from Pricers; assess whether to authorize a floor adjustment or hold position</li>
+<li>For routine adjustments within approved bounds: authorize Pricers to adjust; communicate new parameters clearly in Discord</li>
+<li>For significant decisions (major floor drops, holding premium inventory, liquidating at a loss): consult Ops Manager before instructing Pricers</li>
+<li>Maintain a running P&amp;L view per event: purchased cost, current list prices, sold revenue, outstanding inventory value</li>
+<li>Coordinate with Fulfillment on all sold tickets pending transfer; confirm Fulfillment has accurate lot information</li>
+</ul>
+<h4 class="phase">Pre-Event Urgency (Event Approaching)</h4>
+<ul>
+<li>Flag all unsold inventory to Ops Manager well in advance of the event date; provide current market context</li>
+<li>Receive and relay liquidation or aggressive repricing instructions to Pricers</li>
+<li>Confirm all sold inventory has been successfully fulfilled before the event date</li>
+<li>Close out the event in inventory logs once all tickets are sold and fulfilled</li>
+</ul>
+<h2 class="role">Fulfillment VA</h2>
+<div class="rmeta">VA Team  ·  Managed by Inventory Manager  ·  Not Time-Sensitive During Drop</div>
+<h3 class="sec">Role Overview</h3>
+<p class="over">Fulfillment is responsible for ensuring every sold ticket reaches the buyer accurately and on time. This role has no active function during a live drop — it activates once tickets are sold. Fulfillment works directly with the Inventory Manager to confirm which sold tickets are ready for transfer, executes transfers on the correct platform, confirms buyer acceptance, and tracks status across all outstanding orders. Accurate fulfillment is essential for maintaining platform standing and seller reputation.</p>
+<h3 class="sec">Responsibilities</h3>
+<ul>
+<li>Monitor sale notifications across all platforms; log every sold order immediately upon notification</li>
+<li>Coordinate with Inventory Manager to confirm which sold tickets are cleared and ready for transfer</li>
+<li>Execute ticket transfers accurately and promptly on the correct platform</li>
+<li>Track transfer status for all outstanding orders through to buyer acceptance</li>
+<li>Flag all fulfillment issues to Inventory Manager immediately: transfer failures, wrong tickets, buyer disputes</li>
+<li>Maintain complete records of all fulfilled orders for accounting and dispute resolution</li>
+</ul>
+<h3 class="sec">Action Checklist</h3>
+<h4 class="phase">Ongoing — Post-Sale Fulfillment</h4>
+<p class="warn">⚠  Fulfillment does not activate during the drop. Begin workflow only after sale notifications are received.</p>
+<ul>
+<li>Monitor sale notifications across all secondary market platforms actively during selling periods</li>
+<li>Log each sold order: platform, event, section, row, quantity, buyer contact, sale price</li>
+<li>Confirm with Inventory Manager that the sold lot is cleared and correct account access is available for transfer</li>
+<li>Initiate ticket transfer on the correct platform promptly after sale confirmation</li>
+<li>Confirm buyer has accepted the ticket transfer; follow up on any pending or expired transfers within 24 hours</li>
+<li>Flag immediately to Inventory Manager: failed transfers, wrong tickets sent, buyer disputes, or platform warnings</li>
+<li>Update fulfillment status log for every order: Sold – Awaiting Transfer / Transferred – Pending Acceptance / Complete</li>
+<li>Maintain records of all completed fulfillments: platform, event, section, sale price, transfer date, confirmation</li>
+</ul>
+<footer>Prepared as an internal operations deliverable to systematize a ticket-resale team's live drops. Reproduced here as a work sample; no company or individual names are included.</footer>
+</main></body></html>

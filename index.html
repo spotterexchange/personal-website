@@ -190,6 +190,15 @@
     .filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 26px; }
     .filter-cap { color: var(--text-dim); font-size: 0.85rem; }
 
+    /* ---------- Featured project blocks (inline, full detail) ---------- */
+    .pfeature {
+      border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(26px, 4vw, 40px);
+      background: linear-gradient(160deg, var(--surface-2), var(--bg-soft)); margin-bottom: 16px;
+    }
+    .pfeature.flag { border-color: var(--accent-dim); background: linear-gradient(160deg, rgba(52,211,153,0.09), var(--bg-soft) 64%); }
+    .pfeature .dossier h2 { margin-top: 10px; }
+    .featured-label { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 14px; display: block; }
+
     /* ---------- Projects grid ---------- */
     .pgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     @media (max-width: 900px) { .pgrid { grid-template-columns: repeat(2, 1fr); } }
@@ -405,8 +414,7 @@
       <div class="wrap">
         <div class="section-head">
           <span class="eyebrow reveal">Projects &amp; Work Samples</span>
-          <h2 class="title reveal">The work, not the résumé lines.</h2>
-          <p class="lead reveal">Hover a card for the short version — open it for the full dossier. The Build / Operate filter applies to my experience below, too.</p>
+          <h2 class="title reveal">Proof of work — built and operated.</h2>
           <div class="filter-row reveal">
             <div class="filter" role="tablist" aria-label="Filter work by type">
               <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
@@ -416,78 +424,11 @@
           </div>
         </div>
 
-        <div class="pgrid">
-          <button class="pcard flag reveal" data-track="operate" data-dossier="d-cos">
-            <span class="track-tag operate">Operate</span>
-            <span class="num">01</span>
-            <div class="pbody">
-              <h3>Chief of Staff Case Study</h3>
-              <div class="pmeta">2026 · interview take-home</div>
-              <p class="psummary">A payroll-compliance domain I'd never touched, turned into a decision leadership could act on — in about four hours, fully sourced.</p>
-              <span class="popen">open dossier →</span>
-            </div>
-          </button>
-
-          <button class="pcard reveal" data-track="build" data-dossier="d-os">
-            <span class="track-tag build">Build</span>
-            <span class="num">02</span>
-            <div class="pbody">
-              <h3>Trading Operating System</h3>
-              <div class="pmeta">2024–present · Trillium</div>
-              <p class="psummary">A daily system to trade by — report cards, reviews, automation, and AI workflows that separate luck from skill. Other traders adopted it.</p>
-              <span class="popen">open dossier →</span>
-            </div>
-          </button>
-
-          <button class="pcard reveal" data-track="build" data-dossier="d-feed">
-            <span class="track-tag build">Build</span>
-            <span class="num">03</span>
-            <div class="pbody">
-              <h3>Claude Market-News Feed</h3>
-              <div class="pmeta">2024–present · Trillium</div>
-              <p class="psummary">Scrapers + language-model APIs that pull and summarize market-moving news faster than I could read the source. I wasn't assigned it.</p>
-              <span class="popen">open dossier →</span>
-            </div>
-          </button>
-
-          <button class="pcard reveal" data-track="build" data-dossier="d-crypto">
-            <span class="track-tag build">Build</span>
-            <span class="num">04</span>
-            <div class="pbody">
-              <h3>Crypto Sentiment + RF Strategy</h3>
-              <div class="pmeta">2024–25 · Duke · 🏆 2nd, FinTech Trading Competition</div>
-              <p class="psummary">A BTC/ETH strategy fusing a Random Forest model, FinBERT sentiment, and alt-data — 2nd in a Sharpe-scored competition. I owned the sizing layer.</p>
-              <span class="popen">open dossier →</span>
-            </div>
-          </button>
-
-          <button class="pcard reveal" data-track="build" data-dossier="d-dash">
-            <span class="track-tag build">Build</span>
-            <span class="num">05</span>
-            <div class="pbody">
-              <h3>Sell-Through Dashboard</h3>
-              <div class="pmeta">2026 · ticket-resale business</div>
-              <p class="psummary">A Claude dashboard that models sell-through targets before an event, so the team plans releases instead of dumping inventory. They run it themselves.</p>
-              <span class="popen">open dossier →</span>
-            </div>
-          </button>
-
-          <button class="pcard reveal" data-track="operate" data-dossier="d-difmo">
-            <span class="track-tag operate">Operate</span>
-            <span class="num">06</span>
-            <div class="pbody">
-              <h3>Difmo — DJ &amp; Events Company</h3>
-              <div class="pmeta">Duke · first business I built &amp; ran</div>
-              <p class="psummary">My first business: resident DJ at Duke's main nightclub, a mix played at Coach K's season opener, and events across campus.</p>
-              <span class="popen">open dossier →</span>
-            </div>
-          </button>
-        </div>
-
-        <!-- ===== Dossier templates ===== -->
-        <template id="d-cos">
+        <!-- ===== Featured: Case Study (Operate) ===== -->
+        <div class="pfeature flag reveal" data-track="operate">
+          <span class="featured-label">Featured · Chief of Staff work sample</span>
           <div class="dossier">
-            <span class="ey op">Work Sample · Operate</span>
+            <span class="ey op">Operate</span>
             <h2>Wage Garnishments: What the Company Must Do to Support Them Correctly</h2>
             <div class="dmeta">2026 · take-home from a Chief of Staff interview process</div>
             <p class="over">A take-home exercise from a Chief of Staff interview process at a payroll-tech company. Dropped into an unfamiliar legal-and-operational domain with about four hours, I mapped what the underlying payroll platform automates versus what the company would own end-to-end, and turned it into a decision leadership could act on — not a survey of options.</p>
@@ -507,11 +448,117 @@
             </div>
             <p class="note">A take-home exercise completed during an interview process — not a role I held, and not legal advice. Company names are redacted.</p>
           </div>
-        </template>
+        </div>
 
+        <!-- ===== Featured: Crypto strategy (Build) ===== -->
+        <div class="pfeature reveal" data-track="build">
+          <span class="featured-label">Featured · a full semester of work</span>
+          <div class="dossier">
+            <span class="ey">Project · Build · 🏆 2nd, Duke FinTech Trading Competition</span>
+            <h2>Crypto Sentiment + Random Forest Trading Strategy</h2>
+            <div class="dmeta">2024–25 · Duke Math 585 capstone · team of 4</div>
+            <p class="over">A BTC/ETH strategy that fuses a Random Forest price model with local FinBERT news sentiment and Google Trends data to predict 15-day-average returns, then sizes positions by conviction. Backtested on QuantConnect, it placed 2nd in Duke's FinTech Trading Competition — judged on risk-adjusted return (Sharpe ratio), not raw P&amp;L, so the finish reflects disciplined sizing rather than a lucky bet.</p>
+            <div class="cols">
+              <div class="mine">
+                <h4>What I owned</h4>
+                <ul>
+                  <li>Designed and coded the piecewise "importance" function that converts a predicted move into a confidence weight — blended with a modified Kelly criterion for sizing, and part of the final winning strategy.</li>
+                  <li>Researched and implemented the Google Trends alt-data signal (pytrends) in the QuantConnect backtest.</li>
+                  <li>Structured the team into role-based workstreams and edited the final report.</li>
+                </ul>
+              </div>
+              <div class="team">
+                <h4>The strategy (team)</h4>
+                <ul>
+                  <li>Random Forest direction/magnitude model on 15-day-average returns to cut daily noise, benchmarked against linear regression.</li>
+                  <li>Local FinBERT sentiment pipeline (in-house, no external data sharing) plus dynamic "working-memory" features.</li>
+                  <li>Drawdown / liquidation risk controls; the backtest held up through the 2021–22 crypto crash where buy-and-hold fell sharply.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="stack"><span>Python</span><span>Random Forest</span><span>FinBERT</span><span>QuantConnect</span><span>Kelly Criterion</span><span>pytrends</span></div>
+            <div class="actions">
+              <a class="btn btn-ghost" href="https://github.com/rmr327/CryptoSentimentBertRfStrat" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M12 .5a12 12 0 00-3.79 23.4c.6.1.82-.26.82-.58v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.4 11.4 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.62-2.81 5.64-5.49 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0012 .5z"/></svg>
+                View on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <span class="featured-label reveal" style="margin-top:34px">More projects — hover for the summary, open for the dossier</span>
+        <div class="pgrid">
+          <button class="pcard reveal" data-track="operate" data-dossier="d-os">
+            <span class="track-tag operate">Operate</span>
+            <span class="num">01</span>
+            <div class="pbody">
+              <h3>Trading Operating System</h3>
+              <div class="pmeta">2024–present · Trillium</div>
+              <p class="psummary">A daily system to trade by — report cards, reviews, automation, and AI workflows that separate luck from skill. Other traders adopted it.</p>
+              <span class="popen">open dossier →</span>
+            </div>
+          </button>
+
+          <button class="pcard reveal" data-track="build" data-dossier="d-feed">
+            <span class="track-tag build">Build</span>
+            <span class="num">02</span>
+            <div class="pbody">
+              <h3>Claude Market-News Feed</h3>
+              <div class="pmeta">2024–present · Trillium</div>
+              <p class="psummary">Scrapers + language-model APIs that pull and summarize market-moving news faster than I could read the source. I wasn't assigned it.</p>
+              <span class="popen">open dossier →</span>
+            </div>
+          </button>
+
+          <button class="pcard reveal" data-track="build" data-dossier="d-notes">
+            <span class="track-tag build">Build</span>
+            <span class="num">03</span>
+            <div class="pbody">
+              <h3>Notes Aggregator</h3>
+              <div class="pmeta">2024–present · Trillium</div>
+              <p class="psummary">A tool that pulls scattered daily note-taking into one structured pipeline — reclaimed roughly two hours a day and made review actually happen.</p>
+              <span class="popen">open dossier →</span>
+            </div>
+          </button>
+
+          <button class="pcard reveal" data-track="build" data-dossier="d-dash">
+            <span class="track-tag build">Build</span>
+            <span class="num">04</span>
+            <div class="pbody">
+              <h3>Sell-Through Dashboard</h3>
+              <div class="pmeta">2026 · ticket-resale business</div>
+              <p class="psummary">A Claude dashboard that models sell-through targets before an event, so the team plans releases instead of dumping inventory. They run it themselves.</p>
+              <span class="popen">open dossier →</span>
+            </div>
+          </button>
+
+          <button class="pcard reveal" data-track="operate" data-dossier="d-ticketos">
+            <span class="track-tag operate">Operate</span>
+            <span class="num">05</span>
+            <div class="pbody">
+              <h3>Ticket-Drop Operating System</h3>
+              <div class="pmeta">2026 · built with the founder</div>
+              <p class="psummary">A before / during / after operating system — seven roles, each with a repeatable checklist so nothing slips during a live drop.</p>
+              <span class="popen">open dossier →</span>
+            </div>
+          </button>
+
+          <button class="pcard reveal" data-track="operate" data-dossier="d-difmo">
+            <span class="track-tag operate">Operate</span>
+            <span class="num">06</span>
+            <div class="pbody">
+              <h3>Difmo — DJ &amp; Events Company</h3>
+              <div class="pmeta">Duke · first business I built &amp; ran</div>
+              <p class="psummary">My first business: resident DJ at Duke's main nightclub, a mix played at Coach K's season opener, and events across campus.</p>
+              <span class="popen">open dossier →</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- ===== Dossier templates ===== -->
         <template id="d-os">
           <div class="dossier">
-            <span class="ey">Project · Build</span>
+            <span class="ey op">Project · Operate</span>
             <h2>Trading Operating System</h2>
             <div class="dmeta">2024–present · Trillium · designed, built &amp; iterated solo</div>
             <p class="over">Daily P&amp;L is noisy, so I built a personal operating system to separate luck from skill and focus on the behaviors I could actually control. It started as a daily report card and grew into morning prep, end-of-day reviews, weekly pattern analysis, automated reporting, and AI workflows that summarize notes and surface recurring errors.</p>
@@ -541,39 +588,44 @@
               <li>Set the template for how I work now: see a bottleneck, build the tool that kills it, keep it running.</li>
             </ul>
             <div class="stack"><span>Claude</span><span>Web scrapers</span><span>LLM APIs</span><span>Python</span></div>
-            <p class="note">Kept private as a live trading edge, so the tuning stays under wraps — described here by what it does, not how it's built.</p>
+            <p class="note">Built at work — a cleaned-up version will be published on GitHub.</p>
           </div>
         </template>
 
-        <template id="d-crypto">
+        <template id="d-notes">
           <div class="dossier">
-            <span class="ey">Project · Build · 🏆 2nd, Duke FinTech Trading Competition</span>
-            <h2>Crypto Sentiment + Random Forest Trading Strategy</h2>
-            <div class="dmeta">2024–25 · Duke Math 585 capstone · team of 4</div>
-            <p class="over">A BTC/ETH strategy that fuses a Random Forest price model with local FinBERT news sentiment and Google Trends data to predict 15-day-average returns, then sizes positions by conviction. Backtested on QuantConnect, it placed 2nd in Duke's FinTech Trading Competition — judged on risk-adjusted return (Sharpe ratio), not raw P&amp;L, so the finish reflects disciplined sizing rather than a lucky bet.</p>
-            <div class="cols">
-              <div class="mine">
-                <h4>What I owned</h4>
-                <ul>
-                  <li>Designed and coded the piecewise "importance" function that converts a predicted move into a confidence weight — blended with a modified Kelly criterion for sizing, and part of the final winning strategy.</li>
-                  <li>Researched and implemented the Google Trends alt-data signal (pytrends) in the QuantConnect backtest.</li>
-                  <li>Structured the team into role-based workstreams and edited the final report.</li>
-                </ul>
-              </div>
-              <div class="team">
-                <h4>The strategy (team)</h4>
-                <ul>
-                  <li>Random Forest direction/magnitude model on 15-day-average returns to cut daily noise, benchmarked against linear regression.</li>
-                  <li>Local FinBERT sentiment pipeline (in-house, no external data sharing) plus dynamic "working-memory" features.</li>
-                  <li>Drawdown / liquidation risk controls; the backtest held up through the 2021–22 crypto crash where buy-and-hold fell sharply.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="stack"><span>Python</span><span>Random Forest</span><span>FinBERT</span><span>QuantConnect</span><span>Kelly Criterion</span><span>pytrends</span></div>
+            <span class="ey">Project · Build</span>
+            <h2>Notes Aggregator</h2>
+            <div class="dmeta">2024–present · Trillium · built to kill my own bottleneck</div>
+            <p class="over">Trading generated more daily notes than I could keep straight. I built a tool that pulls scattered daily note-taking into one structured pipeline, so review actually happens instead of piling up — it reclaimed roughly two hours a day of manual work.</p>
+            <h4>What it does</h4>
+            <ul>
+              <li>Pulls fragmented notes out of a dozen places into a single structured feed.</li>
+              <li>Summarizes and organizes the day so end-of-day review is fast and honest.</li>
+              <li>Freed up ~2 hours a day that used to go to manual note-wrangling.</li>
+            </ul>
+            <div class="stack"><span>Claude</span><span>Python</span><span>Automation</span></div>
+            <p class="note">Built at work — a cleaned-up version will be published on GitHub.</p>
+          </div>
+        </template>
+
+        <template id="d-ticketos">
+          <div class="dossier">
+            <span class="ey op">Project · Operate</span>
+            <h2>Ticket-Drop Operating System</h2>
+            <div class="dmeta">2026 · built with the founder of a ticket-resale business</div>
+            <p class="over">Watching a few live ticket drops, I saw the team was running off memory — steps slipped under pressure and money got left on the table. I worked with the founder to turn the whole drop into a repeatable operating system: seven roles, each with a before / during / after checklist so nothing gets forgotten when it's live and fast.</p>
+            <h4>What it defines</h4>
+            <ul>
+              <li>Seven roles end-to-end — Ops Manager, Research Analysts, Traders/Buyers, Tech, Pricer, Inventory Manager, and Fulfillment.</li>
+              <li>For each: a role overview, responsibilities, and repeatable before / during / after checklists.</li>
+              <li>Clear ownership and hand-offs — who decides, who executes, who prices, who confirms — so a live drop runs like a machine instead of from memory.</li>
+            </ul>
+            <div class="stack"><span>Operating system</span><span>Process design</span><span>Playbook</span><span>Ownership &amp; hand-offs</span></div>
             <div class="actions">
-              <a class="btn btn-ghost" href="https://github.com/rmr327/CryptoSentimentBertRfStrat" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M12 .5a12 12 0 00-3.79 23.4c.6.1.82-.26.82-.58v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.4 11.4 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.62-2.81 5.64-5.49 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0012 .5z"/></svg>
-                View on GitHub
+              <a class="btn btn-primary" href="assets/ticket-drop-playbook.html" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16M4 5v14l4-2 4 2 4-2V5M8 9h8M8 13h5"/></svg>
+                View the full playbook
               </a>
             </div>
           </div>
@@ -620,18 +672,10 @@
         <div class="section-head">
           <span class="eyebrow reveal">Experience</span>
           <h2 class="title reveal">Where I've built and operated.</h2>
-          <p class="lead reveal">The same Build / Operate filter applies here — each role is tagged for the work it really was.</p>
-          <div class="filter-row reveal">
-            <div class="filter" role="tablist" aria-label="Filter experience by type">
-              <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
-              <button class="filter-btn" data-filter="build" role="tab" aria-selected="false"><span class="ft-dot build"></span>Build</button>
-              <button class="filter-btn" data-filter="operate" role="tab" aria-selected="false"><span class="ft-dot operate"></span>Operate</button>
-            </div>
-          </div>
         </div>
         <div class="timeline">
-          <article class="job reveal" data-track="operate">
-            <div class="when">Sep 2024 — Present<span class="loc">New York, NY</span><span class="track-tag operate">Operate</span></div>
+          <article class="job reveal">
+            <div class="when">Sep 2024 — Present<span class="loc">New York, NY</span></div>
             <div>
               <div class="role">Trader</div>
               <div class="company">Trillium Trading <span class="tag">· Proprietary Trading Firm</span></div>
@@ -645,21 +689,21 @@
             </div>
           </article>
 
-          <article class="job reveal" data-track="operate">
-            <div class="when">Jun 2026 — Present<span class="loc">Miami, FL</span><span class="track-tag operate">Operate</span></div>
+          <article class="job reveal">
+            <div class="when">Jun 2026 — Present<span class="loc">Miami, FL</span></div>
             <div>
               <div class="role">Operations &amp; Buying Consultant</div>
               <div class="company">TicketKings <span class="tag">· Ticket-Resale Marketplace</span></div>
               <ul>
-                <li>Built a Claude-powered dashboard for a 20-person resale business to visualize inventory and track sell-through, giving the team a real-time read to drive buy-and-sell decisions; scoped a sell-through timing model.</li>
+                <li>Built a Claude-powered dashboard for a ~20-person resale business that models sell-through targets in the weeks before an event, giving the team a planning read on how to release inventory over days rather than dumping it; the team runs it themselves.</li>
                 <li>Collaborated on-site on live buying decisions during launch week, including the Gracie Abrams and The Chicks ticket drops.</li>
                 <li>Advise on buying across the EDM and dance-music market, applying firsthand domain expertise to flag mispriced inventory and demand trends.</li>
               </ul>
             </div>
           </article>
 
-          <article class="job reveal" data-track="build">
-            <div class="when">Jun 2023 — Aug 2023<span class="loc">New York, NY</span><span class="track-tag build">Build</span></div>
+          <article class="job reveal">
+            <div class="when">Jun 2023 — Aug 2023<span class="loc">New York, NY</span></div>
             <div>
               <div class="role">Product Management Intern</div>
               <div class="company">Publicis Sapient <span class="tag">· Digital Transformation Co.</span></div>
@@ -671,8 +715,8 @@
             </div>
           </article>
 
-          <article class="job reveal" data-track="operate">
-            <div class="when">Jun 2022 — Aug 2022<span class="loc">Palo Alto, CA</span><span class="track-tag operate">Operate</span></div>
+          <article class="job reveal">
+            <div class="when">Jun 2022 — Aug 2022<span class="loc">Palo Alto, CA</span></div>
             <div>
               <div class="role">Finance Associate</div>
               <div class="company">NeuroSync <span class="tag">· Neuro-Technology Co.</span></div>
@@ -684,8 +728,8 @@
             </div>
           </article>
 
-          <article class="job reveal" data-track="operate">
-            <div class="when">Jan 2022 — Aug 2022<span class="loc">New York, NY</span><span class="track-tag operate">Operate</span></div>
+          <article class="job reveal">
+            <div class="when">Jan 2022 — Aug 2022<span class="loc">New York, NY</span></div>
             <div>
               <div class="role">Project Management Intern, Marketing</div>
               <div class="company">Options AI <span class="tag">· Stock-Trading FinTech Co.</span></div>
