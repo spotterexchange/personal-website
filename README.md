@@ -44,6 +44,8 @@ python3 -m http.server 8000
 
 ## Notes
 
+- Projects lead the page (proof of work first), followed by Experience, Skills, Trades, About, and Contact.
+- A **Build / Operate** filter at the top of Projects (mirrored in Experience) tags and toggles every project and role by the kind of work it was.
 - Fully responsive, keyboard-accessible, and respects `prefers-reduced-motion`.
 - The phone number from the résumé is intentionally **not** published on the site; contact routes through email and LinkedIn.
 - The case-study PDF is a **redacted** version of the original: the two company names it referenced are blacked out and the underlying text removed (true redaction, not just an overlay), so nothing is recoverable by copy/paste or search.
