@@ -3,369 +3,261 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Michael Lund — Operator &amp; Builder</title>
-  <meta name="description" content="Michael Lund — builder-operator at the intersection of markets, product, and AI. Duke CS and prop trader who ships AI-assisted tools. Proof of work you can't fit on a résumé." />
+  <title>Michael Lund. Operator and builder.</title>
+  <meta name="description" content="Michael Lund. Duke CS grad and prop trader who builds AI tools and gets inside unfamiliar systems fast. Looking for an operator seat at an early-stage company." />
   <meta name="author" content="Michael Lund" />
-
-  <!-- Open Graph / social preview -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Michael Lund — Operator &amp; Builder" />
-  <meta property="og:description" content="Builder-operator at the intersection of markets, product, and AI. Proof of work a résumé can't hold." />
+  <meta property="og:title" content="Michael Lund. Operator and builder." />
+  <meta property="og:description" content="I build AI tools to kill my own bottlenecks, and I get inside an unfamiliar system fast enough to fix it before anyone asks." />
   <meta name="twitter:card" content="summary" />
-
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
   <style>
-    /* ---------- Design tokens ---------- */
     :root {
-      --bg:        #0a0a0b;
-      --bg-soft:   #0f0f11;
-      --surface:   #141417;
-      --surface-2: #1a1a1e;
-      --border:    #26262b;
-      --border-2:  #34343b;
-      --text:      #f2f2f3;
-      --text-mid:  #c4c4cc;
-      --text-dim:  #8a8a94;
-      --accent:    #34d399;
-      --accent-dim:#1f8f6b;
-      --accent-glow: rgba(52, 211, 153, 0.14);
-      --operate:   #6ea8fe;
-      --operate-dim: rgba(110,168,254,0.42);
-      --operate-glow: rgba(110,168,254,0.10);
-      --radius:    14px;
-      --radius-sm: 10px;
-      --maxw:      1080px;
-      --serif: 'Iowan Old Style', 'Palatino Linotype', 'Georgia', 'Times New Roman', serif;
-      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      --mono: 'SFMono-Regular', ui-monospace, 'Menlo', 'Consolas', monospace;
+      --bg:#0a0a0b; --bg-soft:#0f0f11; --surface:#141417; --surface-2:#1a1a1e;
+      --border:#26262b; --border-2:#34343b; --text:#f2f2f3; --text-mid:#c4c4cc; --text-dim:#8a8a94;
+      --accent:#34d399; --accent-dim:#1f8f6b; --accent-glow:rgba(52,211,153,0.14);
+      --operate:#6ea8fe; --operate-dim:rgba(110,168,254,0.42); --operate-glow:rgba(110,168,254,0.10);
+      --radius:14px; --maxw:1080px;
+      --serif:'Iowan Old Style','Palatino Linotype','Georgia','Times New Roman',serif;
+      --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+      --mono:'SFMono-Regular',ui-monospace,'Menlo','Consolas',monospace;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%}
+    body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    img,svg{display:block;max-width:100%}
+    ::selection{background:var(--accent);color:#04120c}
+    .hidden{display:none !important}
+    body.modal-open{overflow:hidden}
+
+    /* animated ambient background */
+    body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+      background:radial-gradient(55rem 40rem at 78% -10%,rgba(52,211,153,0.09),transparent 60%),
+                 radial-gradient(45rem 40rem at 3% 6%,rgba(110,168,254,0.05),transparent 55%);
+      animation:drift 18s ease-in-out infinite alternate}
+    @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-2%,0)}}
+
+    .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,40px);position:relative;z-index:1}
+    section{padding:clamp(58px,8vw,104px) 0;position:relative;z-index:1}
+    .section-head{margin-bottom:clamp(28px,4vw,44px)}
+    .eyebrow{font-family:var(--mono);font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:10px;margin-bottom:14px}
+    .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent-dim)}
+    h2.title{font-size:clamp(1.7rem,3.6vw,2.4rem);font-weight:650;letter-spacing:-0.02em;line-height:1.1}
+
+    /* nav */
+    header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(10,10,11,0.68);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+    header.nav.scrolled{border-bottom-color:var(--border);background:rgba(10,10,11,0.82)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{font-family:var(--serif);font-weight:700;font-size:1.15rem;letter-spacing:-0.01em;display:flex;align-items:center;gap:10px}
+    .brand .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px var(--accent)}
+    .nav-links{display:flex;align-items:center;gap:28px}
+    .nav-links a{font-size:0.9rem;color:var(--text-dim);transition:color .2s;position:relative}
+    .nav-links a:hover,.nav-links a.active{color:var(--text)}
+    .nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1.5px;background:var(--accent)}
+    .nav-cta{font-size:0.86rem;color:var(--text) !important;border:1px solid var(--border-2);padding:8px 16px;border-radius:999px;transition:all .2s}
+    .nav-cta:hover{border-color:var(--accent);color:var(--accent) !important}
+    .nav-toggle{display:none;background:none;border:0;color:var(--text);cursor:pointer;padding:6px}
+    @media(max-width:760px){
+      .nav-links{display:none}
+      .nav-links.open{display:flex;flex-direction:column;align-items:flex-start;gap:4px;position:absolute;top:64px;left:0;right:0;background:rgba(10,10,11,0.97);border-bottom:1px solid var(--border);padding:14px clamp(20px,5vw,40px) 22px;backdrop-filter:blur(14px)}
+      .nav-links.open a{padding:10px 0;font-size:1rem;width:100%}
+      .nav-links.open .nav-cta{margin-top:8px}
+      .nav-toggle{display:block}
     }
 
-    /* ---------- Reset ---------- */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; -webkit-text-size-adjust: 100%; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-    img, svg { display: block; max-width: 100%; }
-    ::selection { background: var(--accent); color: #04120c; }
-    .hidden { display: none !important; }
+    /* hero */
+    .hero{padding-top:clamp(56px,10vw,110px);padding-bottom:clamp(30px,5vw,56px)}
+    .hero .location{font-family:var(--mono);font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);display:inline-flex;gap:9px;align-items:center;margin-bottom:24px}
+    .hero .location .status{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);position:relative}
+    .hero .location .status::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--accent);opacity:.5;animation:ping 2.4s ease-out infinite}
+    @keyframes ping{0%{transform:scale(1);opacity:.5}80%,100%{transform:scale(2.2);opacity:0}}
+    .hero h1{font-family:var(--serif);font-size:clamp(2.9rem,8.5vw,5.4rem);font-weight:700;line-height:0.98;letter-spacing:-0.03em}
+    .hero .tagline{font-size:clamp(1.35rem,3.4vw,2.1rem);font-weight:550;color:var(--text);margin-top:20px;letter-spacing:-0.01em;line-height:1.15;max-width:20ch}
+    .hero .tagline .hl{color:var(--accent)}
+    .hero .intro{color:var(--text-mid);font-size:clamp(1rem,1.7vw,1.12rem);max-width:56ch;margin-top:22px}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+    .scrollcue{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-top:44px}
+    .scrollcue svg{width:15px;height:15px;animation:bob 1.8s ease-in-out infinite}
+    @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
 
-    /* Ambient background glow */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(60rem 40rem at 78% -8%, rgba(52,211,153,0.07), transparent 60%),
-        radial-gradient(50rem 40rem at 5% 8%, rgba(52,211,153,0.04), transparent 55%);
-      pointer-events: none;
-      z-index: 0;
-    }
+    /* hero entrance */
+    .h-in{opacity:0;transform:translateY(20px)}
+    body.loaded .h-in{animation:heroIn .85s cubic-bezier(.2,.7,.2,1) forwards}
+    body.loaded .h-in.d1{animation-delay:.02s}
+    body.loaded .h-in.d2{animation-delay:.12s}
+    body.loaded .h-in.d3{animation-delay:.22s}
+    body.loaded .h-in.d4{animation-delay:.34s}
+    body.loaded .h-in.d5{animation-delay:.46s}
+    body.loaded .h-in.d6{animation-delay:.62s}
+    @keyframes heroIn{to{opacity:1;transform:none}}
 
-    /* ---------- Layout helpers ---------- */
-    .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(20px, 5vw, 40px); position: relative; z-index: 1; }
-    section { padding: clamp(64px, 9vw, 110px) 0; position: relative; z-index: 1; }
-    .section-head { margin-bottom: clamp(32px, 5vw, 52px); }
-    .eyebrow {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-    .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--accent-dim); }
-    h2.title { font-size: clamp(1.7rem, 3.6vw, 2.5rem); font-weight: 650; letter-spacing: -0.02em; line-height: 1.1; }
-    .lead { color: var(--text-mid); font-size: clamp(1rem, 1.6vw, 1.12rem); max-width: 62ch; margin-top: 16px; }
+    .btn{display:inline-flex;align-items:center;gap:9px;font-size:0.95rem;font-weight:500;padding:12px 22px;border-radius:999px;border:1px solid var(--border-2);transition:all .2s;cursor:pointer;background:none;color:inherit;font-family:inherit}
+    .btn svg{width:17px;height:17px}
+    .btn-primary{background:var(--accent);color:#04120c;border-color:var(--accent);font-weight:600}
+    .btn-primary:hover{background:#4be3a8;box-shadow:0 8px 30px var(--accent-glow);transform:translateY(-2px)}
+    .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
 
-    /* ---------- Nav ---------- */
-    header.nav {
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      background: rgba(10,10,11,0.68);
-      border-bottom: 1px solid transparent;
-      transition: border-color .3s ease, background .3s ease;
-    }
-    header.nav.scrolled { border-bottom-color: var(--border); background: rgba(10,10,11,0.82); }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 66px; }
-    .brand { font-family: var(--serif); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
-    .brand .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
-    .nav-links { display: flex; align-items: center; gap: 30px; }
-    .nav-links a { font-size: 0.9rem; color: var(--text-dim); transition: color .2s ease; position: relative; }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
-    .nav-links a.active::after {
-      content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1.5px; background: var(--accent);
-    }
-    .nav-cta {
-      font-size: 0.86rem; color: var(--text) !important; border: 1px solid var(--border-2);
-      padding: 8px 16px; border-radius: 999px; transition: all .2s ease;
-    }
-    .nav-cta:hover { border-color: var(--accent); color: var(--accent) !important; }
-    .nav-toggle { display: none; background: none; border: 0; color: var(--text); cursor: pointer; padding: 6px; }
-    @media (max-width: 760px) {
-      .nav-links { display: none; }
-      .nav-links.open {
-        display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
-        position: absolute; top: 66px; left: 0; right: 0;
-        background: rgba(10,10,11,0.97); border-bottom: 1px solid var(--border);
-        padding: 14px clamp(20px,5vw,40px) 22px;
-        backdrop-filter: blur(14px);
-      }
-      .nav-links.open a { padding: 10px 0; font-size: 1rem; width: 100%; }
-      .nav-links.open .nav-cta { margin-top: 8px; }
-      .nav-toggle { display: block; }
-    }
+    /* build/operate tags + filter */
+    .track-tag{font-family:var(--mono);font-size:0.66rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;border-radius:999px;border:1px solid;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+    .track-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+    .track-tag.build{color:var(--accent);border-color:var(--accent-dim);background:rgba(52,211,153,0.08)}
+    .track-tag.operate{color:var(--operate);border-color:var(--operate-dim);background:var(--operate-glow)}
+    .filter{display:inline-flex;gap:4px;border:1px solid var(--border);border-radius:999px;padding:5px;background:var(--surface);margin-top:22px}
+    .filter-btn{font-family:var(--sans);font-size:0.86rem;color:var(--text-dim);padding:7px 17px;border-radius:999px;border:0;background:transparent;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+    .filter-btn:hover{color:var(--text)}
+    .filter-btn.active{background:var(--surface-2);color:var(--text);box-shadow:inset 0 0 0 1px var(--border-2)}
+    .ft-dot{width:8px;height:8px;border-radius:50%}
+    .ft-dot.build{background:var(--accent)}
+    .ft-dot.operate{background:var(--operate)}
 
-    /* ---------- Hero ---------- */
-    .hero { padding-top: clamp(48px, 8vw, 90px); padding-bottom: clamp(40px, 7vw, 80px); }
-    .hero .location { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); display: inline-flex; gap: 9px; align-items: center; margin-bottom: 22px; }
-    .hero .location .status { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); position: relative; }
-    .hero .location .status::after { content:""; position:absolute; inset:-4px; border-radius:50%; border:1px solid var(--accent); opacity:.5; animation: ping 2.4s ease-out infinite; }
-    @keyframes ping { 0%{transform:scale(1);opacity:.5} 80%,100%{transform:scale(2.2);opacity:0} }
-    .hero h1 {
-      font-family: var(--serif);
-      font-size: clamp(2.9rem, 8.5vw, 5.6rem);
-      font-weight: 700;
-      line-height: 0.98;
-      letter-spacing: -0.03em;
-    }
-    .hero .tagline {
-      font-size: clamp(1.2rem, 3vw, 1.9rem);
-      font-weight: 500;
-      color: var(--text);
-      margin-top: 22px;
-      letter-spacing: -0.01em;
-      max-width: 22ch;
-      line-height: 1.2;
-    }
-    .hero .tagline .hl { color: var(--accent); }
-    .hero .intro { color: var(--text-mid); font-size: clamp(1rem, 1.7vw, 1.15rem); max-width: 58ch; margin-top: 26px; }
-    .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
+    /* project cards */
+    .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .pgrid.feat{grid-template-columns:1fr 1fr;margin-bottom:16px}
+    @media(max-width:900px){.pgrid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.pgrid,.pgrid.feat{grid-template-columns:1fr}}
+    .pcard{position:relative;display:flex;flex-direction:column;text-align:left;width:100%;font:inherit;color:inherit;cursor:pointer;overflow:hidden;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);padding:24px;min-height:230px;transition:border-color .25s,transform .25s,background .25s}
+    .pcard:hover,.pcard:focus-visible{border-color:var(--border-2);transform:translateY(-4px);outline:none}
+    .pcard:focus-visible{box-shadow:0 0 0 2px var(--accent-dim)}
+    .pcard.flag{min-height:250px;background:linear-gradient(165deg,rgba(52,211,153,0.09),var(--surface) 62%);border-color:var(--accent-dim)}
+    .pcard .track-tag{position:absolute;top:20px;right:20px}
+    .pcard .num{font-family:var(--serif);font-size:2.6rem;font-weight:700;line-height:1;letter-spacing:-0.02em;color:transparent;-webkit-text-stroke:1px var(--border-2)}
+    .pcard.flag .num{-webkit-text-stroke-color:var(--accent-dim)}
+    .pcard .flabel{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
+    .pbody{margin-top:auto}
+    .pcard h3{font-size:1.16rem;font-weight:650;letter-spacing:-0.01em;margin-top:18px;padding-right:70px}
+    .pcard.flag h3{font-size:1.32rem;margin-top:10px}
+    .pmeta{font-family:var(--mono);font-size:0.75rem;color:var(--text-dim);letter-spacing:0.03em;margin-top:8px}
+    .psummary{color:var(--text-mid);font-size:0.92rem;margin-top:12px}
+    .popen{font-family:var(--mono);font-size:0.75rem;color:var(--accent);margin-top:14px;display:inline-flex;align-items:center;gap:6px}
 
-    .btn {
-      display: inline-flex; align-items: center; gap: 9px;
-      font-size: 0.95rem; font-weight: 500;
-      padding: 12px 22px; border-radius: 999px;
-      border: 1px solid var(--border-2);
-      transition: all .2s ease; cursor: pointer;
-    }
-    .btn svg { width: 17px; height: 17px; }
-    .btn-primary { background: var(--accent); color: #04120c; border-color: var(--accent); font-weight: 600; }
-    .btn-primary:hover { background: #4be3a8; box-shadow: 0 8px 30px var(--accent-glow); transform: translateY(-2px); }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    /* dossier modal */
+    .modal{position:fixed;inset:0;z-index:100;display:none}
+    .modal.open{display:block}
+    .modal .ov{position:absolute;inset:0;background:rgba(4,6,8,0.74);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
+    .modal .panel{position:relative;z-index:1;max-width:800px;margin:6vh auto;max-height:88vh;overflow-y:auto;background:var(--bg-soft);border:1px solid var(--border-2);border-radius:var(--radius);padding:clamp(26px,4vw,46px)}
+    @media(max-width:640px){.modal .panel{margin:0;min-height:100vh;max-height:100vh;border-radius:0}}
+    .modal .close{position:sticky;top:0;float:right;margin:-6px -6px 0 0;z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid var(--border-2);background:var(--surface);color:var(--text-mid);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .2s}
+    .modal .close:hover{color:var(--text);border-color:var(--accent)}
+    .dossier .ey{font-family:var(--mono);font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent)}
+    .dossier .ey.op{color:var(--operate)}
+    .dossier h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:650;letter-spacing:-0.02em;line-height:1.14;margin:12px 0 8px}
+    .dossier .dmeta{font-family:var(--mono);font-size:0.8rem;color:var(--text-dim)}
+    .dossier p{color:var(--text-mid);font-size:1rem;margin-top:16px}
+    .dossier h4{font-family:var(--mono);font-size:0.76rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin:26px 0 12px}
+    .dossier ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-top:4px}
+    .dossier li{position:relative;padding-left:22px;color:var(--text-mid);font-size:0.96rem}
+    .dossier li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent-dim)}
+    .dossier .cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+    @media(max-width:640px){.dossier .cols{grid-template-columns:1fr}}
+    .dossier .stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .dossier .stack span{font-family:var(--mono);font-size:0.74rem;color:var(--text-dim);border:1px solid var(--border);padding:4px 10px;border-radius:6px}
+    .dossier .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+    .dossier .note{color:var(--text-dim);font-size:0.84rem;margin-top:18px}
 
-    /* ---------- Build / Operate tags + filter ---------- */
-    .track-tag {
-      font-family: var(--mono); font-size: 0.66rem; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; padding: 3px 10px; border-radius: 999px; border: 1px solid;
-      display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
-    }
-    .track-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-    .track-tag.build { color: var(--accent); border-color: var(--accent-dim); background: rgba(52,211,153,0.08); }
-    .track-tag.operate { color: var(--operate); border-color: var(--operate-dim); background: var(--operate-glow); }
-
-    .filter { display: inline-flex; gap: 4px; border: 1px solid var(--border); border-radius: 999px; padding: 5px; background: var(--surface); }
-    .filter-btn {
-      font-family: var(--sans); font-size: 0.86rem; color: var(--text-dim);
-      padding: 7px 17px; border-radius: 999px; border: 0; background: transparent; cursor: pointer;
-      display: inline-flex; align-items: center; gap: 8px; transition: all .2s ease;
-    }
-    .filter-btn:hover { color: var(--text); }
-    .filter-btn.active { background: var(--surface-2); color: var(--text); box-shadow: inset 0 0 0 1px var(--border-2); }
-    .ft-dot { width: 8px; height: 8px; border-radius: 50%; }
-    .ft-dot.build { background: var(--accent); }
-    .ft-dot.operate { background: var(--operate); }
-    .filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 26px; }
-    .filter-cap { color: var(--text-dim); font-size: 0.85rem; }
-
-    /* ---------- Featured project blocks (inline, full detail) ---------- */
-    .pfeature {
-      border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(26px, 4vw, 40px);
-      background: linear-gradient(160deg, var(--surface-2), var(--bg-soft)); margin-bottom: 16px;
-    }
-    .pfeature.flag { border-color: var(--accent-dim); background: linear-gradient(160deg, rgba(52,211,153,0.09), var(--bg-soft) 64%); }
-    .pfeature .dossier h2 { margin-top: 10px; }
-    .featured-label { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 14px; display: block; }
-
-    /* ---------- Projects grid ---------- */
-    .pgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    @media (max-width: 900px) { .pgrid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 600px) { .pgrid { grid-template-columns: 1fr; } }
-    .pcard {
-      position: relative; display: flex; flex-direction: column; text-align: left; width: 100%;
-      font: inherit; color: inherit; cursor: pointer; overflow: hidden;
-      border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);
-      padding: 24px; min-height: 250px;
-      transition: border-color .25s ease, transform .25s ease, background .25s ease;
-    }
-    .pcard:hover, .pcard:focus-visible { border-color: var(--border-2); transform: translateY(-4px); outline: none; }
-    .pcard:focus-visible { box-shadow: 0 0 0 2px var(--accent-dim); }
-    .pcard.flag { background: linear-gradient(165deg, rgba(52,211,153,0.10), var(--surface) 62%); border-color: var(--accent-dim); }
-    .pcard .track-tag { position: absolute; top: 20px; right: 20px; }
-    .pcard .num { font-family: var(--serif); font-size: 2.7rem; font-weight: 700; line-height: 1; letter-spacing: -0.02em; color: transparent; -webkit-text-stroke: 1px var(--border-2); }
-    .pcard.flag .num { -webkit-text-stroke-color: var(--accent-dim); }
-    .pbody { margin-top: auto; }
-    .pcard h3 { font-size: 1.16rem; font-weight: 650; letter-spacing: -0.01em; margin-top: 20px; padding-right: 78px; }
-    .pmeta { font-family: var(--mono); font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.03em; margin-top: 9px; }
-    .psummary { color: var(--text-mid); font-size: 0.9rem; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .4s ease, opacity .3s ease, margin-top .3s ease; }
-    .popen { font-family: var(--mono); font-size: 0.76rem; color: var(--accent); max-height: 0; opacity: 0; overflow: hidden; transition: max-height .4s ease, opacity .3s ease, margin-top .3s ease; }
-    .pcard:hover .psummary, .pcard:focus-visible .psummary { max-height: 220px; opacity: 1; margin-top: 14px; }
-    .pcard:hover .popen, .pcard:focus-visible .popen { max-height: 40px; opacity: 1; margin-top: 14px; }
-    @media (hover: none) {
-      .psummary { max-height: 220px; opacity: 1; margin-top: 14px; }
-      .popen { max-height: 40px; opacity: 1; margin-top: 14px; }
+    /* experience accordion */
+    .timeline{border-top:1px solid var(--border)}
+    .job{border-bottom:1px solid var(--border)}
+    .jhead{width:100%;display:grid;grid-template-columns:170px 1fr 28px;gap:clamp(14px,3vw,40px);align-items:center;text-align:left;background:none;border:0;color:inherit;font:inherit;cursor:pointer;padding:24px 0}
+    .jhead:hover .jrole{color:var(--accent)}
+    .jdate{font-family:var(--mono);font-size:0.8rem;color:var(--text-dim);display:block}
+    .jloc{font-family:var(--mono);font-size:0.76rem;color:var(--border-2);display:block;margin-top:4px}
+    .jrole{font-size:1.14rem;font-weight:600;letter-spacing:-0.01em;transition:color .2s}
+    .jco{color:var(--text-dim);font-weight:400;font-size:0.95rem}
+    .jsum{color:var(--text-mid);font-size:0.94rem;margin-top:5px}
+    .jtoggle{width:26px;height:26px;border-radius:50%;border:1px solid var(--border-2);color:var(--text-dim);display:inline-flex;align-items:center;justify-content:center;font-size:1.1rem;line-height:1;transition:all .25s}
+    .job.open .jtoggle{transform:rotate(45deg);border-color:var(--accent);color:var(--accent)}
+    .jdetail{max-height:0;overflow:hidden;transition:max-height .4s ease}
+    .jdetail ul{list-style:none;display:flex;flex-direction:column;gap:10px;padding:0 0 26px;margin-left:calc(170px + clamp(14px,3vw,40px))}
+    .jdetail li{position:relative;padding-left:20px;color:var(--text-mid);font-size:0.96rem}
+    .jdetail li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent-dim)}
+    @media(max-width:720px){
+      .jhead{grid-template-columns:1fr 28px}
+      .jmeta{grid-column:1 / -1;display:flex;gap:14px;margin-bottom:2px}
+      .jdate,.jloc{margin:0}
+      .jdetail ul{margin-left:0}
     }
 
-    /* ---------- Project dossier modal ---------- */
-    body.modal-open { overflow: hidden; }
-    .modal { position: fixed; inset: 0; z-index: 100; display: none; }
-    .modal.open { display: block; }
-    .modal .ov { position: absolute; inset: 0; background: rgba(4,6,8,0.74); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
-    .modal .panel {
-      position: relative; z-index: 1; max-width: 800px; margin: 6vh auto; max-height: 88vh; overflow-y: auto;
-      background: var(--bg-soft); border: 1px solid var(--border-2); border-radius: var(--radius); padding: clamp(26px, 4vw, 46px);
-    }
-    @media (max-width: 640px) { .modal .panel { margin: 0; min-height: 100vh; max-height: 100vh; border-radius: 0; } }
-    .modal .close {
-      position: sticky; top: 0; float: right; margin: -6px -6px 0 0; z-index: 2;
-      width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--border-2); background: var(--surface);
-      color: var(--text-mid); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all .2s ease;
-    }
-    .modal .close:hover { color: var(--text); border-color: var(--accent); }
-    .dossier .ey { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
-    .dossier .ey.op { color: var(--operate); }
-    .dossier h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 650; letter-spacing: -0.02em; line-height: 1.14; margin: 12px 0 8px; }
-    .dossier .dmeta { font-family: var(--mono); font-size: 0.8rem; color: var(--text-dim); }
-    .dossier .over { color: var(--text-mid); font-size: 1.02rem; margin-top: 18px; }
-    .dossier h4 { font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin: 26px 0 12px; }
-    .dossier ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
-    .dossier li { position: relative; padding-left: 22px; color: var(--text-mid); font-size: 0.96rem; }
-    .dossier li::before { content: "→"; position: absolute; left: 0; top: 0; color: var(--accent); }
-    .dossier li b { color: var(--text); font-weight: 600; }
-    .dossier .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 8px; }
-    .dossier .cols .team li::before { content: ""; left: 2px; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-dim); }
-    @media (max-width: 640px) { .dossier .cols { grid-template-columns: 1fr; } }
-    .dossier .stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-    .dossier .stack span { font-family: var(--mono); font-size: 0.74rem; color: var(--text-dim); border: 1px solid var(--border); padding: 4px 10px; border-radius: 6px; }
-    .dossier .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
-    .dossier .note { color: var(--text-dim); font-size: 0.84rem; margin-top: 18px; }
+    /* skills + education */
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,56px)}
+    @media(max-width:820px){.two-col{grid-template-columns:1fr}}
+    .panel h3{font-size:1.3rem;font-weight:600;letter-spacing:-0.01em;margin-bottom:20px}
+    .skill-group{margin-bottom:22px}
+    .skill-group .k{font-family:var(--mono);font-size:0.76rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:11px}
+    .chips{display:flex;flex-wrap:wrap;gap:9px}
+    .chip{font-size:0.88rem;color:var(--text-mid);background:var(--surface);border:1px solid var(--border);padding:6px 13px;border-radius:8px;transition:all .2s}
+    .chip:hover{border-color:var(--accent-dim);color:var(--text)}
+    .edu{border:1px solid var(--border);border-radius:var(--radius);padding:26px;background:linear-gradient(180deg,var(--surface),var(--bg-soft))}
+    .edu .school{font-size:1.18rem;font-weight:600}
+    .edu .degree{color:var(--accent);font-size:0.96rem;margin-top:3px}
+    .edu .metaline{color:var(--text-dim);font-family:var(--mono);font-size:0.82rem;margin-top:6px}
+    .edu .divider{height:1px;background:var(--border);margin:20px 0}
+    .edu .row{font-size:0.92rem;color:var(--text-mid);margin-bottom:12px}
+    .edu .row b{color:var(--text-dim);font-weight:600;display:block;font-size:0.74rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px}
 
-    /* ---------- Experience timeline ---------- */
-    .timeline { display: flex; flex-direction: column; gap: 0; }
-    .job {
-      display: grid; grid-template-columns: 200px 1fr; gap: clamp(16px, 4vw, 48px);
-      padding: clamp(26px, 4vw, 38px) 0; border-top: 1px solid var(--border);
-    }
-    .job:first-child, .job.no-top { border-top: 0; }
-    .job .when { color: var(--text-dim); font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.03em; padding-top: 5px; }
-    .job .when .loc { display: block; margin-top: 5px; color: var(--border-2); }
-    .job .when .track-tag { margin-top: 14px; }
-    .job .role { font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em; }
-    .job .company { color: var(--accent); font-weight: 600; }
-    .job .company .tag { color: var(--text-dim); font-weight: 400; font-size: 0.9rem; }
-    .job ul { list-style: none; margin-top: 16px; display: flex; flex-direction: column; gap: 11px; }
-    .job li { position: relative; padding-left: 22px; color: var(--text-mid); font-size: 0.98rem; }
-    .job li::before { content: ""; position: absolute; left: 2px; top: 10px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-dim); }
-    @media (max-width: 720px) {
-      .job { grid-template-columns: 1fr; gap: 8px; }
-      .job .when { padding-top: 0; }
-      .job .when .loc { display: inline; margin-left: 8px; }
-      .job .when .track-tag { margin-top: 10px; }
-    }
+    /* trades flip cards */
+    .trades-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    @media(max-width:860px){.trades-grid{grid-template-columns:1fr}}
+    .tcard{perspective:1200px;height:300px;cursor:pointer;border:0;background:none;padding:0;font:inherit;color:inherit;text-align:left}
+    .tcard:focus-visible{outline:none}
+    .tcard:focus-visible .tface{border-color:var(--accent)}
+    .tinner{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+    .tcard:hover .tinner,.tcard.flipped .tinner{transform:rotateY(180deg)}
+    .tface{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--border);border-radius:var(--radius);padding:24px;background:linear-gradient(180deg,var(--surface),var(--bg-soft));display:flex;flex-direction:column;transition:border-color .2s}
+    .tfront .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .ticker{font-family:var(--mono);font-size:1.05rem;font-weight:600;letter-spacing:0.02em}
+    .dir{font-size:0.66rem;padding:3px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:0.08em;font-weight:700}
+    .dir.long{background:rgba(52,211,153,0.14);color:var(--accent)}
+    .dir.short{background:rgba(248,113,113,0.14);color:#f87171}
+    .tfront .pnl{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--accent);letter-spacing:-0.01em;margin-top:auto}
+    .tfront .lockout{font-family:var(--mono);font-size:0.78rem;color:var(--text-dim);margin-top:2px}
+    .tfront .reason{font-weight:600;font-size:1.02rem;margin-top:16px;line-height:1.3}
+    .tfront .date{font-family:var(--mono);font-size:0.78rem;color:var(--text-dim);margin-top:6px}
+    .tfront .flip-hint{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--border-2);margin-top:14px}
+    .tback{transform:rotateY(180deg);background:linear-gradient(180deg,var(--surface-2),var(--bg-soft))}
+    .tback .bt{font-family:var(--mono);font-size:0.78rem;color:var(--accent);letter-spacing:0.04em}
+    .tback p{color:var(--text-mid);font-size:0.9rem;margin-top:12px;overflow-y:auto}
 
-    /* ---------- Skills + education ---------- */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 56px); }
-    @media (max-width: 820px) { .two-col { grid-template-columns: 1fr; } }
-    .panel h3 { font-size: 1.35rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 20px; }
-    .skill-group { margin-bottom: 22px; }
-    .skill-group .k { font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 11px; }
-    .chips { display: flex; flex-wrap: wrap; gap: 9px; }
-    .chip { font-size: 0.88rem; color: var(--text-mid); background: var(--surface); border: 1px solid var(--border); padding: 6px 13px; border-radius: 8px; transition: all .2s ease; }
-    .chip:hover { border-color: var(--accent-dim); color: var(--text); }
-    .edu { border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; background: linear-gradient(180deg, var(--surface), var(--bg-soft)); }
-    .edu .school { font-size: 1.2rem; font-weight: 600; }
-    .edu .degree { color: var(--accent); font-size: 0.96rem; margin-top: 3px; }
-    .edu .meta { color: var(--text-dim); font-family: var(--mono); font-size: 0.82rem; margin-top: 6px; }
-    .edu .divider { height: 1px; background: var(--border); margin: 20px 0; }
-    .edu .row { font-size: 0.92rem; color: var(--text-mid); margin-bottom: 12px; }
-    .edu .row b { color: var(--text); font-weight: 600; display: block; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); margin-bottom: 4px; }
+    /* about */
+    .about-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(30px,5vw,60px);align-items:start}
+    @media(max-width:820px){.about-grid{grid-template-columns:1fr}}
+    .about-body p{color:var(--text-mid);font-size:1.05rem;margin-bottom:16px}
+    .about-side{border:1px solid var(--border);border-radius:var(--radius);padding:26px;background:linear-gradient(180deg,var(--surface),var(--bg-soft))}
+    .about-side h3{font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);font-family:var(--mono);margin-bottom:16px}
+    .about-side ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+    .about-side li{position:relative;padding-left:22px;font-size:0.95rem;color:var(--text-mid)}
+    .about-side li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
 
-    /* ---------- Selected trades ---------- */
-    .trades-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .trade {
-      border: 1px solid var(--border); border-radius: var(--radius); padding: 26px;
-      background: linear-gradient(180deg, var(--surface), var(--bg-soft));
-      transition: transform .25s ease, border-color .25s ease; position: relative; overflow: hidden;
-      display: flex; flex-direction: column;
-    }
-    .trade::after { content:""; position:absolute; inset:0 0 auto 0; height:2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity:0; transition:opacity .3s ease; }
-    .trade:hover { transform: translateY(-4px); border-color: var(--border-2); }
-    .trade:hover::after { opacity: 1; }
-    .trade .ticker-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .trade .ticker { font-family: var(--mono); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.02em; display: flex; align-items: center; gap: 9px; }
-    .trade .dir { font-size: 0.68rem; padding: 3px 8px; border-radius: 5px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
-    .trade .dir.long { background: rgba(52,211,153,0.14); color: var(--accent); }
-    .trade .dir.short { background: rgba(248,113,113,0.14); color: #f87171; }
-    .trade .pnl { font-family: var(--serif); font-size: 1.9rem; font-weight: 700; color: var(--accent); letter-spacing: -0.01em; margin-top: 18px; }
-    .trade .lockout { font-size: 0.8rem; color: var(--text-dim); font-family: var(--mono); margin-top: 2px; }
-    .trade .headline { font-weight: 600; margin-top: 16px; font-size: 1rem; line-height: 1.35; }
-    .trade .date { font-size: 0.8rem; color: var(--text-dim); margin-top: 4px; }
-    .trade .desc { color: var(--text-mid); font-size: 0.92rem; margin-top: 14px; }
-    .trades-note { color: var(--text-dim); font-size: 0.86rem; margin-top: 22px; font-style: italic; }
-    @media (max-width: 860px) { .trades-grid { grid-template-columns: 1fr; } }
+    /* contact */
+    .contact{text-align:center}
+    .contact h2{font-family:var(--serif);font-size:clamp(2.1rem,6vw,3.4rem);font-weight:700;letter-spacing:-0.03em;line-height:1.05}
+    .contact p.lead{color:var(--text-mid);font-size:clamp(1rem,1.6vw,1.12rem);max-width:52ch;margin:20px auto 0}
+    .contact-cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:34px}
 
-    /* ---------- About ---------- */
-    .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(30px, 5vw, 60px); align-items: start; }
-    .about-body p { color: var(--text-mid); font-size: 1.05rem; margin-bottom: 18px; }
-    .about-body p strong { color: var(--text); font-weight: 600; }
-    .about-side { border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; background: linear-gradient(180deg, var(--surface), var(--bg-soft)); }
-    .about-side h3 { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); font-family: var(--mono); margin-bottom: 16px; }
-    .about-side ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
-    .about-side li { display: flex; gap: 11px; font-size: 0.95rem; color: var(--text-mid); }
-    .about-side li::before { content: "▹"; color: var(--accent); flex-shrink: 0; }
-    @media (max-width: 820px) { .about-grid { grid-template-columns: 1fr; } }
+    footer.site{border-top:1px solid var(--border);padding:38px 0}
+    .foot-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+    .foot-inner .name{font-family:var(--serif);font-weight:700}
+    .foot-inner .note{color:var(--text-dim);font-size:0.84rem}
+    .foot-links{display:flex;gap:20px}
+    .foot-links a{color:var(--text-dim);font-size:0.88rem;transition:color .2s}
+    .foot-links a:hover{color:var(--accent)}
+    .interests{color:var(--border-2);font-size:0.8rem;margin-top:18px;font-family:var(--mono);letter-spacing:0.02em}
 
-    /* ---------- Contact ---------- */
-    .contact { text-align: center; }
-    .contact h2 { font-family: var(--serif); font-size: clamp(2.1rem, 6vw, 3.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
-    .contact .lead { margin: 20px auto 0; text-align: center; }
-    .contact-cta { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 38px; }
+    /* reveal on scroll */
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+    .reveal.in{opacity:1;transform:none}
 
-    /* ---------- Footer ---------- */
-    footer.site { border-top: 1px solid var(--border); padding: 40px 0; }
-    .foot-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
-    .foot-inner .name { font-family: var(--serif); font-weight: 700; }
-    .foot-inner .note { color: var(--text-dim); font-size: 0.84rem; }
-    .foot-links { display: flex; gap: 20px; }
-    .foot-links a { color: var(--text-dim); font-size: 0.88rem; transition: color .2s ease; }
-    .foot-links a:hover { color: var(--accent); }
-    .interests { color: var(--border-2); font-size: 0.8rem; margin-top: 18px; font-family: var(--mono); letter-spacing: 0.02em; }
-
-    /* ---------- Reveal animation ---------- */
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
-    .reveal.in { opacity: 1; transform: none; }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .reveal { opacity: 1; transform: none; transition: none; }
-      .hero .location .status::after { animation: none; }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,body::before{animation:none !important}
+      .reveal,.h-in{opacity:1 !important;transform:none !important;transition:none !important}
+      .tinner{transition:none !important}
     }
   </style>
 </head>
 <body>
 
-  <!-- ================= NAV ================= -->
   <header class="nav" id="nav">
     <div class="wrap nav-inner">
       <a href="#top" class="brand"><span class="dot"></span> Michael Lund</a>
@@ -385,38 +277,42 @@
 
   <main id="top">
 
-    <!-- ================= HERO ================= -->
+    <!-- HERO -->
     <section class="hero" id="hero">
       <div class="wrap">
-        <div class="location"><span class="status"></span> New York, NY · Open to select opportunities</div>
-        <h1 class="reveal">Michael Lund</h1>
-        <p class="tagline reveal">Builder-operator at the intersection of <span class="hl">markets, product &amp; AI</span>.</p>
-        <p class="intro reveal">Duke computer scientist and prop trader who turns ambiguity into systems — reading a situation fast, sizing the opportunity, and shipping the tooling that makes the next decision easier. I find the leverage, build the process, and compound it.</p>
-        <div class="hero-cta reveal">
+        <div class="location h-in d1"><span class="status"></span> New York, NY. Open to operator roles.</div>
+        <h1 class="h-in d2">Michael Lund</h1>
+        <p class="tagline h-in d3">I build AI tools to <span class="hl">kill my own bottlenecks</span>.</p>
+        <p class="intro h-in d4">Duke CS grad, two years trading equities at a prop firm. I ship tools that clear my own bottlenecks, and I get into an unfamiliar system fast enough to fix it before anyone asks. I want to do that for an early-stage team.</p>
+        <div class="hero-cta h-in d5">
           <a class="btn btn-primary" href="#projects">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
             See the work
           </a>
           <a class="btn btn-ghost" href="assets/Michael_Lund_Resume.pdf" download>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
-            Download résumé
+            Résumé
           </a>
           <a class="btn btn-ghost" href="mailto:2020mikelund@gmail.com">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-            Email me
+            Email
           </a>
+        </div>
+        <div class="scrollcue h-in d6">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+          Scroll
         </div>
       </div>
     </section>
 
-    <!-- ================= PROJECTS (first — proof of work) ================= -->
+    <!-- PROJECTS -->
     <section id="projects">
       <div class="wrap">
         <div class="section-head">
-          <span class="eyebrow reveal">Projects &amp; Work Samples</span>
-          <h2 class="title reveal">Proof of work — built and operated.</h2>
-          <div class="filter-row reveal">
-            <div class="filter" role="tablist" aria-label="Filter work by type">
+          <span class="eyebrow reveal">Projects and work samples</span>
+          <h2 class="title reveal">Things I built and ran.</h2>
+          <div class="reveal">
+            <div class="filter" role="tablist" aria-label="Filter by type">
               <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
               <button class="filter-btn" data-filter="build" role="tab" aria-selected="false"><span class="ft-dot build"></span>Build</button>
               <button class="filter-btn" data-filter="operate" role="tab" aria-selected="false"><span class="ft-dot operate"></span>Operate</button>
@@ -424,20 +320,111 @@
           </div>
         </div>
 
-        <!-- ===== Featured: Case Study (Operate) ===== -->
-        <div class="pfeature flag reveal" data-track="operate">
-          <span class="featured-label">Featured · Chief of Staff work sample</span>
+        <div class="pgrid feat">
+          <button class="pcard flag reveal" data-track="operate" data-dossier="d-cos">
+            <span class="track-tag operate">Operate</span>
+            <span class="flabel">Featured. Work sample.</span>
+            <div class="pbody">
+              <h3>Chief of Staff case study</h3>
+              <div class="pmeta">2026. Interview take-home.</div>
+              <p class="psummary">A payroll-compliance problem I'd never seen, turned into a decision the team could act on in about four hours.</p>
+              <span class="popen">Open dossier →</span>
+            </div>
+          </button>
+
+          <button class="pcard flag reveal" data-track="build" data-dossier="d-crypto">
+            <span class="track-tag build">Build</span>
+            <span class="flabel">Featured. A full semester.</span>
+            <div class="pbody">
+              <h3>Crypto sentiment and random forest strategy</h3>
+              <div class="pmeta">2024 to 2025. Duke. 2nd place.</div>
+              <p class="psummary">A BTC and ETH strategy that took 2nd in Duke's Sharpe-scored trading competition. I owned the position-sizing layer.</p>
+              <span class="popen">Open dossier →</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="pgrid">
+          <button class="pcard reveal" data-track="operate" data-dossier="d-os">
+            <span class="track-tag operate">Operate</span>
+            <span class="num">01</span>
+            <div class="pbody">
+              <h3>Trading operating system</h3>
+              <div class="pmeta">Since 2024. Trillium.</div>
+              <p class="psummary">A daily system I built to trade by. Report cards, reviews, and AI workflows that tell luck apart from skill. Other traders copied it.</p>
+              <span class="popen">Open dossier →</span>
+            </div>
+          </button>
+
+          <button class="pcard reveal" data-track="build" data-dossier="d-feed">
+            <span class="track-tag build">Build</span>
+            <span class="num">02</span>
+            <div class="pbody">
+              <h3>Claude market-news feed</h3>
+              <div class="pmeta">Since 2024. Trillium.</div>
+              <p class="psummary">Scrapers and language models that summarize market news faster than I can read it. I built it to kill my own bottleneck.</p>
+              <span class="popen">Open dossier →</span>
+            </div>
+          </button>
+
+          <button class="pcard reveal" data-track="build" data-dossier="d-notes">
+            <span class="track-tag build">Build</span>
+            <span class="num">03</span>
+            <div class="pbody">
+              <h3>Notes aggregator</h3>
+              <div class="pmeta">Since 2024. Trillium.</div>
+              <p class="psummary">A tool that pulls my scattered trading notes into one pipeline. It gave me back about two hours a day.</p>
+              <span class="popen">Open dossier →</span>
+            </div>
+          </button>
+
+          <button class="pcard reveal" data-track="build" data-dossier="d-dash">
+            <span class="track-tag build">Build</span>
+            <span class="num">04</span>
+            <div class="pbody">
+              <h3>Sell-through dashboard</h3>
+              <div class="pmeta">2026. Ticket-resale business.</div>
+              <p class="psummary">A Claude dashboard that models sell-through before an event, so a resale team plans releases instead of dumping inventory. They run it themselves.</p>
+              <span class="popen">Open dossier →</span>
+            </div>
+          </button>
+
+          <button class="pcard reveal" data-track="operate" data-dossier="d-ticketos">
+            <span class="track-tag operate">Operate</span>
+            <span class="num">05</span>
+            <div class="pbody">
+              <h3>Ticket-drop operating system</h3>
+              <div class="pmeta">2026. Built with the founder.</div>
+              <p class="psummary">Seven roles, each with a before, during, and after checklist, so a live ticket drop runs the same every time.</p>
+              <span class="popen">Open dossier →</span>
+            </div>
+          </button>
+
+          <button class="pcard reveal" data-track="operate" data-dossier="d-difmo">
+            <span class="track-tag operate">Operate</span>
+            <span class="num">06</span>
+            <div class="pbody">
+              <h3>Difmo, my DJ and events company</h3>
+              <div class="pmeta">Duke. First business I ran.</div>
+              <p class="psummary">The first business I built and ran. Resident DJ at Duke's main nightclub, plus events across campus.</p>
+              <span class="popen">Open dossier →</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- dossier templates -->
+        <template id="d-cos">
           <div class="dossier">
-            <span class="ey op">Operate</span>
+            <span class="ey op">Work sample. Operate.</span>
             <h2>Wage Garnishments: What the Company Must Do to Support Them Correctly</h2>
-            <div class="dmeta">2026 · take-home from a Chief of Staff interview process</div>
-            <p class="over">A take-home exercise from a Chief of Staff interview process at a payroll-tech company. Dropped into an unfamiliar legal-and-operational domain with about four hours, I mapped what the underlying payroll platform automates versus what the company would own end-to-end, and turned it into a decision leadership could act on — not a survey of options.</p>
+            <div class="dmeta">2026. Take-home from a Chief of Staff interview process.</div>
+            <p>A payroll-tech company gave me this as a take-home during a Chief of Staff interview. I had about four hours and no background in the domain. I read the statutes, mapped what the payroll platform handles against what the company has to own itself, and wrote a recommendation the team could act on.</p>
             <h4>What the briefing does</h4>
             <ul>
-              <li><b>Cuts to the real problem:</b> "The math is the easy part — the challenge is moving money to the right place on the right clock, and answering the court."</li>
-              <li><b>Gives a phased recommendation:</b> launch the common order type end-to-end now, run everything else on a written manual playbook, and let real volume decide the first thing worth building.</li>
-              <li><b>Is verifiable:</b> every material claim carries a confidence marker and resolves to a tiered source list — statutes cited to the statute, not to commentary.</li>
-              <li><b>Is written for the reader:</b> inline glossary, a capability map, a competitor teardown, per-stakeholder questions, and a first-order processing checklist.</li>
+              <li>It names the real problem in one line. The math is easy. The hard part is moving money to the right place on the right clock and answering the court.</li>
+              <li>It gives a phased plan. Launch the common order type now, run the rest on a written manual playbook, and let real volume decide what to build first.</li>
+              <li>Every claim carries a confidence marker and a source. Statutes cite the statute, not a blog.</li>
+              <li>It reads for a busy person. There's a glossary, a capability map, a competitor teardown, a set of questions for each stakeholder, and a checklist for the first order.</li>
             </ul>
             <div class="stack"><span>Domain research</span><span>Primary sources</span><span>Ops strategy</span><span>Decision memo</span></div>
             <div class="actions">
@@ -446,37 +433,35 @@
                 Read the briefing (PDF)
               </a>
             </div>
-            <p class="note">A take-home exercise completed during an interview process — not a role I held, and not legal advice. Company names are redacted.</p>
+            <p class="note">I built this for an interview exercise. It isn't legal advice, and the company names are blacked out.</p>
           </div>
-        </div>
+        </template>
 
-        <!-- ===== Featured: Crypto strategy (Build) ===== -->
-        <div class="pfeature reveal" data-track="build">
-          <span class="featured-label">Featured · a full semester of work</span>
+        <template id="d-crypto">
           <div class="dossier">
-            <span class="ey">Project · Build · 🏆 2nd, Duke FinTech Trading Competition</span>
-            <h2>Crypto Sentiment + Random Forest Trading Strategy</h2>
-            <div class="dmeta">2024–25 · Duke Math 585 capstone · team of 4</div>
-            <p class="over">A BTC/ETH strategy that fuses a Random Forest price model with local FinBERT news sentiment and Google Trends data to predict 15-day-average returns, then sizes positions by conviction. Backtested on QuantConnect, it placed 2nd in Duke's FinTech Trading Competition — judged on risk-adjusted return (Sharpe ratio), not raw P&amp;L, so the finish reflects disciplined sizing rather than a lucky bet.</p>
+            <span class="ey">Project. Build. 2nd place, Duke FinTech Trading Competition.</span>
+            <h2>Crypto sentiment and random forest strategy</h2>
+            <div class="dmeta">2024 to 2025. Duke Math 585 capstone. Team of four.</div>
+            <p>A BTC and ETH strategy that predicts 15-day-average returns and sizes each position by how confident the model is. It runs a random forest on price data, a local FinBERT model on news sentiment, and a Google Trends signal. We backtested it on QuantConnect. It took 2nd in Duke's FinTech Trading Competition. The competition scores on Sharpe ratio, so a high finish rewards steady risk-adjusted returns.</p>
             <div class="cols">
-              <div class="mine">
+              <div>
                 <h4>What I owned</h4>
                 <ul>
-                  <li>Designed and coded the piecewise "importance" function that converts a predicted move into a confidence weight — blended with a modified Kelly criterion for sizing, and part of the final winning strategy.</li>
-                  <li>Researched and implemented the Google Trends alt-data signal (pytrends) in the QuantConnect backtest.</li>
-                  <li>Structured the team into role-based workstreams and edited the final report.</li>
+                  <li>I designed and coded the piecewise importance function. It turns the model's predicted move into a confidence weight, and we blended it with a modified Kelly criterion to size positions. That sizing layer made the final strategy.</li>
+                  <li>I built the Google Trends signal with pytrends and got it working in the QuantConnect backtest.</li>
+                  <li>I split the team into role-based workstreams and edited the final report.</li>
                 </ul>
               </div>
-              <div class="team">
+              <div>
                 <h4>The strategy (team)</h4>
                 <ul>
-                  <li>Random Forest direction/magnitude model on 15-day-average returns to cut daily noise, benchmarked against linear regression.</li>
-                  <li>Local FinBERT sentiment pipeline (in-house, no external data sharing) plus dynamic "working-memory" features.</li>
-                  <li>Drawdown / liquidation risk controls; the backtest held up through the 2021–22 crypto crash where buy-and-hold fell sharply.</li>
+                  <li>A random forest predicts direction and size on 15-day-average returns, which cut the daily noise. We benchmarked it against linear regression.</li>
+                  <li>A local FinBERT model read news sentiment in-house, with no data sent out. It fed dynamic working-memory features.</li>
+                  <li>Drawdown and liquidation controls held the backtest positive through the 2021 to 2022 crypto crash, when buy-and-hold dropped hard.</li>
                 </ul>
               </div>
             </div>
-            <div class="stack"><span>Python</span><span>Random Forest</span><span>FinBERT</span><span>QuantConnect</span><span>Kelly Criterion</span><span>pytrends</span></div>
+            <div class="stack"><span>Python</span><span>Random Forest</span><span>FinBERT</span><span>QuantConnect</span><span>Kelly criterion</span><span>pytrends</span></div>
             <div class="actions">
               <a class="btn btn-ghost" href="https://github.com/rmr327/CryptoSentimentBertRfStrat" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M12 .5a12 12 0 00-3.79 23.4c.6.1.82-.26.82-.58v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.4 11.4 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.62-2.81 5.64-5.49 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0012 .5z"/></svg>
@@ -484,144 +469,91 @@
               </a>
             </div>
           </div>
-        </div>
+        </template>
 
-        <span class="featured-label reveal" style="margin-top:34px">More projects — hover for the summary, open for the dossier</span>
-        <div class="pgrid">
-          <button class="pcard reveal" data-track="operate" data-dossier="d-os">
-            <span class="track-tag operate">Operate</span>
-            <span class="num">01</span>
-            <div class="pbody">
-              <h3>Trading Operating System</h3>
-              <div class="pmeta">2024–present · Trillium</div>
-              <p class="psummary">A daily system to trade by — report cards, reviews, automation, and AI workflows that separate luck from skill. Other traders adopted it.</p>
-              <span class="popen">open dossier →</span>
-            </div>
-          </button>
-
-          <button class="pcard reveal" data-track="build" data-dossier="d-feed">
-            <span class="track-tag build">Build</span>
-            <span class="num">02</span>
-            <div class="pbody">
-              <h3>Claude Market-News Feed</h3>
-              <div class="pmeta">2024–present · Trillium</div>
-              <p class="psummary">Scrapers + language-model APIs that pull and summarize market-moving news faster than I could read the source. I wasn't assigned it.</p>
-              <span class="popen">open dossier →</span>
-            </div>
-          </button>
-
-          <button class="pcard reveal" data-track="build" data-dossier="d-notes">
-            <span class="track-tag build">Build</span>
-            <span class="num">03</span>
-            <div class="pbody">
-              <h3>Notes Aggregator</h3>
-              <div class="pmeta">2024–present · Trillium</div>
-              <p class="psummary">A tool that pulls scattered daily note-taking into one structured pipeline — reclaimed roughly two hours a day and made review actually happen.</p>
-              <span class="popen">open dossier →</span>
-            </div>
-          </button>
-
-          <button class="pcard reveal" data-track="build" data-dossier="d-dash">
-            <span class="track-tag build">Build</span>
-            <span class="num">04</span>
-            <div class="pbody">
-              <h3>Sell-Through Dashboard</h3>
-              <div class="pmeta">2026 · ticket-resale business</div>
-              <p class="psummary">A Claude dashboard that models sell-through targets before an event, so the team plans releases instead of dumping inventory. They run it themselves.</p>
-              <span class="popen">open dossier →</span>
-            </div>
-          </button>
-
-          <button class="pcard reveal" data-track="operate" data-dossier="d-ticketos">
-            <span class="track-tag operate">Operate</span>
-            <span class="num">05</span>
-            <div class="pbody">
-              <h3>Ticket-Drop Operating System</h3>
-              <div class="pmeta">2026 · built with the founder</div>
-              <p class="psummary">A before / during / after operating system — seven roles, each with a repeatable checklist so nothing slips during a live drop.</p>
-              <span class="popen">open dossier →</span>
-            </div>
-          </button>
-
-          <button class="pcard reveal" data-track="operate" data-dossier="d-difmo">
-            <span class="track-tag operate">Operate</span>
-            <span class="num">06</span>
-            <div class="pbody">
-              <h3>Difmo — DJ &amp; Events Company</h3>
-              <div class="pmeta">Duke · first business I built &amp; ran</div>
-              <p class="psummary">My first business: resident DJ at Duke's main nightclub, a mix played at Coach K's season opener, and events across campus.</p>
-              <span class="popen">open dossier →</span>
-            </div>
-          </button>
-        </div>
-
-        <!-- ===== Dossier templates ===== -->
         <template id="d-os">
           <div class="dossier">
-            <span class="ey op">Project · Operate</span>
-            <h2>Trading Operating System</h2>
-            <div class="dmeta">2024–present · Trillium · designed, built &amp; iterated solo</div>
-            <p class="over">Daily P&amp;L is noisy, so I built a personal operating system to separate luck from skill and focus on the behaviors I could actually control. It started as a daily report card and grew into morning prep, end-of-day reviews, weekly pattern analysis, automated reporting, and AI workflows that summarize notes and surface recurring errors.</p>
+            <span class="ey op">Project. Operate.</span>
+            <h2>Trading operating system</h2>
+            <div class="dmeta">Since 2024. Trillium. Built and run solo.</div>
+            <p>Daily P&amp;L is noisy, so I built a system to tell luck apart from skill and work on what I actually control. It started as a daily report card and grew into morning prep, end-of-day reviews, weekly pattern checks, automated reporting, and AI workflows that summarize my notes and flag the mistakes I repeat.</p>
             <h4>What it does</h4>
             <ul>
-              <li><b>Daily report card</b> tracking thesis, execution, risk management, mistakes, and emotional state.</li>
-              <li><b>Morning prep and end-of-day reviews</b>, plus weekly pattern analysis to catch recurring behavior.</li>
-              <li><b>AI note-summarization</b> that condenses heavy daily note-taking and flags the mistakes I keep repeating.</li>
-              <li><b>Automated reporting</b> on adherence and my green-to-red day ratio, so the system grades itself.</li>
+              <li>A daily report card logs my thesis, execution, risk, mistakes, and state of mind.</li>
+              <li>Morning prep and end-of-day reviews run every day, with a weekly pass to catch patterns.</li>
+              <li>AI workflows condense my notes and surface the errors I keep making.</li>
+              <li>Automated reports track how closely I follow the system and my ratio of green to red days.</li>
             </ul>
             <h4>The hard part</h4>
-            <p class="over" style="margin-top:0">Making it rigorous enough to produce honest insight without being so heavy I'd stop using it. I repeatedly cut fields that didn't change decisions, added prompts around recurring mistakes, and adjusted the reports as my trading evolved. After rebuilding my process and moving to a stronger desk, I ran twice as many green days as red over a six-week stretch. The best validation: other traders started asking to see it and adapting parts for their own workflow.</p>
-            <div class="stack"><span>Claude</span><span>Python</span><span>Automation</span><span>Systems design</span><span>Atomic Habits</span></div>
+            <p>The trick was making it honest without making it a chore. I cut fields that didn't change a decision, added prompts around my repeat mistakes, and reworked the reports as my trading changed. After I rebuilt my process and moved to a stronger desk, I ran twice as many green days as red over a six-week stretch. Other traders asked to see it and copied parts of it.</p>
+            <div class="stack"><span>Claude</span><span>Python</span><span>Automation</span><span>Report cards</span></div>
           </div>
         </template>
 
         <template id="d-feed">
           <div class="dossier">
-            <span class="ey">Project · Build</span>
-            <h2>Claude-Powered Market-News Feed</h2>
-            <div class="dmeta">2024–present · Trillium · built from scratch, unassigned</div>
-            <p class="over">A market-news feed I wired together from web scrapers and language-model APIs that <b>pull and summarize</b> market-moving news faster than I could read through the source. Nobody assigned it — I hit a bottleneck in my own process and built the thing that removed it.</p>
+            <span class="ey">Project. Build.</span>
+            <h2>Claude market-news feed</h2>
+            <div class="dmeta">Since 2024. Trillium. Built on my own, unassigned.</div>
+            <p>I kept losing time reading news during trades, so I built a feed. Web scrapers pull market-moving headlines and language models summarize them faster than I can read the source. Nobody assigned it. I hit the bottleneck and built the fix.</p>
             <h4>What it does</h4>
             <ul>
-              <li>Scrapes sources continuously and uses language-model APIs to pull and summarize catalysts as they break.</li>
-              <li>Compresses minutes of reading into a glance, shaving critical seconds off intra-trade information processing.</li>
-              <li>Set the template for how I work now: see a bottleneck, build the tool that kills it, keep it running.</li>
+              <li>Scrapers watch the sources and language models summarize each catalyst as it lands.</li>
+              <li>It turns minutes of reading into a few seconds when the tape is moving.</li>
+              <li>It set the pattern for how I work now. I see a bottleneck, build the tool, and keep it running.</li>
             </ul>
             <div class="stack"><span>Claude</span><span>Web scrapers</span><span>LLM APIs</span><span>Python</span></div>
-            <p class="note">Built at work — a cleaned-up version will be published on GitHub.</p>
+            <p class="note">It's a live trading edge, so I keep the details private. A cleaned-up version will go on GitHub.</p>
           </div>
         </template>
 
         <template id="d-notes">
           <div class="dossier">
-            <span class="ey">Project · Build</span>
-            <h2>Notes Aggregator</h2>
-            <div class="dmeta">2024–present · Trillium · built to kill my own bottleneck</div>
-            <p class="over">Trading generated more daily notes than I could keep straight. I built a tool that pulls scattered daily note-taking into one structured pipeline, so review actually happens instead of piling up — it reclaimed roughly two hours a day of manual work.</p>
+            <span class="ey">Project. Build.</span>
+            <h2>Notes aggregator</h2>
+            <div class="dmeta">Since 2024. Trillium.</div>
+            <p>Trading threw off more notes than I could keep straight. I built a tool that pulls the scattered note-taking into one pipeline so I actually review it. It gave me back about two hours a day.</p>
             <h4>What it does</h4>
             <ul>
-              <li>Pulls fragmented notes out of a dozen places into a single structured feed.</li>
-              <li>Summarizes and organizes the day so end-of-day review is fast and honest.</li>
-              <li>Freed up ~2 hours a day that used to go to manual note-wrangling.</li>
+              <li>It pulls notes out of a dozen places into one feed.</li>
+              <li>It summarizes and orders the day so end-of-day review is quick.</li>
+              <li>It freed up about two hours a day I used to spend sorting notes.</li>
             </ul>
             <div class="stack"><span>Claude</span><span>Python</span><span>Automation</span></div>
-            <p class="note">Built at work — a cleaned-up version will be published on GitHub.</p>
+            <p class="note">Built at work. A cleaned-up version will go on GitHub.</p>
+          </div>
+        </template>
+
+        <template id="d-dash">
+          <div class="dossier">
+            <span class="ey">Project. Build.</span>
+            <h2>Sell-through dashboard</h2>
+            <div class="dmeta">2026. Built for a 20-person ticket-resale business.</div>
+            <p>I spent a week shadowing a friend's 20-person ticket-resale business to learn how they moved inventory. Then I built them a Claude dashboard that models sell-through targets in the weeks before an event, so they can release inventory over days instead of dumping it. It was the first thing I built for them, and they still run it themselves.</p>
+            <h4>What it does</h4>
+            <ul>
+              <li>It models sell-through targets before an event and guides how to release inventory over time.</li>
+              <li>The team runs it on their own. It isn't real-time, and it doesn't place buys or sells.</li>
+              <li>It came out of a week of shadowing. Get into the system fast, find the thing that moves it, build the tool.</li>
+            </ul>
+            <div class="stack"><span>Claude</span><span>Dashboards</span><span>Analytics</span></div>
+            <p class="note">While I watched a few live drops, I saw the team working off memory and steps slipping. I proposed writing down each person's job per drop. That became the playbook below.</p>
           </div>
         </template>
 
         <template id="d-ticketos">
           <div class="dossier">
-            <span class="ey op">Project · Operate</span>
-            <h2>Ticket-Drop Operating System</h2>
-            <div class="dmeta">2026 · built with the founder of a ticket-resale business</div>
-            <p class="over">Watching a few live ticket drops, I saw the team was running off memory — steps slipped under pressure and money got left on the table. I worked with the founder to turn the whole drop into a repeatable operating system: seven roles, each with a before / during / after checklist so nothing gets forgotten when it's live and fast.</p>
+            <span class="ey op">Project. Operate.</span>
+            <h2>Ticket-drop operating system</h2>
+            <div class="dmeta">2026. Built with the founder of a ticket-resale business.</div>
+            <p>I watched a few live ticket drops and saw the team running off memory. Steps slipped under pressure and money got left on the table. I worked with the founder to turn the drop into a repeatable system: seven roles, each with a checklist for before, during, and after, so nothing gets missed when it's fast and live.</p>
             <h4>What it defines</h4>
             <ul>
-              <li>Seven roles end-to-end — Ops Manager, Research Analysts, Traders/Buyers, Tech, Pricer, Inventory Manager, and Fulfillment.</li>
-              <li>For each: a role overview, responsibilities, and repeatable before / during / after checklists.</li>
-              <li>Clear ownership and hand-offs — who decides, who executes, who prices, who confirms — so a live drop runs like a machine instead of from memory.</li>
+              <li>Seven roles cover the whole drop: ops manager, research analysts, traders, tech, pricer, inventory manager, and fulfillment.</li>
+              <li>Each role has an overview, its responsibilities, and checklists for before, during, and after.</li>
+              <li>Ownership and hand-offs are written down. Who decides, who buys, who prices, who confirms.</li>
             </ul>
-            <div class="stack"><span>Operating system</span><span>Process design</span><span>Playbook</span><span>Ownership &amp; hand-offs</span></div>
+            <div class="stack"><span>Operating system</span><span>Process design</span><span>Playbook</span><span>Hand-offs</span></div>
             <div class="actions">
               <a class="btn btn-primary" href="assets/ticket-drop-playbook.html" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16M4 5v14l4-2 4 2 4-2V5M8 9h8M8 13h5"/></svg>
@@ -631,156 +563,166 @@
           </div>
         </template>
 
-        <template id="d-dash">
-          <div class="dossier">
-            <span class="ey">Project · Build</span>
-            <h2>Sell-Through Dashboard</h2>
-            <div class="dmeta">2026 · built for a ~20-person ticket-resale business</div>
-            <p class="over">I spent a week shadowing a friend's ~20-person ticket-resale business to learn how they moved inventory, then built them a Claude-powered dashboard that models sell-through targets in the weeks before an event — so the team can plan how to release inventory over days instead of dumping it and hoping. It was the first thing I built for them, and it stuck.</p>
-            <h4>What it does</h4>
-            <ul>
-              <li>Models sell-through targets ahead of an event to guide how inventory is released over time.</li>
-              <li>Gives the team a planning tool they run on their own — it isn't a real-time system and doesn't drive live buy/sell decisions.</li>
-              <li>Came out of a week of shadowing: get inside the system fast, find the one thing that moves it, build the tool before anyone asks.</li>
-            </ul>
-            <div class="stack"><span>Claude</span><span>Dashboards</span><span>Analytics</span></div>
-            <p class="note">Related: watching a few live drops, I flagged that the team worked off memory so steps slipped under pressure, and proposed systematizing each person's responsibilities per drop.</p>
-          </div>
-        </template>
-
         <template id="d-difmo">
           <div class="dossier">
-            <span class="ey op">Project · Operate</span>
-            <h2>Difmo — DJ &amp; Events Company</h2>
-            <div class="dmeta">Duke · the first business I built and ran</div>
-            <p class="over">Once bars reopened after Covid, I started my own DJ and events service company at Duke. I became the resident DJ at Shooters, Duke's main nightclub, and played events for clubs and social organizations across campus — the first thing I built and ran as my own business.</p>
+            <span class="ey op">Project. Operate.</span>
+            <h2>Difmo, my DJ and events company</h2>
+            <div class="dmeta">Duke. The first business I built and ran.</div>
+            <p>When bars reopened after Covid, I started a DJ and events company at Duke. I became the resident DJ at Shooters, Duke's main nightclub, and played events for clubs and organizations across campus. It was the first thing I built and ran as my own business.</p>
             <h4>Highlights</h4>
             <ul>
               <li>Resident DJ at Shooters, Duke's main nightclub.</li>
-              <li>One of my mixes was played at Coach K's Countdown to Craziness, Duke Basketball's sold-out season opener.</li>
-              <li>Booked and played events for campus clubs and social organizations — sourcing, scheduling, and delivering the night end-to-end.</li>
+              <li>One of my mixes played at Coach K's Countdown to Craziness, Duke basketball's sold-out season opener.</li>
+              <li>Booked and played campus events end to end, from the booking to the night itself.</li>
             </ul>
-            <div class="stack"><span>Entrepreneurship</span><span>Events</span><span>DJ / production</span></div>
+            <div class="stack"><span>Entrepreneurship</span><span>Events</span><span>DJ</span></div>
           </div>
         </template>
       </div>
     </section>
 
-    <!-- ================= EXPERIENCE ================= -->
+    <!-- EXPERIENCE -->
     <section id="experience">
       <div class="wrap">
         <div class="section-head">
           <span class="eyebrow reveal">Experience</span>
           <h2 class="title reveal">Where I've built and operated.</h2>
         </div>
-        <div class="timeline">
-          <article class="job reveal">
-            <div class="when">Sep 2024 — Present<span class="loc">New York, NY</span></div>
-            <div>
-              <div class="role">Trader</div>
-              <div class="company">Trillium Trading <span class="tag">· Proprietary Trading Firm</span></div>
-              <ul>
-                <li>Manage an intraday U.S. equities book with $500K in buying power — synthesizing Level 2 order flow, tape, technicals, and real-time news into discretionary trades and disciplined risk management.</li>
-                <li>Run an asymmetric, catalyst-driven book (avg winning day ≈ 2× the avg losing day), concentrating max size into a few high-conviction setups while capping risk to a single lockout per ticker.</li>
-                <li>Built a proprietary Bloomberg-style market-news feed with Claude-assisted development, web scrapers, and LLM APIs that shaves critical seconds off intra-trade information processing.</li>
-                <li>Built a personal operating system (Atomic Habits framework) plus trade-prep and review tooling — including a notes aggregator that cuts ~2 hrs of daily note-taking and an AI coach that flags behavioral patterns from daily report cards.</li>
-                <li>Mentored four junior traders on setups, risk rules, habit formation, and structured review; all four went on to record multiple consecutive profitable months in their first year.</li>
-              </ul>
-            </div>
-          </article>
+        <div class="timeline reveal">
 
-          <article class="job reveal">
-            <div class="when">Jun 2026 — Present<span class="loc">Miami, FL</span></div>
-            <div>
-              <div class="role">Operations &amp; Buying Consultant</div>
-              <div class="company">TicketKings <span class="tag">· Ticket-Resale Marketplace</span></div>
+          <div class="job">
+            <button class="jhead" aria-expanded="false">
+              <span class="jmeta"><span class="jdate">Since Sep 2024</span><span class="jloc">New York, NY</span></span>
+              <span class="jmain">
+                <span class="jrole">Trader <span class="jco">· Trillium Trading</span></span>
+                <span class="jsum">I trade a $500K intraday book and built the AI tools and coaching the desk picked up.</span>
+              </span>
+              <span class="jtoggle" aria-hidden="true">+</span>
+            </button>
+            <div class="jdetail">
               <ul>
-                <li>Built a Claude-powered dashboard for a ~20-person resale business that models sell-through targets in the weeks before an event, giving the team a planning read on how to release inventory over days rather than dumping it; the team runs it themselves.</li>
-                <li>Collaborated on-site on live buying decisions during launch week, including the Gracie Abrams and The Chicks ticket drops.</li>
-                <li>Advise on buying across the EDM and dance-music market, applying firsthand domain expertise to flag mispriced inventory and demand trends.</li>
+                <li>I trade an intraday U.S. equities book with $500K in buying power. I read Level 2 order flow, the tape, technicals, and live news, and I manage the risk.</li>
+                <li>The book is asymmetric. My average winning day runs about twice my average losing day. I put size into a few high-conviction setups and cap the downside at one lockout per ticker.</li>
+                <li>I built a market-news feed with web scrapers and language models that saves seconds on every trade.</li>
+                <li>I built a personal operating system on the Atomic Habits model, plus a notes tool and an AI coach that flags patterns from my daily report cards.</li>
+                <li>I coached four junior traders on setups, risk, and review. All four strung together several profitable months in their first year.</li>
               </ul>
             </div>
-          </article>
+          </div>
 
-          <article class="job reveal">
-            <div class="when">Jun 2023 — Aug 2023<span class="loc">New York, NY</span></div>
-            <div>
-              <div class="role">Product Management Intern</div>
-              <div class="company">Publicis Sapient <span class="tag">· Digital Transformation Co.</span></div>
+          <div class="job">
+            <button class="jhead" aria-expanded="false">
+              <span class="jmeta"><span class="jdate">Since Jun 2026</span><span class="jloc">Miami, FL</span></span>
+              <span class="jmain">
+                <span class="jrole">Operations and buying consultant <span class="jco">· TicketKings</span></span>
+                <span class="jsum">I shadowed a 20-person resale business for a week and left them tools they still use.</span>
+              </span>
+              <span class="jtoggle" aria-hidden="true">+</span>
+            </button>
+            <div class="jdetail">
               <ul>
-                <li>Owned all product deliverables for a cross-functional intern capstone built on Suncor's business needs — user stories, PRD, and roadmap — and ran daily standups to coordinate the engineering team.</li>
-                <li>Managed sprint planning in Jira and Confluence and prototyped in Figma, translating requirements into a prioritized backlog.</li>
-                <li>Partnered with engineers to ship a full-stack digital prototype, iterating through continuous stakeholder feedback.</li>
+                <li>I built a Claude dashboard for a 20-person resale business that models sell-through targets before an event. The team plans inventory releases with it, and they run it themselves.</li>
+                <li>I sat in on live buying during launch week, including the Gracie Abrams and The Chicks drops.</li>
+                <li>I advise on buying across the EDM and dance-music market and flag mispriced inventory and demand I recognize firsthand.</li>
               </ul>
             </div>
-          </article>
+          </div>
 
-          <article class="job reveal">
-            <div class="when">Jun 2022 — Aug 2022<span class="loc">Palo Alto, CA</span></div>
-            <div>
-              <div class="role">Finance Associate</div>
-              <div class="company">NeuroSync <span class="tag">· Neuro-Technology Co.</span></div>
+          <div class="job">
+            <button class="jhead" aria-expanded="false">
+              <span class="jmeta"><span class="jdate">Summer 2023</span><span class="jloc">New York, NY</span></span>
+              <span class="jmain">
+                <span class="jrole">Product management intern <span class="jco">· Publicis Sapient</span></span>
+                <span class="jsum">Owned the product deliverables for an intern capstone and shipped the prototype.</span>
+              </span>
+              <span class="jtoggle" aria-hidden="true">+</span>
+            </button>
+            <div class="jdetail">
               <ul>
-                <li>Crafted the pitch deck for a successful Series B round, helping secure $25MM through targeted market research and product strategy.</li>
-                <li>Built a 50-slide Confidential Information Memorandum (CIM) giving detailed insight to prospective investors.</li>
-                <li>Ran financial analysis to inform strategic decisions on performance and growth trajectory.</li>
+                <li>I owned the product deliverables for a cross-functional intern capstone built on Suncor's needs: user stories, a PRD, and a roadmap. I ran the daily standups.</li>
+                <li>I ran sprint planning in Jira and Confluence and prototyped in Figma.</li>
+                <li>I worked with engineers to ship a full-stack prototype and iterated on it with stakeholder feedback.</li>
               </ul>
             </div>
-          </article>
+          </div>
 
-          <article class="job reveal">
-            <div class="when">Jan 2022 — Aug 2022<span class="loc">New York, NY</span></div>
-            <div>
-              <div class="role">Project Management Intern, Marketing</div>
-              <div class="company">Options AI <span class="tag">· Stock-Trading FinTech Co.</span></div>
+          <div class="job">
+            <button class="jhead" aria-expanded="false">
+              <span class="jmeta"><span class="jdate">Summer 2022</span><span class="jloc">Palo Alto, CA</span></span>
+              <span class="jmain">
+                <span class="jrole">Finance associate <span class="jco">· NeuroSync</span></span>
+                <span class="jsum">Built the deck for a Series B that raised $25MM.</span>
+              </span>
+              <span class="jtoggle" aria-hidden="true">+</span>
+            </button>
+            <div class="jdetail">
               <ul>
-                <li>Established a strategic partnership with trading-software company TrendSpider, driving customer acquisition and funded-account growth through an incentivized-funding program.</li>
-                <li>Launched and managed targeted digital and social campaigns with UTM tracking, using Google Analytics to evaluate performance and refine targeting.</li>
+                <li>I built the pitch deck for a Series B that raised $25MM, off my market research and product work.</li>
+                <li>I wrote a 50-slide confidential information memorandum for investors.</li>
+                <li>I ran the financial analysis behind the growth decisions.</li>
               </ul>
             </div>
-          </article>
+          </div>
+
+          <div class="job">
+            <button class="jhead" aria-expanded="false">
+              <span class="jmeta"><span class="jdate">Jan to Aug 2022</span><span class="jloc">New York, NY</span></span>
+              <span class="jmain">
+                <span class="jrole">Project management intern, marketing <span class="jco">· Options AI</span></span>
+                <span class="jsum">Ran a growth partnership with TrendSpider and the campaigns behind it.</span>
+              </span>
+              <span class="jtoggle" aria-hidden="true">+</span>
+            </button>
+            <div class="jdetail">
+              <ul>
+                <li>I set up a partnership with the trading-software company TrendSpider to grow funded accounts through an incentive program.</li>
+                <li>I ran digital and social campaigns with UTM tracking and read the Google Analytics to adjust targeting.</li>
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ================= SKILLS + EDUCATION ================= -->
+    <!-- SKILLS -->
     <section id="skills">
       <div class="wrap">
         <div class="section-head">
-          <span class="eyebrow reveal">Toolkit &amp; Background</span>
-          <h2 class="title reveal">Skills, credentials, and foundation.</h2>
+          <span class="eyebrow reveal">Toolkit and background</span>
+          <h2 class="title reveal">Skills, credentials, and school.</h2>
         </div>
         <div class="two-col">
           <div class="panel reveal">
-            <h3>Skills &amp; Tools</h3>
+            <h3>Skills and tools</h3>
             <div class="skill-group">
-              <div class="k">Engineering &amp; Data</div>
+              <div class="k">Engineering and data</div>
               <div class="chips">
                 <span class="chip">Python</span><span class="chip">Java</span><span class="chip">C</span>
-                <span class="chip">SQL</span><span class="chip">Excel &amp; VBA</span><span class="chip">Vibe Coding</span>
-                <span class="chip">Claude / LLM APIs</span><span class="chip">Web Scraping</span>
+                <span class="chip">SQL</span><span class="chip">Excel and VBA</span><span class="chip">Vibe coding</span>
+                <span class="chip">Claude and LLM APIs</span><span class="chip">Web scraping</span>
               </div>
             </div>
             <div class="skill-group">
-              <div class="k">Quant &amp; Analytics</div>
+              <div class="k">Quant and analytics</div>
               <div class="chips">
-                <span class="chip">Quantitative Analysis</span><span class="chip">Statistical Modeling</span>
-                <span class="chip">Performance Analytics</span><span class="chip">Machine Learning</span>
+                <span class="chip">Quantitative analysis</span><span class="chip">Statistical modeling</span>
+                <span class="chip">Performance analytics</span><span class="chip">Machine learning</span>
               </div>
             </div>
             <div class="skill-group">
               <div class="k">Markets</div>
               <div class="chips">
-                <span class="chip">Bloomberg</span><span class="chip">Level 2 Order-Book &amp; Tape</span>
-                <span class="chip">Discretionary Risk Mgmt</span><span class="chip">Catalyst Trading</span>
+                <span class="chip">Bloomberg</span><span class="chip">Level 2 order-book and tape</span>
+                <span class="chip">Discretionary risk</span><span class="chip">Catalyst trading</span>
               </div>
             </div>
             <div class="skill-group">
-              <div class="k">Product &amp; Operations</div>
+              <div class="k">Product and operations</div>
               <div class="chips">
-                <span class="chip">Process Design</span><span class="chip">Agile</span>
+                <span class="chip">Process design</span><span class="chip">Agile</span>
                 <span class="chip">Figma</span><span class="chip">Jira</span><span class="chip">Confluence</span>
-                <span class="chip">PRDs &amp; Roadmapping</span><span class="chip">Sprint Planning</span>
+                <span class="chip">PRDs and roadmapping</span>
               </div>
             </div>
             <div class="skill-group">
@@ -798,95 +740,115 @@
             <div class="edu">
               <div class="school">Duke University</div>
               <div class="degree">B.S. in Computer Science</div>
-              <div class="meta">May 2024 · GPA 3.4</div>
+              <div class="metaline">May 2024. GPA 3.4.</div>
               <div class="divider"></div>
-              <div class="row"><b>Awards</b>Air Force ROTC Full Scholarship · Academic &amp; Physical Excellence Awards · Dean's List with Distinction</div>
-              <div class="row"><b>Leadership &amp; Activities</b>Founder, Difmo LLC (DJ &amp; event services) · Duke Men's Varsity Cheer — Founding Member, Cheer Leadership Council · ACC Professional Development Academy (1 of 7 Duke reps) · Duke Sports Analytics Club · Duke FinTech Club</div>
+              <div class="row"><b>Honors</b>Dean's List with Distinction.</div>
+              <div class="row"><b>Air Force ROTC</b>Type 1 scholarship, the national full-tuition award, plus AFROTC academic and physical excellence awards.</div>
+              <div class="row"><b>Activities</b>Founder of Difmo (DJ and events). Duke men's varsity cheer, founding member and Cheer Leadership Council. One of seven Duke reps at the 2022 ACC Professional Development Academy. Duke Sports Analytics and FinTech clubs.</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= SELECTED TRADES ================= -->
+    <!-- TRADES -->
     <section id="trades">
       <div class="wrap">
         <div class="section-head">
-          <span class="eyebrow reveal">Selected Trades</span>
-          <h2 class="title reveal">Judgment, sized and executed.</h2>
-          <p class="lead reveal">Three setups where a prepared thesis met a live catalyst — mapped in advance, executed with rules-based risk.</p>
+          <span class="eyebrow reveal">Selected trades</span>
+          <h2 class="title reveal">Read fast, size it, take it.</h2>
+          <p class="psummary reveal" style="max-width:56ch">Three trades where I had the thesis ready before the catalyst hit. Hover a card for the read.</p>
         </div>
         <div class="trades-grid">
-          <article class="trade reveal">
-            <div class="ticker-row">
-              <span class="ticker">TSLA <span class="dir short">Short</span></span>
-            </div>
-            <div class="pnl">+$23,283</div>
-            <div class="lockout">on a $1,000 lockout</div>
-            <div class="headline">Trump–Musk public feud</div>
-            <div class="date">June 5, 2025</div>
-            <p class="desc">Read Tesla's record valuation as resting on the Musk–Trump alliance. Mapped retaliation and reconciliation scenarios in advance, then took three independent max-size entries — one per escalating catalyst — as the feud erased ~$152B (~14%).</p>
-          </article>
 
-          <article class="trade reveal">
-            <div class="ticker-row">
-              <span class="ticker">GLD <span class="dir short">Short</span></span>
+          <button class="tcard reveal" aria-label="TSLA short trade. Flip for detail.">
+            <div class="tinner">
+              <div class="tface tfront">
+                <div class="top"><span class="ticker">TSLA</span><span class="dir short">Short</span></div>
+                <div class="pnl">+$23,283</div>
+                <div class="lockout">on a $1,000 lockout</div>
+                <div class="reason">Trump and Musk public feud</div>
+                <div class="date">June 5, 2025</div>
+                <div class="flip-hint">Hover for the read</div>
+              </div>
+              <div class="tface tback">
+                <span class="bt">TSLA short. The read.</span>
+                <p>Tesla's record valuation rested on the Musk and Trump alliance. When Musk attacked the bill, I read it as the bull case cracking. I mapped the likely back-and-forth ahead of time and took three max-size shorts, one per escalation, as the feud wiped out about $152B.</p>
+              </div>
             </div>
-            <div class="pnl">+$14,531</div>
-            <div class="lockout">on a $1,500 lockout</div>
-            <div class="headline">Gold's record volatility reversal</div>
-            <div class="date">January 29, 2026</div>
-            <p class="desc">With gold gapping to all-time highs (~$5,600/oz) a third straight session, prepared a defined-risk reversal short anchored to VWAP and the prior high. Used the gold vol index rolling over to confirm exhaustion; held to the bounce as gold flushed ~$380 (~7%) in 30 minutes.</p>
-          </article>
+          </button>
 
-          <article class="trade reveal">
-            <div class="ticker-row">
-              <span class="ticker">RH <span class="dir long">Long</span></span>
+          <button class="tcard reveal" aria-label="GLD short trade. Flip for detail.">
+            <div class="tinner">
+              <div class="tface tfront">
+                <div class="top"><span class="ticker">GLD</span><span class="dir short">Short</span></div>
+                <div class="pnl">+$14,531</div>
+                <div class="lockout">on a $1,500 lockout</div>
+                <div class="reason">Gold's record volatility reversal</div>
+                <div class="date">January 29, 2026</div>
+                <div class="flip-hint">Hover for the read</div>
+              </div>
+              <div class="tface tback">
+                <span class="bt">GLD short. The read.</span>
+                <p>Gold gapped to all-time highs near $5,600 for a third straight session. I set up a defined-risk reversal short against VWAP and the prior high. When the gold volatility index rolled over from its own record, I read momentum as spent and held through the flush as gold dropped about $380 in half an hour.</p>
+              </div>
             </div>
-            <div class="pnl">+$13,851</div>
-            <div class="lockout">on a $500 lockout</div>
-            <div class="headline">Vietnam "tariffs to zero" reversal</div>
-            <div class="date">April 4, 2025</div>
-            <p class="desc">After "Liberation Day" tariffs, built a country-by-country map pairing each rate with its most exposed equities. When Trump posted Vietnam's offer to cut tariffs "to ZERO," recognized within seconds it removed RH's largest overhang while participants sat offside — and executed the prepared thesis.</p>
-          </article>
+          </button>
+
+          <button class="tcard reveal" aria-label="RH long trade. Flip for detail.">
+            <div class="tinner">
+              <div class="tface tfront">
+                <div class="top"><span class="ticker">RH</span><span class="dir long">Long</span></div>
+                <div class="pnl">+$13,851</div>
+                <div class="lockout">on a $500 lockout</div>
+                <div class="reason">Vietnam tariffs-to-zero reversal</div>
+                <div class="date">April 4, 2025</div>
+                <div class="flip-hint">Hover for the read</div>
+              </div>
+              <div class="tface tback">
+                <span class="bt">RH long. The read.</span>
+                <p>After the April 2 tariffs, I built a country-by-country map pairing each rate with its most exposed stocks. RH was the most beaten-down name that sources from Vietnam. When Trump posted Vietnam's offer to cut tariffs to zero, I saw within seconds that it removed RH's biggest overhang while most of the market sat still, and I took the trade I'd already planned.</p>
+              </div>
+            </div>
+          </button>
+
         </div>
-        <p class="trades-note reveal">Figures reflect realized P&amp;L on the noted risk lockouts. Past performance is not indicative of future results.</p>
+        <p class="interests reveal" style="margin-top:22px;font-style:normal">Figures are realized P&amp;L against the risk I locked. Past results don't predict future ones.</p>
       </div>
     </section>
 
-    <!-- ================= ABOUT ================= -->
+    <!-- ABOUT -->
     <section id="about">
       <div class="wrap">
         <div class="section-head">
           <span class="eyebrow reveal">About</span>
-          <h2 class="title reveal">A decision-maker who ships the systems behind the decisions.</h2>
+          <h2 class="title reveal">How I work.</h2>
         </div>
         <div class="about-grid">
           <div class="about-body reveal">
-            <p>I sit in a seat that pays me to be right under pressure. As a discretionary trader at <strong>Trillium</strong>, I synthesize order flow, tape, charts, and breaking news into high-conviction bets — concentrating size into a few setups while keeping risk tightly capped. It's judgment as a daily practice.</p>
-            <p>But the part I care most about is the <strong>compounding</strong>. When I hit friction, I build my way out of it: a Bloomberg-style news feed that shaves seconds off every trade, a notes aggregator that reclaimed two hours a day, an AI coach that flags my behavioral leaks. I use a computer science degree from <strong>Duke</strong> and a "vibe-coding" workflow to turn one-off problems into permanent leverage.</p>
-            <p>That combination — sharp judgment plus the instinct to systematize — is what I bring to a team. I read the situation, own the ambiguous work nobody else has picked up, and leave behind process that outlasts me. Increasingly that looks like a <strong>chief-of-staff / operator</strong> role: the person who turns a founder's intent into things that actually run.</p>
+            <p>I get inside an unfamiliar system fast, find the part that moves it, and build or fix that part before anyone asks. That's the pattern behind everything here, from a trading desk to a friend's resale business to the DJ company I ran in college.</p>
+            <p>Money and security drive me. I grew up watching money cause stress at home, and I decided early to make myself hard to replace. Trading taught me to make high-conviction calls under real risk. What I want next is an operator seat at an early-stage company, close to the people building it, where the equity is real and the scoreboard is honest.</p>
           </div>
           <aside class="about-side reveal">
             <h3>How I operate</h3>
             <ul>
-              <li>Bias toward high-conviction, well-sized bets over hedged half-measures.</li>
-              <li>Build the tool the second the problem repeats.</li>
-              <li>Rules-based risk — one lockout, clean exits, no revenge decisions.</li>
-              <li>Structured review: report cards, feedback loops, honest post-mortems.</li>
-              <li>Teach it forward — leverage multiplies when the team levels up.</li>
+              <li>I put real size behind a few high-conviction calls and cap the downside.</li>
+              <li>When a problem repeats, I build the tool that kills it.</li>
+              <li>I run on rules. One lockout, clean exits, no revenge trades.</li>
+              <li>I review honestly. Report cards, weekly patterns, real post-mortems.</li>
+              <li>I coach. Four junior traders I worked with each put up profitable months.</li>
             </ul>
           </aside>
         </div>
       </div>
     </section>
 
-    <!-- ================= CONTACT ================= -->
+    <!-- CONTACT -->
     <section id="contact" class="contact">
       <div class="wrap">
-        <span class="eyebrow reveal" style="justify-content:center;">Contact</span>
+        <span class="eyebrow reveal" style="justify-content:center">Contact</span>
         <h2 class="reveal">Let's talk.</h2>
-        <p class="lead reveal">Open to chief-of-staff, operator, trading, and product roles where sharp judgment and a bias for building both matter. The fastest way to reach me is email.</p>
+        <p class="lead reveal">I'm looking for an operator seat at an early-stage company: chief of staff, founder's associate, or ops. Email is the fastest way to reach me.</p>
         <div class="contact-cta reveal">
           <a class="btn btn-primary" href="mailto:2020mikelund@gmail.com">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
@@ -894,7 +856,7 @@
           </a>
           <a class="btn btn-ghost" href="https://linkedin.com/in/mike-b-lund" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>
-            Connect on LinkedIn
+            LinkedIn
           </a>
           <a class="btn btn-ghost" href="assets/Michael_Lund_Resume.pdf" download>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
@@ -905,7 +867,6 @@
     </section>
   </main>
 
-  <!-- ================= PROJECT DOSSIER MODAL ================= -->
   <div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Project details">
     <div class="ov" data-close></div>
     <div class="panel">
@@ -916,13 +877,12 @@
     </div>
   </div>
 
-  <!-- ================= FOOTER ================= -->
   <footer class="site">
     <div class="wrap">
       <div class="foot-inner">
         <div>
           <span class="name">Michael Lund</span>
-          <span class="note"> · Operator &amp; builder · New York, NY</span>
+          <span class="note"> . Operator and builder . New York, NY</span>
         </div>
         <div class="foot-links">
           <a href="mailto:2020mikelund@gmail.com">Email</a>
@@ -930,18 +890,21 @@
           <a href="assets/Michael_Lund_Resume.pdf" download>Résumé</a>
         </div>
       </div>
-      <p class="interests">Off the clock: DJing &amp; electronic music · live events · financial markets · sportsbook arbitrage · social golf</p>
+      <p class="interests">Off the clock: DJing and electronic music, live events, markets, and golf.</p>
     </div>
   </footer>
 
   <script>
-    // Sticky nav border on scroll
+    // hero entrance
+    window.addEventListener('load', () => document.body.classList.add('loaded'));
+    document.addEventListener('DOMContentLoaded', () => setTimeout(() => document.body.classList.add('loaded'), 60));
+
+    // sticky nav
     const nav = document.getElementById('nav');
     const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
 
-    // Mobile nav toggle
+    // mobile nav
     const toggle = document.getElementById('navToggle');
     const links = document.getElementById('navLinks');
     toggle.addEventListener('click', () => {
@@ -949,38 +912,29 @@
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      links.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
+      links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false');
     }));
 
-    // Build / Operate filter (spans projects + experience)
+    // build / operate filter
     const filterItems = document.querySelectorAll('[data-track]');
     const filterBtns = document.querySelectorAll('.filter-btn');
     function applyFilter(f) {
       filterItems.forEach(el => {
         const show = (f === 'all' || el.dataset.track === f);
         el.classList.toggle('hidden', !show);
-        if (show) el.classList.add('in'); // keep revealed when toggled back
+        if (show) el.classList.add('in');
       });
       filterBtns.forEach(b => {
         const on = b.dataset.filter === f;
         b.classList.toggle('active', on);
         b.setAttribute('aria-selected', on ? 'true' : 'false');
       });
-      // keep the first visible role flush (no stray top border)
-      document.querySelectorAll('.timeline').forEach(tl => {
-        const jobs = [...tl.querySelectorAll('.job')];
-        jobs.forEach(j => j.classList.remove('no-top'));
-        const firstVisible = jobs.find(j => !j.classList.contains('hidden'));
-        if (firstVisible) firstVisible.classList.add('no-top');
-      });
     }
     filterBtns.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
 
-    // Project dossier modal
+    // dossier modal
     const modal = document.getElementById('modal');
     const modalBody = document.getElementById('modal-body');
-    const panel = modal.querySelector('.panel');
     let lastFocus = null;
     function openDossier(id) {
       const tpl = document.getElementById(id);
@@ -991,7 +945,7 @@
       modal.classList.add('open');
       document.body.classList.add('modal-open');
       modal.setAttribute('aria-hidden', 'false');
-      panel.scrollTop = 0;
+      modal.querySelector('.panel').scrollTop = 0;
       modal.querySelector('.close').focus();
     }
     function closeDossier() {
@@ -1000,21 +954,33 @@
       modal.setAttribute('aria-hidden', 'true');
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
-    document.querySelectorAll('.pcard').forEach(c =>
-      c.addEventListener('click', () => openDossier(c.dataset.dossier)));
-    modal.querySelectorAll('[data-close]').forEach(el =>
-      el.addEventListener('click', closeDossier));
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && modal.classList.contains('open')) closeDossier();
+    document.querySelectorAll('.pcard').forEach(c => c.addEventListener('click', () => openDossier(c.dataset.dossier)));
+    modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeDossier));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeDossier(); });
+
+    // experience accordion
+    document.querySelectorAll('.job .jhead').forEach(head => {
+      head.addEventListener('click', () => {
+        const job = head.parentElement;
+        const detail = job.querySelector('.jdetail');
+        const open = job.classList.toggle('open');
+        head.setAttribute('aria-expanded', open ? 'true' : 'false');
+        detail.style.maxHeight = open ? detail.scrollHeight + 'px' : '0px';
+      });
     });
 
-    // Reveal on scroll
+    // trade flip on tap (hover handles desktop)
+    document.querySelectorAll('.tcard').forEach(card => {
+      card.addEventListener('click', () => card.classList.toggle('flipped'));
+    });
+
+    // reveal on scroll
     const revealEls = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {
       const io = new IntersectionObserver((entries) => {
         entries.forEach((e, i) => {
           if (e.isIntersecting) {
-            e.target.style.transitionDelay = Math.min(i * 40, 160) + 'ms';
+            e.target.style.transitionDelay = Math.min(i * 35, 140) + 'ms';
             e.target.classList.add('in');
             io.unobserve(e.target);
           }
@@ -1025,13 +991,10 @@
       revealEls.forEach(el => el.classList.add('in'));
     }
 
-    // Active nav link via scroll spy
+    // scroll spy
     const sections = ['projects','experience','skills','trades','about','contact']
       .map(id => document.getElementById(id)).filter(Boolean);
-    const navAnchors = new Map(
-      [...document.querySelectorAll('.nav-links a')]
-        .map(a => [a.getAttribute('href'), a])
-    );
+    const navAnchors = new Map([...document.querySelectorAll('.nav-links a')].map(a => [a.getAttribute('href'), a]));
     if ('IntersectionObserver' in window) {
       const spy = new IntersectionObserver((entries) => {
         entries.forEach(e => {

@@ -46,8 +46,13 @@ python3 -m http.server 8000
 
 - Projects lead the page (proof of work first), followed by Experience, Skills, Trades, About, and Contact.
 - A **Build / Operate** filter at the top of Projects (mirrored in Experience) tags and toggles every project and role by the kind of work it was.
-- Projects lead with two **featured blocks** (the Chief of Staff case study and the crypto strategy, shown in full inline), followed by a numbered card grid: **hover** a card for a one-line summary, **click** to open a full dossier in a modal (dossier content lives in `<template>` elements; the modal is injected by JS and closes on ✕, overlay-click, or Esc). The Build/Operate filter applies to projects only.
+- The design is skimmable by default with detail on demand. Short summaries up front; the visitor pulls depth.
+  - Hero animates in on load.
+  - Projects are cards (two highlighted "Featured" ones plus a grid). Each opens a full dossier in a modal (content in `<template>` elements; closes on the button, overlay-click, or Esc). The Build/Operate filter applies to projects only.
+  - Experience is an accordion: a role summary per line, bullets expand on click.
+  - Selected trades are flip cards. The essentials sit on the front, the write-up on the back, revealed on hover or tap.
 - `assets/ticket-drop-playbook.html` is a standalone, themed rendering of the ticket-drop operations playbook, linked from that project's dossier.
+- Copy follows a set of anti-AI-writing rules: no em dashes, straight quotes, no emoji, plain verbs, specific facts, and a flat confident voice.
 - Fully responsive, keyboard-accessible, and respects `prefers-reduced-motion`.
 - The phone number from the résumé is intentionally **not** published on the site; contact routes through email and LinkedIn.
 - The case-study PDF is a **redacted** version of the original: the two company names it referenced are blacked out and the underlying text removed (true redaction, not just an overlay), so nothing is recoverable by copy/paste or search.
