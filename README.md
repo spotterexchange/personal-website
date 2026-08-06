@@ -48,9 +48,10 @@ python3 -m http.server 8000
 - A **Build / Operate** filter at the top of Projects (mirrored in Experience) tags and toggles every project and role by the kind of work it was.
 - The design is skimmable by default with detail on demand. Short summaries up front; the visitor pulls depth.
   - Hero animates in on load.
-  - Projects are cards (two highlighted "Featured" ones plus a grid). Each opens a full dossier in a modal (content in `<template>` elements; closes on the button, overlay-click, or Esc). The Build/Operate filter applies to projects only.
-  - Experience is an accordion: a role summary per line, bullets expand on click.
+  - Projects are flip cards (two highlighted "Featured" ones plus a grid). The front shows the title and meta; hover flips to the summary; a click opens the full dossier in a modal (content in `<template>` elements; closes on the button, overlay-click, or Esc). The Build/Operate filter applies to projects only.
+  - Experience is an accordion: one role per line, bullets expand on click. Role titles and bullets follow the résumé's capitalization.
   - Selected trades are flip cards. The essentials sit on the front, the write-up on the back, revealed on hover or tap.
+  - A cursor spotlight (radial glow) follows the pointer on fine-pointer devices, off under reduced-motion.
 - `assets/ticket-drop-playbook.html` is a standalone, themed rendering of the ticket-drop operations playbook, linked from that project's dossier.
 - Copy follows a set of anti-AI-writing rules: no em dashes, straight quotes, no emoji, plain verbs, specific facts, and a flat confident voice.
 - Fully responsive, keyboard-accessible, and respects `prefers-reduced-motion`.

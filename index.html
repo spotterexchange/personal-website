@@ -38,6 +38,10 @@
                  radial-gradient(45rem 40rem at 3% 6%,rgba(110,168,254,0.05),transparent 55%);
       animation:drift 18s ease-in-out infinite alternate}
     @keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-2%,0)}}
+    /* cursor spotlight */
+    .cursor-glow{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .35s ease;
+      background:radial-gradient(460px circle at var(--mx,50%) var(--my,50%),rgba(52,211,153,0.08),rgba(52,211,153,0.03) 30%,transparent 55%)}
+    body.has-cursor .cursor-glow{opacity:1}
 
     .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,40px);position:relative;z-index:1}
     section{padding:clamp(58px,8vw,104px) 0;position:relative;z-index:1}
@@ -117,20 +121,29 @@
     .pgrid.feat{grid-template-columns:1fr 1fr;margin-bottom:16px}
     @media(max-width:900px){.pgrid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:640px){.pgrid,.pgrid.feat{grid-template-columns:1fr}}
-    .pcard{position:relative;display:flex;flex-direction:column;text-align:left;width:100%;font:inherit;color:inherit;cursor:pointer;overflow:hidden;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);padding:24px;min-height:230px;transition:border-color .25s,transform .25s,background .25s}
-    .pcard:hover,.pcard:focus-visible{border-color:var(--border-2);transform:translateY(-4px);outline:none}
-    .pcard:focus-visible{box-shadow:0 0 0 2px var(--accent-dim)}
-    .pcard.flag{min-height:250px;background:linear-gradient(165deg,rgba(52,211,153,0.09),var(--surface) 62%);border-color:var(--accent-dim)}
-    .pcard .track-tag{position:absolute;top:20px;right:20px}
-    .pcard .num{font-family:var(--serif);font-size:2.6rem;font-weight:700;line-height:1;letter-spacing:-0.02em;color:transparent;-webkit-text-stroke:1px var(--border-2)}
-    .pcard.flag .num{-webkit-text-stroke-color:var(--accent-dim)}
-    .pcard .flabel{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
-    .pbody{margin-top:auto}
-    .pcard h3{font-size:1.16rem;font-weight:650;letter-spacing:-0.01em;margin-top:18px;padding-right:70px}
-    .pcard.flag h3{font-size:1.32rem;margin-top:10px}
+    .pcard{position:relative;display:block;width:100%;height:238px;perspective:1200px;border:0;background:none;padding:0;font:inherit;color:inherit;text-align:left;cursor:pointer}
+    .pcard.flag{height:250px}
+    .pcard:focus-visible{outline:none}
+    .pinner{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+    .pcard:hover .pinner,.pcard:focus-visible .pinner{transform:rotateY(180deg)}
+    .pface{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--border);border-radius:var(--radius);padding:24px;background:var(--surface);display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s}
+    .pcard:hover .pface,.pcard:focus-visible .pface{border-color:var(--border-2)}
+    .pcard.flag .pface{background:linear-gradient(165deg,rgba(52,211,153,0.09),var(--surface) 62%);border-color:var(--accent-dim)}
+    .pfront .track-tag{position:absolute;top:20px;right:20px}
+    .pfront .num{font-family:var(--serif);font-size:2.6rem;font-weight:700;line-height:1;letter-spacing:-0.02em;color:transparent;-webkit-text-stroke:1px var(--border-2)}
+    .pcard.flag .pfront .num{-webkit-text-stroke-color:var(--accent-dim)}
+    .pfront .flabel{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
+    .pfront .pb{margin-top:auto}
+    .pfront h3{font-size:1.16rem;font-weight:650;letter-spacing:-0.01em;margin-top:14px;padding-right:66px}
+    .pcard.flag .pfront h3{font-size:1.3rem}
     .pmeta{font-family:var(--mono);font-size:0.75rem;color:var(--text-dim);letter-spacing:0.03em;margin-top:8px}
+    .phint{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--border-2);margin-top:14px}
+    .pback{transform:rotateY(180deg);background:linear-gradient(180deg,var(--surface-2),var(--bg-soft))}
+    .pcard.flag .pback{background:linear-gradient(180deg,rgba(52,211,153,0.08),var(--bg-soft))}
+    .pback .bt{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-dim)}
+    .pback .pdesc{color:var(--text-mid);font-size:0.94rem;margin-top:12px}
+    .popen{font-family:var(--mono);font-size:0.76rem;color:var(--accent);margin-top:auto;display:inline-flex;align-items:center;gap:6px}
     .psummary{color:var(--text-mid);font-size:0.92rem;margin-top:12px}
-    .popen{font-family:var(--mono);font-size:0.75rem;color:var(--accent);margin-top:14px;display:inline-flex;align-items:center;gap:6px}
 
     /* dossier modal */
     .modal{position:fixed;inset:0;z-index:100;display:none}
@@ -258,6 +271,8 @@
 </head>
 <body>
 
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
   <header class="nav" id="nav">
     <div class="wrap nav-inner">
       <a href="#top" class="brand"><span class="dot"></span> Michael Lund</a>
@@ -266,7 +281,6 @@
         <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#trades">Trades</a>
-        <a href="#about">About</a>
         <a href="#contact" class="nav-cta">Get in touch</a>
       </nav>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -322,92 +336,156 @@
 
         <div class="pgrid feat">
           <button class="pcard flag reveal" data-track="operate" data-dossier="d-cos">
-            <span class="track-tag operate">Operate</span>
-            <span class="flabel">Featured. Work sample.</span>
-            <div class="pbody">
-              <h3>Chief of Staff case study</h3>
-              <div class="pmeta">2026. Interview take-home.</div>
-              <p class="psummary">A payroll-compliance problem I'd never seen, turned into a decision the team could act on in about four hours.</p>
-              <span class="popen">Open dossier →</span>
+            <div class="pinner">
+              <div class="pface pfront">
+                <span class="track-tag operate">Operate</span>
+                <span class="flabel">Featured. Work sample.</span>
+                <div class="pb">
+                  <h3>Chief of Staff case study</h3>
+                  <div class="pmeta">2026. Interview take-home.</div>
+                  <span class="phint">Hover for more</span>
+                </div>
+              </div>
+              <div class="pface pback">
+                <span class="bt">Chief of Staff case study</span>
+                <p class="pdesc">A payroll-compliance problem I'd never seen, turned into a decision the team could act on in about four hours.</p>
+                <span class="popen">Open dossier →</span>
+              </div>
             </div>
           </button>
 
           <button class="pcard flag reveal" data-track="build" data-dossier="d-crypto">
-            <span class="track-tag build">Build</span>
-            <span class="flabel">Featured. A full semester.</span>
-            <div class="pbody">
-              <h3>Crypto sentiment and random forest strategy</h3>
-              <div class="pmeta">2024 to 2025. Duke. 2nd place.</div>
-              <p class="psummary">A BTC and ETH strategy that took 2nd in Duke's Sharpe-scored trading competition. I owned the position-sizing layer.</p>
-              <span class="popen">Open dossier →</span>
+            <div class="pinner">
+              <div class="pface pfront">
+                <span class="track-tag build">Build</span>
+                <span class="flabel">Featured. A full semester.</span>
+                <div class="pb">
+                  <h3>Crypto sentiment and random forest strategy</h3>
+                  <div class="pmeta">2024 to 2025. Duke. 2nd place.</div>
+                  <span class="phint">Hover for more</span>
+                </div>
+              </div>
+              <div class="pface pback">
+                <span class="bt">Crypto strategy</span>
+                <p class="pdesc">A BTC and ETH strategy that took 2nd in Duke's Sharpe-scored trading competition. I owned the position-sizing layer.</p>
+                <span class="popen">Open dossier →</span>
+              </div>
             </div>
           </button>
         </div>
 
         <div class="pgrid">
           <button class="pcard reveal" data-track="operate" data-dossier="d-os">
-            <span class="track-tag operate">Operate</span>
-            <span class="num">01</span>
-            <div class="pbody">
-              <h3>Trading operating system</h3>
-              <div class="pmeta">Since 2024. Trillium.</div>
-              <p class="psummary">A daily system I built to trade by. Report cards, reviews, and AI workflows that tell luck apart from skill. Other traders copied it.</p>
-              <span class="popen">Open dossier →</span>
+            <div class="pinner">
+              <div class="pface pfront">
+                <span class="track-tag operate">Operate</span>
+                <span class="num">01</span>
+                <div class="pb">
+                  <h3>Trading operating system</h3>
+                  <div class="pmeta">Since 2024. Trillium.</div>
+                  <span class="phint">Hover for more</span>
+                </div>
+              </div>
+              <div class="pface pback">
+                <span class="bt">Trading operating system</span>
+                <p class="pdesc">A daily system I built to trade by. Report cards, reviews, and AI workflows that tell luck apart from skill. Other traders copied it.</p>
+                <span class="popen">Open dossier →</span>
+              </div>
             </div>
           </button>
 
           <button class="pcard reveal" data-track="build" data-dossier="d-feed">
-            <span class="track-tag build">Build</span>
-            <span class="num">02</span>
-            <div class="pbody">
-              <h3>Claude market-news feed</h3>
-              <div class="pmeta">Since 2024. Trillium.</div>
-              <p class="psummary">Scrapers and language models that summarize market news faster than I can read it. I built it to kill my own bottleneck.</p>
-              <span class="popen">Open dossier →</span>
+            <div class="pinner">
+              <div class="pface pfront">
+                <span class="track-tag build">Build</span>
+                <span class="num">02</span>
+                <div class="pb">
+                  <h3>Claude market-news feed</h3>
+                  <div class="pmeta">Since 2024. Trillium.</div>
+                  <span class="phint">Hover for more</span>
+                </div>
+              </div>
+              <div class="pface pback">
+                <span class="bt">Claude market-news feed</span>
+                <p class="pdesc">Scrapers and language models that summarize market news faster than I can read it. I built it to kill my own bottleneck.</p>
+                <span class="popen">Open dossier →</span>
+              </div>
             </div>
           </button>
 
           <button class="pcard reveal" data-track="build" data-dossier="d-notes">
-            <span class="track-tag build">Build</span>
-            <span class="num">03</span>
-            <div class="pbody">
-              <h3>Notes aggregator</h3>
-              <div class="pmeta">Since 2024. Trillium.</div>
-              <p class="psummary">A tool that pulls my scattered trading notes into one pipeline. It gave me back about two hours a day.</p>
-              <span class="popen">Open dossier →</span>
+            <div class="pinner">
+              <div class="pface pfront">
+                <span class="track-tag build">Build</span>
+                <span class="num">03</span>
+                <div class="pb">
+                  <h3>Notes aggregator</h3>
+                  <div class="pmeta">Since 2024. Trillium.</div>
+                  <span class="phint">Hover for more</span>
+                </div>
+              </div>
+              <div class="pface pback">
+                <span class="bt">Notes aggregator</span>
+                <p class="pdesc">A tool that pulls my scattered trading notes into one pipeline. It gave me back about two hours a day.</p>
+                <span class="popen">Open dossier →</span>
+              </div>
             </div>
           </button>
 
           <button class="pcard reveal" data-track="build" data-dossier="d-dash">
-            <span class="track-tag build">Build</span>
-            <span class="num">04</span>
-            <div class="pbody">
-              <h3>Sell-through dashboard</h3>
-              <div class="pmeta">2026. Ticket-resale business.</div>
-              <p class="psummary">A Claude dashboard that models sell-through before an event, so a resale team plans releases instead of dumping inventory. They run it themselves.</p>
-              <span class="popen">Open dossier →</span>
+            <div class="pinner">
+              <div class="pface pfront">
+                <span class="track-tag build">Build</span>
+                <span class="num">04</span>
+                <div class="pb">
+                  <h3>Sell-through dashboard</h3>
+                  <div class="pmeta">2026. Ticket-resale business.</div>
+                  <span class="phint">Hover for more</span>
+                </div>
+              </div>
+              <div class="pface pback">
+                <span class="bt">Sell-through dashboard</span>
+                <p class="pdesc">A Claude dashboard that models sell-through before an event, so a resale team plans releases instead of dumping inventory. They run it themselves.</p>
+                <span class="popen">Open dossier →</span>
+              </div>
             </div>
           </button>
 
           <button class="pcard reveal" data-track="operate" data-dossier="d-ticketos">
-            <span class="track-tag operate">Operate</span>
-            <span class="num">05</span>
-            <div class="pbody">
-              <h3>Ticket-drop operating system</h3>
-              <div class="pmeta">2026. Built with the founder.</div>
-              <p class="psummary">Seven roles, each with a before, during, and after checklist, so a live ticket drop runs the same every time.</p>
-              <span class="popen">Open dossier →</span>
+            <div class="pinner">
+              <div class="pface pfront">
+                <span class="track-tag operate">Operate</span>
+                <span class="num">05</span>
+                <div class="pb">
+                  <h3>Ticket-drop operating system</h3>
+                  <div class="pmeta">2026. Built with the founder.</div>
+                  <span class="phint">Hover for more</span>
+                </div>
+              </div>
+              <div class="pface pback">
+                <span class="bt">Ticket-drop operating system</span>
+                <p class="pdesc">Seven roles, each with a before, during, and after checklist, so a live ticket drop runs the same every time.</p>
+                <span class="popen">Open dossier →</span>
+              </div>
             </div>
           </button>
 
           <button class="pcard reveal" data-track="operate" data-dossier="d-difmo">
-            <span class="track-tag operate">Operate</span>
-            <span class="num">06</span>
-            <div class="pbody">
-              <h3>Difmo, my DJ and events company</h3>
-              <div class="pmeta">Duke. First business I ran.</div>
-              <p class="psummary">The first business I built and ran. Resident DJ at Duke's main nightclub, plus events across campus.</p>
-              <span class="popen">Open dossier →</span>
+            <div class="pinner">
+              <div class="pface pfront">
+                <span class="track-tag operate">Operate</span>
+                <span class="num">06</span>
+                <div class="pb">
+                  <h3>Difmo, my DJ and events company</h3>
+                  <div class="pmeta">Duke. First business I ran.</div>
+                  <span class="phint">Hover for more</span>
+                </div>
+              </div>
+              <div class="pface pback">
+                <span class="bt">Difmo, DJ and events</span>
+                <p class="pdesc">The first business I built and ran. Resident DJ at Duke's main nightclub, plus events across campus.</p>
+                <span class="popen">Open dossier →</span>
+              </div>
             </div>
           </button>
         </div>
@@ -595,17 +673,16 @@
               <span class="jmeta"><span class="jdate">Since Sep 2024</span><span class="jloc">New York, NY</span></span>
               <span class="jmain">
                 <span class="jrole">Trader <span class="jco">· Trillium Trading</span></span>
-                <span class="jsum">I trade a $500K intraday book and built the AI tools and coaching the desk picked up.</span>
               </span>
               <span class="jtoggle" aria-hidden="true">+</span>
             </button>
             <div class="jdetail">
               <ul>
-                <li>I trade an intraday U.S. equities book with $500K in buying power. I read Level 2 order flow, the tape, technicals, and live news, and I manage the risk.</li>
-                <li>The book is asymmetric. My average winning day runs about twice my average losing day. I put size into a few high-conviction setups and cap the downside at one lockout per ticker.</li>
-                <li>I built a market-news feed with web scrapers and language models that saves seconds on every trade.</li>
-                <li>I built a personal operating system on the Atomic Habits model, plus a notes tool and an AI coach that flags patterns from my daily report cards.</li>
-                <li>I coached four junior traders on setups, risk, and review. All four strung together several profitable months in their first year.</li>
+                <li>Manage an intraday U.S. equities book with $500,000 in buying power, synthesizing Level 2 order flow, tape, technical charts, and real-time news to execute discretionary trades and manage risk.</li>
+                <li>Run an asymmetric, catalyst-driven book (average winning day roughly twice the average losing day), concentrating maximum size into a few high-conviction setups while capping risk to a single lockout per ticker.</li>
+                <li>Built a proprietary Bloomberg-style market-news feed with Claude-assisted development, web scrapers, and language-model APIs that shaves critical seconds off intra-trade information processing.</li>
+                <li>Built a personal operating system (Atomic Habits framework) plus trade-prep and review tooling: a notes aggregator that cuts ~2 hours of daily note-taking and an AI coach that flags behavioral patterns from daily report cards.</li>
+                <li>Mentored four junior traders on setups, risk rules, habit formation, and structured review; all four subsequently recorded multiple consecutive profitable months during their first year of trading.</li>
               </ul>
             </div>
           </div>
@@ -614,52 +691,49 @@
             <button class="jhead" aria-expanded="false">
               <span class="jmeta"><span class="jdate">Since Jun 2026</span><span class="jloc">Miami, FL</span></span>
               <span class="jmain">
-                <span class="jrole">Operations and buying consultant <span class="jco">· TicketKings</span></span>
-                <span class="jsum">I shadowed a 20-person resale business for a week and left them tools they still use.</span>
+                <span class="jrole">Operations &amp; Buying Consultant <span class="jco">· TicketKings</span></span>
               </span>
               <span class="jtoggle" aria-hidden="true">+</span>
             </button>
             <div class="jdetail">
               <ul>
-                <li>I built a Claude dashboard for a 20-person resale business that models sell-through targets before an event. The team plans inventory releases with it, and they run it themselves.</li>
-                <li>I sat in on live buying during launch week, including the Gracie Abrams and The Chicks drops.</li>
-                <li>I advise on buying across the EDM and dance-music market and flag mispriced inventory and demand I recognize firsthand.</li>
+                <li>Built a Claude-powered dashboard for a 20-person ticket-resale business that models sell-through targets in the weeks before an event, giving the team a planning read on how to release inventory over days; the team runs it themselves.</li>
+                <li>Collaborated on-site on live buying decisions during launch week, including the Gracie Abrams and The Chicks ticket drops.</li>
+                <li>Advise the team on buying across the EDM and dance-music market, applying firsthand domain expertise to flag mispriced inventory and demand trends.</li>
               </ul>
             </div>
           </div>
 
           <div class="job">
             <button class="jhead" aria-expanded="false">
-              <span class="jmeta"><span class="jdate">Summer 2023</span><span class="jloc">New York, NY</span></span>
+              <span class="jmeta"><span class="jdate">Jun to Aug 2023</span><span class="jloc">New York, NY</span></span>
               <span class="jmain">
-                <span class="jrole">Product management intern <span class="jco">· Publicis Sapient</span></span>
-                <span class="jsum">Owned the product deliverables for an intern capstone and shipped the prototype.</span>
+                <span class="jrole">Product Management Intern <span class="jco">· Publicis Sapient</span></span>
               </span>
               <span class="jtoggle" aria-hidden="true">+</span>
             </button>
             <div class="jdetail">
               <ul>
-                <li>I owned the product deliverables for a cross-functional intern capstone built on Suncor's needs: user stories, a PRD, and a roadmap. I ran the daily standups.</li>
-                <li>I ran sprint planning in Jira and Confluence and prototyped in Figma.</li>
-                <li>I worked with engineers to ship a full-stack prototype and iterated on it with stakeholder feedback.</li>
+                <li>Owned all product deliverables for a cross-functional intern capstone built on Suncor's business needs (user stories, PRD, and roadmap) and ran daily standups to coordinate the engineering team.</li>
+                <li>Managed sprint planning in Jira and Confluence and prototyped in Figma, translating requirements into a prioritized backlog.</li>
+                <li>Partnered with engineers to deliver a full-stack digital prototype, iterating on features through continuous stakeholder feedback.</li>
               </ul>
             </div>
           </div>
 
           <div class="job">
             <button class="jhead" aria-expanded="false">
-              <span class="jmeta"><span class="jdate">Summer 2022</span><span class="jloc">Palo Alto, CA</span></span>
+              <span class="jmeta"><span class="jdate">Jun to Aug 2022</span><span class="jloc">Palo Alto, CA</span></span>
               <span class="jmain">
-                <span class="jrole">Finance associate <span class="jco">· NeuroSync</span></span>
-                <span class="jsum">Built the deck for a Series B that raised $25MM.</span>
+                <span class="jrole">Finance Associate <span class="jco">· NeuroSync</span></span>
               </span>
               <span class="jtoggle" aria-hidden="true">+</span>
             </button>
             <div class="jdetail">
               <ul>
-                <li>I built the pitch deck for a Series B that raised $25MM, off my market research and product work.</li>
-                <li>I wrote a 50-slide confidential information memorandum for investors.</li>
-                <li>I ran the financial analysis behind the growth decisions.</li>
+                <li>Crafted a compelling pitch deck facilitating a successful Series B financing round, securing $25MM in investments through targeted market research and product strategy.</li>
+                <li>Constructed a 50-slide Confidential Information Memorandum (CIM) deck, offering detailed insights to potential investors.</li>
+                <li>Conducted financial analysis, driving strategic decisions to optimize financial performance and growth trajectory.</li>
               </ul>
             </div>
           </div>
@@ -668,15 +742,15 @@
             <button class="jhead" aria-expanded="false">
               <span class="jmeta"><span class="jdate">Jan to Aug 2022</span><span class="jloc">New York, NY</span></span>
               <span class="jmain">
-                <span class="jrole">Project management intern, marketing <span class="jco">· Options AI</span></span>
-                <span class="jsum">Ran a growth partnership with TrendSpider and the campaigns behind it.</span>
+                <span class="jrole">Project Management Intern, Marketing <span class="jco">· Options AI</span></span>
               </span>
               <span class="jtoggle" aria-hidden="true">+</span>
             </button>
             <div class="jdetail">
               <ul>
-                <li>I set up a partnership with the trading-software company TrendSpider to grow funded accounts through an incentive program.</li>
-                <li>I ran digital and social campaigns with UTM tracking and read the Google Analytics to adjust targeting.</li>
+                <li>Partnered with trading-software company TrendSpider to drive customer acquisition and funded-account growth through an incentivized-funding program.</li>
+                <li>Launched and managed targeted digital and social-media campaigns, implementing UTM tracking and analyzing Google Analytics data to evaluate performance and refine targeting.</li>
+                <li>Created graphics for tutorial videos and blog posts to support marketing content and user education.</li>
               </ul>
             </div>
           </div>
@@ -689,46 +763,46 @@
     <section id="skills">
       <div class="wrap">
         <div class="section-head">
-          <span class="eyebrow reveal">Toolkit and background</span>
-          <h2 class="title reveal">Skills, credentials, and school.</h2>
+          <span class="eyebrow reveal">Skills</span>
+          <h2 class="title reveal">Skills and education.</h2>
         </div>
         <div class="two-col">
           <div class="panel reveal">
-            <h3>Skills and tools</h3>
+            <h3>Skills &amp; Tools</h3>
             <div class="skill-group">
-              <div class="k">Engineering and data</div>
+              <div class="k">Engineering &amp; Data</div>
               <div class="chips">
                 <span class="chip">Python</span><span class="chip">Java</span><span class="chip">C</span>
-                <span class="chip">SQL</span><span class="chip">Excel and VBA</span><span class="chip">Vibe coding</span>
-                <span class="chip">Claude and LLM APIs</span><span class="chip">Web scraping</span>
+                <span class="chip">SQL</span><span class="chip">Microsoft Excel and VBA</span><span class="chip">Vibe Coding</span>
+                <span class="chip">Claude &amp; LLM APIs</span><span class="chip">Web Scraping</span>
               </div>
             </div>
             <div class="skill-group">
-              <div class="k">Quant and analytics</div>
+              <div class="k">Quant &amp; Analytics</div>
               <div class="chips">
-                <span class="chip">Quantitative analysis</span><span class="chip">Statistical modeling</span>
-                <span class="chip">Performance analytics</span><span class="chip">Machine learning</span>
+                <span class="chip">Quantitative Analysis</span><span class="chip">Statistical Modeling</span>
+                <span class="chip">Performance Analytics</span><span class="chip">Machine Learning</span>
               </div>
             </div>
             <div class="skill-group">
               <div class="k">Markets</div>
               <div class="chips">
-                <span class="chip">Bloomberg</span><span class="chip">Level 2 order-book and tape</span>
-                <span class="chip">Discretionary risk</span><span class="chip">Catalyst trading</span>
+                <span class="chip">Bloomberg</span><span class="chip">Level 2 Order-Book &amp; Tape Reading</span>
+                <span class="chip">Discretionary Risk</span><span class="chip">Catalyst Trading</span>
               </div>
             </div>
             <div class="skill-group">
-              <div class="k">Product and operations</div>
+              <div class="k">Product &amp; Operations</div>
               <div class="chips">
-                <span class="chip">Process design</span><span class="chip">Agile</span>
+                <span class="chip">Process Design</span><span class="chip">Agile</span>
                 <span class="chip">Figma</span><span class="chip">Jira</span><span class="chip">Confluence</span>
-                <span class="chip">PRDs and roadmapping</span>
+                <span class="chip">PRDs &amp; Roadmapping</span>
               </div>
             </div>
             <div class="skill-group">
               <div class="k">Certifications</div>
               <div class="chips">
-                <span class="chip">Akuna Options 101 / 201</span>
+                <span class="chip">Akuna Capital Options 101/201</span>
                 <span class="chip">Algorithmic Trading (QuantConnect)</span>
                 <span class="chip">AZ-900 Azure Fundamentals</span>
               </div>
@@ -743,8 +817,8 @@
               <div class="metaline">May 2024. GPA 3.4.</div>
               <div class="divider"></div>
               <div class="row"><b>Honors</b>Dean's List with Distinction.</div>
-              <div class="row"><b>Air Force ROTC</b>Type 1 scholarship, the national full-tuition award, plus AFROTC academic and physical excellence awards.</div>
-              <div class="row"><b>Activities</b>Founder of Difmo (DJ and events). Duke men's varsity cheer, founding member and Cheer Leadership Council. One of seven Duke reps at the 2022 ACC Professional Development Academy. Duke Sports Analytics and FinTech clubs.</div>
+              <div class="row"><b>Air Force ROTC</b>Type 1 Scholarship (national full-tuition award). Academic and Physical Excellence Awards.</div>
+              <div class="row"><b>Activities</b>Founder, Difmo LLC (DJ &amp; Event Services). Duke Men's Varsity Cheer (Founding Member, Cheer Leadership Council). ACC Professional Development Academy (one of seven Duke reps, 2022). Duke Sports Analytics Club and Duke FinTech Club.</div>
             </div>
           </div>
         </div>
@@ -817,32 +891,6 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="eyebrow reveal">About</span>
-          <h2 class="title reveal">How I work.</h2>
-        </div>
-        <div class="about-grid">
-          <div class="about-body reveal">
-            <p>I get inside an unfamiliar system fast, find the part that moves it, and build or fix that part before anyone asks. That's the pattern behind everything here, from a trading desk to a friend's resale business to the DJ company I ran in college.</p>
-            <p>Money and security drive me. I grew up watching money cause stress at home, and I decided early to make myself hard to replace. Trading taught me to make high-conviction calls under real risk. What I want next is an operator seat at an early-stage company, close to the people building it, where the equity is real and the scoreboard is honest.</p>
-          </div>
-          <aside class="about-side reveal">
-            <h3>How I operate</h3>
-            <ul>
-              <li>I put real size behind a few high-conviction calls and cap the downside.</li>
-              <li>When a problem repeats, I build the tool that kills it.</li>
-              <li>I run on rules. One lockout, clean exits, no revenge trades.</li>
-              <li>I review honestly. Report cards, weekly patterns, real post-mortems.</li>
-              <li>I coach. Four junior traders I worked with each put up profitable months.</li>
-            </ul>
-          </aside>
-        </div>
-      </div>
-    </section>
-
     <!-- CONTACT -->
     <section id="contact" class="contact">
       <div class="wrap">
@@ -898,6 +946,24 @@
     // hero entrance
     window.addEventListener('load', () => document.body.classList.add('loaded'));
     document.addEventListener('DOMContentLoaded', () => setTimeout(() => document.body.classList.add('loaded'), 60));
+
+    // cursor spotlight (pointer devices only, respects reduced motion)
+    (function () {
+      const glow = document.getElementById('cursorGlow');
+      const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!glow || !fine || reduced) return;
+      document.body.classList.add('has-cursor');
+      let x = 0, y = 0, raf = null;
+      window.addEventListener('mousemove', (e) => {
+        x = e.clientX; y = e.clientY;
+        if (!raf) raf = requestAnimationFrame(() => {
+          glow.style.setProperty('--mx', x + 'px');
+          glow.style.setProperty('--my', y + 'px');
+          raf = null;
+        });
+      }, { passive: true });
+    })();
 
     // sticky nav
     const nav = document.getElementById('nav');
@@ -992,7 +1058,7 @@
     }
 
     // scroll spy
-    const sections = ['projects','experience','skills','trades','about','contact']
+    const sections = ['projects','experience','skills','trades','contact']
       .map(id => document.getElementById(id)).filter(Boolean);
     const navAnchors = new Map([...document.querySelectorAll('.nav-links a')].map(a => [a.getAttribute('href'), a]));
     if ('IntersectionObserver' in window) {
