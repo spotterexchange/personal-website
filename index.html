@@ -19,7 +19,7 @@
       --accent:#34d399; --accent-dim:#1f8f6b; --accent-glow:rgba(52,211,153,0.14);
       --operate:#6ea8fe; --operate-dim:rgba(110,168,254,0.42); --operate-glow:rgba(110,168,254,0.10);
       --radius:14px; --maxw:1080px;
-      --serif:'Iowan Old Style','Palatino Linotype','Georgia','Times New Roman',serif;
+      /* two-family type system: sans for display + prose, mono for labels + numbers */
       --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
       --mono:'SFMono-Regular',ui-monospace,'Menlo','Consolas',monospace;
     }
@@ -144,37 +144,36 @@
     .ft-dot.build{background:var(--accent)}
     .ft-dot.operate{background:var(--operate)}
 
-    /* project reel */
-    .reel-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-    .reel-wrap{position:relative}
-    .reel{display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 2px 20px;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--border-2) transparent}
-    .reel::-webkit-scrollbar{height:6px}
-    .reel::-webkit-scrollbar-track{background:transparent}
-    .reel::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:3px}
-    .reel-nav{display:flex;gap:10px}
-    .reel-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--border-2);background:var(--surface);color:var(--text-mid);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .2s}
-    .reel-btn:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
-    .reel-btn:disabled{opacity:0.3;cursor:default}
-    .reel-btn svg{width:18px;height:18px}
-    .pcard{position:relative;flex:0 0 clamp(280px,30vw,344px);height:322px;perspective:1200px;border:0;background:none;padding:0;font:inherit;color:inherit;text-align:left;cursor:pointer;scroll-snap-align:start}
+    /* project carousel: pinned horizontal scroll (scroll down moves the reel across) */
+    .hscroll{position:relative}
+    .hsticky{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;overflow:hidden}
+    .htrack{display:flex;gap:22px;padding:0 clamp(20px,5vw,40px);will-change:transform}
+    .hint-scroll{position:absolute;left:clamp(20px,5vw,40px);bottom:8vh;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;gap:10px}
+    .hint-scroll .hbarwrap{width:120px;height:2px;background:var(--border);border-radius:2px;overflow:hidden}
+    .hint-scroll .hbar{display:block;height:100%;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .06s linear}
+    /* fallback when the pin is not active (touch / narrow / reduced-motion): native horizontal swipe */
+    .hscroll:not(.pinned) .hsticky{position:static;height:auto;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:6px 0 20px;scrollbar-width:thin;scrollbar-color:var(--border-2) transparent}
+    .hscroll:not(.pinned) .hsticky::-webkit-scrollbar{height:6px}
+    .hscroll:not(.pinned) .hsticky::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:3px}
+    .hscroll:not(.pinned) .htrack{transform:none !important}
+    .hscroll:not(.pinned) .pcard{scroll-snap-align:start}
+    .hscroll:not(.pinned) .hint-scroll{display:none}
+
+    .pcard{position:relative;flex:0 0 clamp(288px,26vw,352px);height:clamp(320px,44vh,392px);perspective:1200px;border:0;background:none;padding:0;font:inherit;color:inherit;text-align:left;cursor:pointer}
     .pcard:focus-visible{outline:none}
     .pinner{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
     .pcard:hover .pinner,.pcard:focus-visible .pinner{transform:rotateY(180deg)}
-    .pface{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--border);border-radius:var(--radius);padding:24px;background:var(--surface);display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s}
+    .pface{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid var(--border);border-radius:var(--radius);padding:26px;background:var(--surface);display:flex;flex-direction:column;overflow:hidden;transition:border-color .2s}
     .pcard:hover .pface,.pcard:focus-visible .pface{border-color:var(--border-2)}
-    .pcard.flag .pface{background:linear-gradient(165deg,rgba(52,211,153,0.09),var(--surface) 62%);border-color:var(--accent-dim)}
-    .pfront .track-tag{position:absolute;top:20px;right:20px}
-    .pfront .num{font-family:var(--serif);font-size:2.6rem;font-weight:700;line-height:1;letter-spacing:-0.02em;color:transparent;-webkit-text-stroke:1px var(--border-2)}
-    .pcard.flag .pfront .num{-webkit-text-stroke-color:var(--accent-dim)}
-    .pfront .flabel{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
+    .pfront .track-tag{position:absolute;top:22px;right:22px}
+    .pfront .num{font-family:var(--sans);font-size:2.8rem;font-weight:800;line-height:1;letter-spacing:-0.03em;color:transparent;-webkit-text-stroke:1px var(--border-2)}
     .pfront .pb{margin-top:auto}
-    .pfront h3{font-size:1.16rem;font-weight:650;letter-spacing:-0.01em;margin-top:14px;padding-right:66px}
+    .pfront h3{font-size:1.22rem;font-weight:650;letter-spacing:-0.01em;margin-top:14px;padding-right:66px}
     .pmeta{font-family:var(--mono);font-size:0.75rem;color:var(--text-dim);letter-spacing:0.03em;margin-top:8px}
-    .phint{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--border-2);margin-top:14px}
+    .phint{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--border-2);margin-top:16px}
     .pback{transform:rotateY(180deg);background:linear-gradient(180deg,var(--surface-2),var(--bg-soft))}
-    .pcard.flag .pback{background:linear-gradient(180deg,rgba(52,211,153,0.08),var(--bg-soft))}
     .pback .bt{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-dim)}
-    .pback .pdesc{color:var(--text-mid);font-size:0.94rem;margin-top:12px}
+    .pback .pdesc{color:var(--text-mid);font-size:0.96rem;margin-top:12px}
     .popen{font-family:var(--mono);font-size:0.76rem;color:var(--accent);margin-top:auto;display:inline-flex;align-items:center;gap:6px}
     .psummary{color:var(--text-mid);font-size:0.92rem;margin-top:12px}
 
@@ -256,7 +255,7 @@
     .dir{font-size:0.66rem;padding:3px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:0.08em;font-weight:700}
     .dir.long{background:rgba(52,211,153,0.14);color:var(--accent)}
     .dir.short{background:rgba(248,113,113,0.14);color:#f87171}
-    .tfront .pnl{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--accent);letter-spacing:-0.01em;margin-top:auto}
+    .tfront .pnl{font-family:var(--mono);font-size:1.75rem;font-weight:700;color:var(--accent);letter-spacing:-0.01em;margin-top:auto}
     .tfront .lockout{font-family:var(--mono);font-size:0.78rem;color:var(--text-dim);margin-top:2px}
     .tfront .reason{font-weight:600;font-size:1.02rem;margin-top:16px;line-height:1.3}
     .tfront .date{font-family:var(--mono);font-size:0.78rem;color:var(--text-dim);margin-top:6px}
@@ -277,13 +276,13 @@
 
     /* contact */
     .contact{text-align:center}
-    .contact h2{font-family:var(--serif);font-size:clamp(2.1rem,6vw,3.4rem);font-weight:700;letter-spacing:-0.03em;line-height:1.05}
+    .contact h2{font-family:var(--sans);font-size:clamp(2.1rem,6vw,3.4rem);font-weight:800;letter-spacing:-0.03em;line-height:1.05}
     .contact p.lead{color:var(--text-mid);font-size:clamp(1rem,1.6vw,1.12rem);max-width:52ch;margin:20px auto 0}
     .contact-cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:34px}
 
     footer.site{border-top:1px solid var(--border);padding:38px 0}
     .foot-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
-    .foot-inner .name{font-family:var(--serif);font-weight:700}
+    .foot-inner .name{font-family:var(--sans);font-weight:800;letter-spacing:-0.01em}
     .foot-inner .note{color:var(--text-dim);font-size:0.84rem}
     .foot-links{display:flex;gap:20px}
     .foot-links a{color:var(--text-dim);font-size:0.88rem;transition:color .2s}
@@ -388,26 +387,24 @@
         <div class="section-head">
           <span class="eyebrow reveal">Projects and work samples</span>
           <h2 class="title reveal">Things I built and ran.</h2>
-          <div class="reveal reel-head">
+          <div class="reveal">
             <div class="filter" role="tablist" aria-label="Filter by type">
               <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
               <button class="filter-btn" data-filter="build" role="tab" aria-selected="false"><span class="ft-dot build"></span>Build</button>
               <button class="filter-btn" data-filter="operate" role="tab" aria-selected="false"><span class="ft-dot operate"></span>Operate</button>
             </div>
-            <div class="reel-nav">
-              <button class="reel-btn" id="reelPrev" type="button" aria-label="Previous projects">←</button>
-              <button class="reel-btn" id="reelNext" type="button" aria-label="Next projects">→</button>
-            </div>
           </div>
         </div>
+      </div>
 
-        <div class="reel-wrap">
-        <div class="reel" id="reel">
-          <button class="pcard flag reveal" data-track="operate" data-dossier="d-cos">
+      <div class="hscroll" id="hscroll">
+        <div class="hsticky">
+          <div class="htrack" id="htrack">
+          <button class="pcard" data-track="operate" data-dossier="d-cos">
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag operate">Operate</span>
-                <span class="flabel">Featured. Work sample.</span>
+                <span class="num">01</span>
                 <div class="pb">
                   <h3>Chief of Staff case study</h3>
                   <div class="pmeta">2026. Interview take-home.</div>
@@ -422,11 +419,11 @@
             </div>
           </button>
 
-          <button class="pcard flag reveal" data-track="build" data-dossier="d-crypto">
+          <button class="pcard" data-track="build" data-dossier="d-crypto">
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag build">Build</span>
-                <span class="flabel">Featured. A full semester.</span>
+                <span class="num">02</span>
                 <div class="pb">
                   <h3>Crypto sentiment and random forest strategy</h3>
                   <div class="pmeta">2024 to 2025. Duke. 2nd place.</div>
@@ -441,11 +438,11 @@
             </div>
           </button>
 
-          <button class="pcard reveal" data-track="operate" data-dossier="d-os">
+          <button class="pcard" data-track="operate" data-dossier="d-os">
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag operate">Operate</span>
-                <span class="num">01</span>
+                <span class="num">03</span>
                 <div class="pb">
                   <h3>Trading operating system</h3>
                   <div class="pmeta">Since 2024. Trillium.</div>
@@ -460,11 +457,11 @@
             </div>
           </button>
 
-          <button class="pcard reveal" data-track="build" data-dossier="d-feed">
+          <button class="pcard" data-track="build" data-dossier="d-feed">
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag build">Build</span>
-                <span class="num">02</span>
+                <span class="num">04</span>
                 <div class="pb">
                   <h3>Claude market-news feed</h3>
                   <div class="pmeta">Since 2024. Trillium.</div>
@@ -479,11 +476,11 @@
             </div>
           </button>
 
-          <button class="pcard reveal" data-track="build" data-dossier="d-notes">
+          <button class="pcard" data-track="build" data-dossier="d-notes">
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag build">Build</span>
-                <span class="num">03</span>
+                <span class="num">05</span>
                 <div class="pb">
                   <h3>Notes aggregator</h3>
                   <div class="pmeta">Since 2024. Trillium.</div>
@@ -498,11 +495,11 @@
             </div>
           </button>
 
-          <button class="pcard reveal" data-track="build" data-dossier="d-dash">
+          <button class="pcard" data-track="build" data-dossier="d-dash">
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag build">Build</span>
-                <span class="num">04</span>
+                <span class="num">06</span>
                 <div class="pb">
                   <h3>Sell-through dashboard</h3>
                   <div class="pmeta">2026. Ticket-resale business.</div>
@@ -517,11 +514,11 @@
             </div>
           </button>
 
-          <button class="pcard reveal" data-track="operate" data-dossier="d-ticketos">
+          <button class="pcard" data-track="operate" data-dossier="d-ticketos">
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag operate">Operate</span>
-                <span class="num">05</span>
+                <span class="num">07</span>
                 <div class="pb">
                   <h3>Ticket-drop operating system</h3>
                   <div class="pmeta">2026. Built with the founder.</div>
@@ -536,11 +533,11 @@
             </div>
           </button>
 
-          <button class="pcard reveal" data-track="operate" data-dossier="d-difmo">
+          <button class="pcard" data-track="operate" data-dossier="d-difmo">
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag operate">Operate</span>
-                <span class="num">06</span>
+                <span class="num">08</span>
                 <div class="pb">
                   <h3>Difmo, my DJ and events company</h3>
                   <div class="pmeta">Duke. First business I ran.</div>
@@ -554,9 +551,12 @@
               </div>
             </div>
           </button>
+          </div>
+          <div class="hint-scroll" aria-hidden="true">scroll to explore<span class="hbarwrap"><span class="hbar" id="hbar"></span></span></div>
         </div>
-        </div>
+      </div>
 
+      <div class="wrap">
         <!-- dossier templates -->
         <template id="d-cos">
           <div class="dossier">
@@ -1083,30 +1083,62 @@
         b.classList.toggle('active', on);
         b.setAttribute('aria-selected', on ? 'true' : 'false');
       });
+      if (window.__hMeasure) window.__hMeasure();
     }
     filterBtns.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
 
-    // project reel
-    const reel = document.getElementById('reel');
-    const reelPrev = document.getElementById('reelPrev');
-    const reelNext = document.getElementById('reelNext');
-    if (reel && reelPrev && reelNext) {
-      function reelStep() {
-        const card = reel.querySelector('.pcard:not(.hidden)');
-        return card ? card.offsetWidth + 16 : reel.clientWidth * 0.8;
+    // project carousel: scroll down pins the section and slides the reel across
+    (function () {
+      const wrap = document.getElementById('hscroll');
+      const sticky = wrap && wrap.querySelector('.hsticky');
+      const track = document.getElementById('htrack');
+      const bar = document.getElementById('hbar');
+      if (!wrap || !sticky || !track) return;
+      const enableMq = window.matchMedia('(min-width: 820px) and (pointer: fine)');
+      const reducedMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let overflow = 0, ticking = false;
+      const on = () => enableMq.matches && !reducedMq.matches;
+
+      function render() {
+        if (!on()) return;
+        const total = wrap.offsetHeight - window.innerHeight;
+        const p = total > 0 ? Math.min(Math.max(-wrap.getBoundingClientRect().top / total, 0), 1) : 0;
+        track.style.transform = 'translate3d(' + (-p * overflow).toFixed(1) + 'px,0,0)';
+        if (bar) bar.style.transform = 'scaleX(' + p.toFixed(3) + ')';
+        ticking = false;
       }
-      function reelSync() {
-        const max = reel.scrollWidth - reel.clientWidth - 2;
-        reelPrev.disabled = reel.scrollLeft <= 2;
-        reelNext.disabled = reel.scrollLeft >= max;
+      function measure() {
+        const active = on();
+        wrap.classList.toggle('pinned', active);
+        if (!active) { wrap.style.height = ''; track.style.transform = ''; return; }
+        overflow = Math.max(0, track.scrollWidth - sticky.clientWidth);
+        wrap.style.height = (window.innerHeight + overflow) + 'px';
+        render();
       }
-      reelPrev.addEventListener('click', () => reel.scrollBy({ left: -reelStep(), behavior: 'smooth' }));
-      reelNext.addEventListener('click', () => reel.scrollBy({ left: reelStep(), behavior: 'smooth' }));
-      reel.addEventListener('scroll', reelSync, { passive: true });
-      window.addEventListener('resize', reelSync);
-      filterBtns.forEach(b => b.addEventListener('click', () => { reel.scrollTo({ left: 0 }); requestAnimationFrame(reelSync); }));
-      reelSync();
-    }
+      window.__hMeasure = measure;
+
+      window.addEventListener('scroll', () => {
+        if (!ticking && on()) { ticking = true; requestAnimationFrame(render); }
+      }, { passive: true });
+      window.addEventListener('resize', measure);
+      enableMq.addEventListener('change', measure);
+      reducedMq.addEventListener('change', measure);
+      window.addEventListener('load', measure);
+      // a focused card (keyboard nav) scrolls the page so it lands in the pinned viewport
+      track.querySelectorAll('.pcard').forEach(card => {
+        card.addEventListener('focus', () => {
+          if (!on() || overflow <= 0) return;
+          const cards = [...track.querySelectorAll('.pcard:not(.hidden)')];
+          const i = cards.indexOf(card);
+          if (i < 0) return;
+          const frac = cards.length > 1 ? i / (cards.length - 1) : 0;
+          const total = wrap.offsetHeight - window.innerHeight;
+          const absTop = wrap.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ top: absTop + frac * total, behavior: 'smooth' });
+        });
+      });
+      measure();
+    })();
 
     // dossier modal
     const modal = document.getElementById('modal');

@@ -49,11 +49,12 @@ python3 -m http.server 8000
 - The design is skimmable by default with detail on demand. Short summaries up front; the visitor pulls depth.
   - The hero is a full-bleed wordmark: the name is the only large element, with small corner text hugging the screen edges. On load the two name lines slide up from a mask; on scroll they slide apart to the sides and fade. Reduced-motion shows the name statically.
   - A second "statement" screen follows the hero: the one-line pitch (keywords bolded), an availability block, the CTAs, and a scrolling tag marquee (paused under reduced-motion).
-  - Projects are flip cards (two highlighted "Featured" ones plus a grid). The front shows the title and meta; hover flips to the summary; a click opens the full dossier in a modal (content in `<template>` elements; closes on the button, overlay-click, or Esc). The Build/Operate filter applies to projects only.
+  - Projects are a horizontal carousel of uniform flip cards, numbered 01 to 08. On desktop the section pins and the reel slides across as you scroll down the page (native horizontal swipe on touch and under reduced-motion). The front shows the number, tag, title, and meta; hover flips to the summary; a click opens the full dossier in a modal (content in `<template>` elements; closes on the button, overlay-click, or Esc). The Build/Operate filter applies to projects only.
   - Experience is an accordion: one role per line, bullets expand on click. Role titles and bullets follow the résumé's capitalization.
   - Selected trades are flip cards. The essentials sit on the front, the write-up on the back, revealed on hover or tap.
   - A cursor spotlight (radial glow) follows the pointer on fine-pointer devices, off under reduced-motion.
 - `assets/ticket-drop-playbook.html` is a standalone, themed rendering of the ticket-drop operations playbook, linked from that project's dossier.
+- Type is a two-family system: a system sans for display and prose, and a monospace for labels, meta, and numbers (project indices, trade P&L). No third family is used, so nothing reads as an odd font dropped in.
 - Copy follows a set of anti-AI-writing rules: no em dashes, straight quotes, no emoji, plain verbs, specific facts, and a flat confident voice.
 - Fully responsive, keyboard-accessible, and respects `prefers-reduced-motion`.
 - The phone number from the résumé is intentionally **not** published on the site; contact routes through email and LinkedIn.
