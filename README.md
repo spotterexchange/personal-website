@@ -47,7 +47,8 @@ python3 -m http.server 8000
 - Projects lead the page (proof of work first), followed by Experience, Skills, Trades, About, and Contact.
 - A **Build / Operate** filter at the top of Projects (mirrored in Experience) tags and toggles every project and role by the kind of work it was.
 - The design is skimmable by default with detail on demand. Short summaries up front; the visitor pulls depth.
-  - The hero is a full-screen wordmark: the name is the main feature, with only small corner text. On load the two name lines slide up from a mask; on scroll they slide apart to the sides and fade. Reduced-motion shows the name statically.
+  - The hero is a full-bleed wordmark: the name is the only large element, with small corner text hugging the screen edges. On load the two name lines slide up from a mask; on scroll they slide apart to the sides and fade. Reduced-motion shows the name statically.
+  - A second "statement" screen follows the hero: the one-line pitch (keywords bolded), an availability block, the CTAs, and a scrolling tag marquee (paused under reduced-motion).
   - Projects are flip cards (two highlighted "Featured" ones plus a grid). The front shows the title and meta; hover flips to the summary; a click opens the full dossier in a modal (content in `<template>` elements; closes on the button, overlay-click, or Esc). The Build/Operate filter applies to projects only.
   - Experience is an accordion: one role per line, bullets expand on click. Role titles and bullets follow the résumé's capitalization.
   - Selected trades are flip cards. The essentials sit on the front, the write-up on the back, revealed on hover or tap.
