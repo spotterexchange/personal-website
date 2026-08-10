@@ -112,17 +112,18 @@
     @media(max-width:640px){.stmt-corner{text-align:left;align-items:flex-start}}
     /* stock-ticker tape: classic dot-matrix LED board */
     .marquee{position:relative;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:15px 0;background:#050506}
-    /* fixed LED dot grid: the matrix stays put while the lit text scrolls beneath it */
-    .marquee::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
-      background-image:radial-gradient(circle at center,rgba(0,0,0,0) 1.15px,#050506 1.55px);
-      background-size:3px 3px;background-position:center}
-    .marquee-track{display:flex;align-items:center;width:max-content;white-space:nowrap;animation:scrollx 44s linear infinite;font-family:var(--mono);font-weight:700;font-size:1.02rem;letter-spacing:0.04em}
+    /* the LED dot grid masks the moving text itself, so the dots travel with the
+       letters instead of the text strobing behind a fixed grid (no flicker) */
+    .marquee-track{display:flex;align-items:center;width:max-content;white-space:nowrap;animation:scrollx 30s linear infinite;font-family:var(--mono);font-weight:700;font-size:1.02rem;letter-spacing:0.04em;
+      -webkit-mask-image:radial-gradient(circle at center,#000 1.15px,transparent 1.5px);mask-image:radial-gradient(circle at center,#000 1.15px,transparent 1.5px);
+      -webkit-mask-size:3px 3px;mask-size:3px 3px;
+      will-change:transform;backface-visibility:hidden}
     .marquee-track .tk{display:inline-flex;align-items:baseline;gap:11px;padding:0 30px}
     .marquee-track .sym{color:var(--text-mid);text-transform:uppercase;text-shadow:0 0 6px rgba(196,196,204,0.20)}
     .marquee-track .chg{font-variant-numeric:tabular-nums;letter-spacing:0.02em}
     .marquee-track .chg.up{color:var(--accent);text-shadow:0 0 8px rgba(52,211,153,0.55)}
     .marquee-track .chg.down{color:var(--operate);text-shadow:0 0 8px rgba(110,168,254,0.5)}
-    @keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @keyframes scrollx{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 
     /* corner entrance */
     .h-in{opacity:0;transform:translateY(14px)}
