@@ -110,15 +110,18 @@
     .stmt-corner .place{color:var(--text-dim)}
     .stmt-cta{display:flex;flex-wrap:wrap;gap:12px}
     @media(max-width:640px){.stmt-corner{text-align:left;align-items:flex-start}}
-    /* stock-ticker tape */
-    .marquee{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:13px 0;background:linear-gradient(180deg,#0d0d10,#08080a);box-shadow:inset 0 1px 0 rgba(255,255,255,0.03),inset 0 -1px 0 rgba(0,0,0,0.45)}
-    .marquee-track{display:flex;align-items:center;width:max-content;white-space:nowrap;animation:scrollx 44s linear infinite;font-family:var(--mono);font-size:0.82rem;letter-spacing:0.03em}
-    .marquee-track .tk{display:inline-flex;align-items:center;gap:9px;padding:0 26px;position:relative}
-    .marquee-track .tk::after{content:"";position:absolute;right:0;top:50%;transform:translateY(-50%);width:1px;height:13px;background:var(--border-2)}
-    .marquee-track .sym{color:var(--text-mid);text-transform:uppercase;font-weight:600}
-    .marquee-track .chg{font-variant-numeric:tabular-nums;font-weight:700;letter-spacing:0.02em}
-    .marquee-track .chg.up{color:#3ddc84;text-shadow:0 0 8px rgba(61,220,132,0.5)}
-    .marquee-track .chg.down{color:#ff5d5d;text-shadow:0 0 8px rgba(255,93,93,0.5)}
+    /* stock-ticker tape: classic dot-matrix LED board */
+    .marquee{position:relative;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:15px 0;background:#050506}
+    /* fixed LED dot grid: the matrix stays put while the lit text scrolls beneath it */
+    .marquee::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+      background-image:radial-gradient(circle at center,rgba(0,0,0,0) 1.15px,#050506 1.55px);
+      background-size:3px 3px;background-position:center}
+    .marquee-track{display:flex;align-items:center;width:max-content;white-space:nowrap;animation:scrollx 44s linear infinite;font-family:var(--mono);font-weight:700;font-size:1.02rem;letter-spacing:0.04em}
+    .marquee-track .tk{display:inline-flex;align-items:baseline;gap:11px;padding:0 30px}
+    .marquee-track .sym{color:#f2a72c;text-transform:uppercase;text-shadow:0 0 7px rgba(242,167,44,0.55)}
+    .marquee-track .chg{font-variant-numeric:tabular-nums;letter-spacing:0.02em}
+    .marquee-track .chg.up{color:#39d353;text-shadow:0 0 7px rgba(57,211,83,0.6)}
+    .marquee-track .chg.down{color:#ff4d4d;text-shadow:0 0 7px rgba(255,77,77,0.6)}
     @keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
     /* corner entrance */
@@ -321,7 +324,7 @@
         <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
         <a href="#trades">Trades</a>
-        <a href="#contact" class="nav-cta">Get in touch</a>
+        <a href="#contact" class="nav-cta">Contact</a>
       </nav>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
