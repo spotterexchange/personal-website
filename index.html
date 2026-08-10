@@ -111,13 +111,13 @@
     .stmt-cta{display:flex;flex-wrap:wrap;gap:12px}
     @media(max-width:640px){.stmt-corner{text-align:left;align-items:flex-start}}
     /* stock-ticker tape: classic dot-matrix LED board */
-    .marquee{position:relative;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;background:#050506}
+    .marquee{position:relative;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:8px 0;background:#050506}
     /* the LED dot grid masks the moving text itself, so the dots travel with the
        letters instead of the text strobing behind a fixed grid (no flicker);
-       larger text plus a matching dot pitch keeps the letters crisp and readable */
-    .marquee-track{display:flex;align-items:center;width:max-content;white-space:nowrap;animation:scrollx 30s linear infinite;font-family:var(--mono);font-weight:700;font-size:1.9rem;letter-spacing:0.04em;
-      -webkit-mask-image:radial-gradient(circle at center,#000 0 1.35px,transparent 1.75px);mask-image:radial-gradient(circle at center,#000 0 1.35px,transparent 1.75px);
-      -webkit-mask-size:3.4px 3.4px;mask-size:3.4px 3.4px;
+       tight line-height keeps the strip slim while the dot pitch keeps text sharp */
+    .marquee-track{display:flex;align-items:center;width:max-content;white-space:nowrap;line-height:1;animation:scrollx 30s linear infinite;font-family:var(--mono);font-weight:700;font-size:1.5rem;letter-spacing:0.04em;
+      -webkit-mask-image:radial-gradient(circle at center,#000 0 1.12px,transparent 1.46px);mask-image:radial-gradient(circle at center,#000 0 1.12px,transparent 1.46px);
+      -webkit-mask-size:2.8px 2.8px;mask-size:2.8px 2.8px;
       will-change:transform;backface-visibility:hidden}
     .marquee-track .tk{display:inline-flex;align-items:baseline;gap:11px;padding:0 30px}
     .marquee-track .sym{color:var(--text-mid);text-transform:uppercase;text-shadow:0 0 6px rgba(196,196,204,0.20)}
