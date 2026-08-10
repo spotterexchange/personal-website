@@ -273,7 +273,6 @@
     .dir.long{background:rgba(52,211,153,0.14);color:var(--accent)}
     .dir.short{background:rgba(248,113,113,0.14);color:#f87171}
     .tfront .pnl{font-family:var(--mono);font-size:1.75rem;font-weight:700;color:var(--accent);letter-spacing:-0.01em;margin-top:auto}
-    .tfront .lockout{font-family:var(--mono);font-size:0.78rem;color:var(--text-dim);margin-top:2px}
     .tfront .reason{font-weight:600;font-size:1.02rem;margin-top:16px;line-height:1.3}
     .tfront .date{font-family:var(--mono);font-size:0.78rem;color:var(--text-dim);margin-top:6px}
     .tfront .flip-hint{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--border-2);margin-top:14px}
@@ -382,7 +381,7 @@
           </a>
           <a class="btn btn-ghost" href="assets/Michael_Lund_Resume.pdf" download>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
-            Résumé
+            Resume
           </a>
           <a class="btn btn-ghost" href="mailto:2020mikelund@gmail.com">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
@@ -817,8 +816,8 @@
             </button>
             <div class="jdetail">
               <ul>
-                <li>Manage an intraday U.S. equities book with $500,000 in buying power, synthesizing Level 2 order flow, tape, technical charts, and real-time news to execute discretionary trades and manage risk.</li>
-                <li>Run an asymmetric, catalyst-driven book (average winning day roughly twice the average losing day), concentrating maximum size into a few high-conviction setups while capping risk to a single lockout per ticker.</li>
+                <li>Manage an intraday U.S. equities book, synthesizing Level 2 order flow, tape, technical charts, and real-time news to execute discretionary trades and manage risk.</li>
+                <li>Run an asymmetric, catalyst-driven book, concentrating maximum size into a few high-conviction setups with defined downside risk on each position.</li>
                 <li>Built a proprietary Bloomberg-style market-news feed with Claude-assisted development, web scrapers, and language-model APIs that shaves critical seconds off intra-trade information processing.</li>
                 <li>Built a personal operating system (Atomic Habits framework) plus trade-prep and review tooling: a notes aggregator that cuts ~2 hours of daily note-taking and an AI coach that flags behavioral patterns from daily report cards.</li>
                 <li>Mentored four junior traders on setups, risk rules, habit formation, and structured review; all four subsequently recorded multiple consecutive profitable months during their first year of trading.</li>
@@ -972,12 +971,27 @@
         </div>
         <div class="trades-grid">
 
+          <button class="tcard reveal" aria-label="RH long trade. Flip for detail.">
+            <div class="tinner">
+              <div class="tface tfront">
+                <div class="top"><span class="ticker">RH</span><span class="dir long">Long</span></div>
+                <div class="pnl">+15%</div>
+                <div class="reason">Vietnam tariffs-to-zero reversal</div>
+                <div class="date">April 4, 2025</div>
+                <div class="flip-hint">Hover for the read</div>
+              </div>
+              <div class="tface tback">
+                <span class="bt">RH long. The read.</span>
+                <p>After the April 2 tariffs, I built a country-by-country map pairing each rate with its most exposed stocks. RH was the most beaten-down name that sources from Vietnam. When Trump posted Vietnam's offer to cut tariffs to zero, I saw within seconds that it removed RH's biggest overhang while most of the market sat still, and I took the trade I'd already planned.</p>
+              </div>
+            </div>
+          </button>
+
           <button class="tcard reveal" aria-label="TSLA short trade. Flip for detail.">
             <div class="tinner">
               <div class="tface tfront">
                 <div class="top"><span class="ticker">TSLA</span><span class="dir short">Short</span></div>
-                <div class="pnl">+$23,283</div>
-                <div class="lockout">on a $1,000 lockout</div>
+                <div class="pnl">+13.5%</div>
                 <div class="reason">Trump and Musk public feud</div>
                 <div class="date">June 5, 2025</div>
                 <div class="flip-hint">Hover for the read</div>
@@ -993,8 +1007,7 @@
             <div class="tinner">
               <div class="tface tfront">
                 <div class="top"><span class="ticker">GLD</span><span class="dir short">Short</span></div>
-                <div class="pnl">+$14,531</div>
-                <div class="lockout">on a $1,500 lockout</div>
+                <div class="pnl">+5.7%</div>
                 <div class="reason">Gold's record volatility reversal</div>
                 <div class="date">January 29, 2026</div>
                 <div class="flip-hint">Hover for the read</div>
@@ -1006,25 +1019,8 @@
             </div>
           </button>
 
-          <button class="tcard reveal" aria-label="RH long trade. Flip for detail.">
-            <div class="tinner">
-              <div class="tface tfront">
-                <div class="top"><span class="ticker">RH</span><span class="dir long">Long</span></div>
-                <div class="pnl">+$13,851</div>
-                <div class="lockout">on a $500 lockout</div>
-                <div class="reason">Vietnam tariffs-to-zero reversal</div>
-                <div class="date">April 4, 2025</div>
-                <div class="flip-hint">Hover for the read</div>
-              </div>
-              <div class="tface tback">
-                <span class="bt">RH long. The read.</span>
-                <p>After the April 2 tariffs, I built a country-by-country map pairing each rate with its most exposed stocks. RH was the most beaten-down name that sources from Vietnam. When Trump posted Vietnam's offer to cut tariffs to zero, I saw within seconds that it removed RH's biggest overhang while most of the market sat still, and I took the trade I'd already planned.</p>
-              </div>
-            </div>
-          </button>
-
         </div>
-        <p class="interests reveal" style="margin-top:22px;font-style:normal">Figures are realized P&amp;L against the risk I locked. Past results don't predict future ones.</p>
+        <p class="interests reveal" style="margin-top:22px;font-style:normal">Figures are realized percentage gains. Past results don't predict future ones.</p>
       </div>
     </section>
 
@@ -1045,7 +1041,7 @@
           </a>
           <a class="btn btn-ghost" href="assets/Michael_Lund_Resume.pdf" download>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
-            Résumé (PDF)
+            Resume (PDF)
           </a>
         </div>
       </div>
@@ -1072,7 +1068,7 @@
         <div class="foot-links">
           <a href="mailto:2020mikelund@gmail.com">Email</a>
           <a href="https://linkedin.com/in/mike-b-lund" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="assets/Michael_Lund_Resume.pdf" download>Résumé</a>
+          <a href="assets/Michael_Lund_Resume.pdf" download>Resume</a>
         </div>
       </div>
       <p class="interests">Off the clock: DJing and electronic music, live events, Beli rating, and social golf.</p>
