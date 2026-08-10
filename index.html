@@ -156,14 +156,16 @@
 
     /* project carousel: header + reel pin together, reel slides across on scroll down */
     .hscroll{position:relative}
-    .hsticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(22px,4.5vh,50px)}
+    .hsticky{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;padding-top:clamp(72px,10vh,96px);gap:clamp(22px,4.5vh,50px)}
     .hsticky .section-head{margin:0;padding:0 var(--inset,40px);max-width:100%}
     .htrack{display:flex;gap:22px;padding:0 var(--inset,40px);will-change:transform}
     .hint-scroll{position:absolute;left:var(--inset,40px);bottom:6vh;font-family:var(--mono);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-dim);display:flex;align-items:center;gap:10px}
     .hint-scroll .hbarwrap{width:120px;height:2px;background:var(--border);border-radius:2px;overflow:hidden}
     .hint-scroll .hbar{display:block;height:100%;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .06s linear}
     /* fallback when the pin is not active (touch / narrow / reduced-motion): header on top, native swipe reel */
-    .hscroll:not(.pinned) .hsticky{position:static;height:auto;display:block;overflow:visible}
+    .hscroll:not(.pinned) .hsticky{position:static;height:auto;display:block;overflow:visible;padding-top:0}
+    /* in the pinned desktop mode, trim the section's own top pad so the header lands like other sections */
+    @media(min-width:820px) and (pointer:fine){section#projects{padding-top:clamp(8px,1.5vh,18px)}}
     .hscroll:not(.pinned) .section-head{margin-bottom:clamp(24px,4vw,40px)}
     .hscroll:not(.pinned) .htrack{overflow-x:auto;overflow-y:hidden;transform:none !important;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:20px;scrollbar-width:thin;scrollbar-color:var(--border-2) transparent}
     .hscroll:not(.pinned) .htrack::-webkit-scrollbar{height:6px}
@@ -253,10 +255,13 @@
     .edu .row{font-size:0.92rem;color:var(--text-mid);margin-bottom:12px}
     .edu .row b{color:var(--text-dim);font-weight:600;display:block;font-size:0.74rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px}
 
-    /* trades flip cards */
-    .trades-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    @media(max-width:860px){.trades-grid{grid-template-columns:1fr}}
-    .tcard{perspective:1200px;height:352px;cursor:pointer;border:0;background:none;padding:0;font:inherit;color:inherit;text-align:left}
+    /* trades flip cards: fill the row on desktop, swipeable reel on mobile */
+    .trades-grid{display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:var(--border-2) transparent;padding-bottom:4px}
+    .trades-grid::-webkit-scrollbar{height:6px}
+    .trades-grid::-webkit-scrollbar-track{background:transparent}
+    .trades-grid::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:3px}
+    .tcard{flex:1 1 0;min-width:0;scroll-snap-align:start;perspective:1200px;height:352px;cursor:pointer;border:0;background:none;padding:0;font:inherit;color:inherit;text-align:left}
+    @media(max-width:860px){.tcard{flex:0 0 84%}}
     .tcard:focus-visible{outline:none}
     .tcard:focus-visible .tface{border-color:var(--accent)}
     .tinner{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
@@ -672,7 +677,13 @@
               <li>It freed up about two hours a day I used to spend sorting notes.</li>
             </ul>
             <div class="stack"><span>Claude</span><span>Python</span><span>Automation</span></div>
-            <p class="note">Built at work. A cleaned-up version will go on GitHub.</p>
+            <div class="actions">
+              <a class="btn btn-ghost" href="https://github.com/2020mikelund/notes-aggregator" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M12 .5a12 12 0 00-3.79 23.4c.6.1.82-.26.82-.58v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.23a11.4 11.4 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.62-2.81 5.64-5.49 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0012 .5z"/></svg>
+                View on GitHub
+              </a>
+            </div>
+            <p class="note">Built at work. The code on GitHub is a cleaned-up version.</p>
           </div>
         </template>
 
@@ -1003,7 +1014,7 @@
       <div class="foot-inner">
         <div>
           <span class="name">Michael Lund</span>
-          <span class="note"> . Operator and builder . New York, NY</span>
+          <span class="note"> . Operator . New York, NY</span>
         </div>
         <div class="foot-links">
           <a href="mailto:2020mikelund@gmail.com">Email</a>
@@ -1011,7 +1022,7 @@
           <a href="assets/Michael_Lund_Resume.pdf" download>Résumé</a>
         </div>
       </div>
-      <p class="interests">Off the clock: DJing and electronic music, live events, markets, and golf.</p>
+      <p class="interests">Off the clock: DJing and electronic music, live events, Beli rating, and social golf.</p>
     </div>
   </footer>
 
