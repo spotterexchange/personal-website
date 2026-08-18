@@ -169,7 +169,7 @@
     /* in the pinned desktop mode, trim the section's own top pad so the header lands like other sections */
     @media(min-width:820px) and (any-pointer:fine){section#projects{padding-top:clamp(8px,1.5vh,18px)}}
     .hscroll:not(.pinned) .section-head{margin-bottom:clamp(24px,4vw,40px)}
-    .hscroll:not(.pinned) .htrack{overflow-x:auto;overflow-y:hidden;transform:none !important;scroll-snap-type:x mandatory;scroll-padding-left:var(--inset);-webkit-overflow-scrolling:touch;padding-bottom:20px;scrollbar-width:thin;scrollbar-color:var(--border-2) transparent}
+    .hscroll:not(.pinned) .htrack{overflow-x:auto;overflow-y:hidden;transform:none !important;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:0 var(--inset);padding:0 0 20px;scrollbar-width:thin;scrollbar-color:var(--border-2) transparent}
     .hscroll:not(.pinned) .htrack::-webkit-scrollbar{height:6px}
     .hscroll:not(.pinned) .htrack::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:3px}
     .hscroll:not(.pinned) .pcard{scroll-snap-align:start}
