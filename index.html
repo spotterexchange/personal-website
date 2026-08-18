@@ -1107,7 +1107,10 @@
     // cursor spotlight (pointer devices only, respects reduced motion)
     (function () {
       const glow = document.getElementById('cursorGlow');
-      const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      // any-hover/any-pointer test whether ANY connected device can hover with a fine
+      // pointer, so a touchscreen laptop with a trackpad still qualifies (unlike the
+      // primary-pointer hover/pointer features, which some browsers report as coarse)
+      const fine = window.matchMedia('(any-hover: hover) and (any-pointer: fine)').matches;
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!glow || !fine || reduced) return;
       document.body.classList.add('has-cursor');
@@ -1163,7 +1166,7 @@
       const track = document.getElementById('htrack');
       const bar = document.getElementById('hbar');
       if (!wrap || !sticky || !track) return;
-      const enableMq = window.matchMedia('(min-width: 820px) and (pointer: fine)');
+      const enableMq = window.matchMedia('(min-width: 820px) and (any-pointer: fine)');
       const reducedMq = window.matchMedia('(prefers-reduced-motion: reduce)');
       let overflow = 0, ticking = false;
       const on = () => enableMq.matches && !reducedMq.matches;
