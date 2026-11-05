@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Michael Lund. Operator and builder.</title>
-  <meta name="description" content="Michael Lund. Duke CS grad and prop trader who builds AI tools and gets inside unfamiliar systems fast. Looking for an operator seat at an early-stage company." />
+  <meta name="description" content="Michael Lund. Duke CS grad, forward deployed engineer, and Head of AI who builds firm AI tools and gets inside unfamiliar systems fast. Looking for an operator seat at an early-stage company." />
   <meta name="author" content="Michael Lund" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Michael Lund. Operator and builder." />
-  <meta property="og:description" content="I build AI tools to kill my own bottlenecks, and I get inside an unfamiliar system fast enough to fix it before anyone asks." />
+  <meta property="og:description" content="Forward deployed engineer and Head of AI. I build firm AI tools, and I get inside an unfamiliar system fast enough to fix it before anyone asks." />
   <meta name="twitter:card" content="summary" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
@@ -233,11 +233,13 @@
     .jdetail ul{list-style:none;display:flex;flex-direction:column;gap:10px;padding:0 0 26px;margin-left:calc(170px + clamp(14px,3vw,40px))}
     .jdetail li{position:relative;padding-left:20px;color:var(--text-mid);font-size:0.96rem}
     .jdetail li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent-dim)}
+    .jtrack{font-family:var(--mono);font-size:0.76rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);margin:2px 0 12px calc(170px + clamp(14px,3vw,40px))}
+    .jdetail ul:has(+ .jtrack){padding-bottom:4px}
     @media(max-width:720px){
       .jhead{grid-template-columns:1fr 28px}
       .jmeta{grid-column:1 / -1;display:flex;gap:14px;margin-bottom:2px}
       .jdate,.jloc{margin:0}
-      .jdetail ul{margin-left:0}
+      .jdetail ul,.jtrack{margin-left:0}
     }
 
     /* skills + education */
@@ -348,7 +350,7 @@
     <section class="hero" id="hero">
       <div class="hero-full">
         <div class="edge">
-          <span class="lead-eyebrow h-in d1">proprietary trader turned operator · duke computer science grad</span>
+          <span class="lead-eyebrow h-in d1">forward deployed engineer · head of AI · duke computer science grad</span>
           <span class="status-line h-in d1"><span class="status"></span> open to operator roles</span>
         </div>
 
@@ -436,11 +438,49 @@
             </div>
           </button>
 
-          <button class="pcard" data-track="build" data-dossier="d-crypto">
+          <button class="pcard" data-track="build" data-dossier="d-intake">
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag build">Build</span>
                 <span class="num">02</span>
+                <div class="pb">
+                  <h3>AI Request Intake</h3>
+                  <div class="pmeta">Since 2024 to 2025. Trillium.</div>
+                  <span class="phint">Hover for more</span>
+                </div>
+              </div>
+              <div class="pface pback">
+                <span class="bt">AI Request Intake</span>
+                <p class="pdesc">A firm intake app. An informal AI request becomes a structured spec, with Claude follow-ups, a review queue, and a Jira issue when it's approved.</p>
+                <span class="popen">Open dossier →</span>
+              </div>
+            </div>
+          </button>
+
+          <button class="pcard" data-track="build" data-dossier="d-dti">
+            <div class="pinner">
+              <div class="pface pfront">
+                <span class="track-tag build">Build</span>
+                <span class="num">03</span>
+                <div class="pb">
+                  <h3>Daily Trading Information</h3>
+                  <div class="pmeta">Since 2024 to 2025. Trillium.</div>
+                  <span class="phint">Hover for more</span>
+                </div>
+              </div>
+              <div class="pface pback">
+                <span class="bt">Daily Trading Information</span>
+                <p class="pdesc">Automates 17 morning market-data reports newer traders used to assemble by hand, from EDGAR, newswires, and calendars, into HTML drafts before the open.</p>
+                <span class="popen">Open dossier →</span>
+              </div>
+            </div>
+          </button>
+
+          <button class="pcard" data-track="build" data-dossier="d-crypto">
+            <div class="pinner">
+              <div class="pface pfront">
+                <span class="track-tag build">Build</span>
+                <span class="num">04</span>
                 <div class="pb">
                   <h3>Crypto sentiment and random forest strategy</h3>
                   <div class="pmeta">2024 to 2025. Duke. 2nd place.</div>
@@ -459,7 +499,7 @@
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag operate">Operate</span>
-                <span class="num">03</span>
+                <span class="num">05</span>
                 <div class="pb">
                   <h3>CrowdVolt market-expansion pilot</h3>
                   <div class="pmeta">2026. Growth work sample.</div>
@@ -478,7 +518,7 @@
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag operate">Operate</span>
-                <span class="num">04</span>
+                <span class="num">06</span>
                 <div class="pb">
                   <h3>Trading operating system</h3>
                   <div class="pmeta">Since 2024. Trillium.</div>
@@ -497,7 +537,7 @@
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag build">Build</span>
-                <span class="num">05</span>
+                <span class="num">07</span>
                 <div class="pb">
                   <h3>Claude market-news feed</h3>
                   <div class="pmeta">Since 2024. Trillium.</div>
@@ -516,7 +556,7 @@
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag build">Build</span>
-                <span class="num">06</span>
+                <span class="num">08</span>
                 <div class="pb">
                   <h3>Notes aggregator</h3>
                   <div class="pmeta">Since 2024. Trillium.</div>
@@ -535,7 +575,7 @@
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag build">Build</span>
-                <span class="num">07</span>
+                <span class="num">09</span>
                 <div class="pb">
                   <h3>Sell-through dashboard</h3>
                   <div class="pmeta">2026. Ticket-resale business.</div>
@@ -554,7 +594,7 @@
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag operate">Operate</span>
-                <span class="num">08</span>
+                <span class="num">10</span>
                 <div class="pb">
                   <h3>Ticket-drop operating system</h3>
                   <div class="pmeta">2026. Built with the founder.</div>
@@ -573,7 +613,7 @@
             <div class="pinner">
               <div class="pface pfront">
                 <span class="track-tag operate">Operate</span>
-                <span class="num">09</span>
+                <span class="num">11</span>
                 <div class="pb">
                   <h3>Difmo, my DJ and events company</h3>
                   <div class="pmeta">Duke. First business I ran.</div>
@@ -594,6 +634,40 @@
 
       <div class="wrap">
         <!-- dossier templates -->
+        <template id="d-intake">
+          <div class="dossier">
+            <span class="ey">Project. Build.</span>
+            <h2>AI Request Intake</h2>
+            <div class="dmeta">Since 2024 to 2025. Trillium.</div>
+            <p>People at the firm send informal requests for AI and automation work. I built a full-stack app that turns one of those requests into a structured spec. Claude runs up to three rounds of multiple-choice follow-ups, writes an intake record and a build brief, and routes it through an approve, defer, or reject queue. An approval opens a Jira issue.</p>
+            <h4>How it's built</h4>
+            <ul>
+              <li>Python, FastAPI, server-rendered HTML, and SQLite. Claude structured outputs, with a cached system prompt.</li>
+              <li>Entra ID SSO scoped to the firm tenant, signed sessions, and a reviewer allowlist. Deployed behind nginx over HTTPS.</li>
+              <li>I built it and piloted it for firm-wide use.</li>
+            </ul>
+            <div class="stack"><span>Python</span><span>FastAPI</span><span>Claude</span><span>SQLite</span><span>Entra SSO</span></div>
+            <p class="note">Internal tool. No public demo.</p>
+          </div>
+        </template>
+
+        <template id="d-dti">
+          <div class="dossier">
+            <span class="ey">Project. Build.</span>
+            <h2>Daily Trading Information</h2>
+            <div class="dmeta">Since 2024 to 2025. Trillium.</div>
+            <p>Newer traders used to assemble the morning market-data reports by hand. I automated 17 of those recurring reports. The pipeline pulls from SEC EDGAR, newswires, and exchange calendars and renders HTML drafts before the trading day.</p>
+            <h4>How it's built</h4>
+            <ul>
+              <li>A Python CLI. Each report has its own fetch-and-render step.</li>
+              <li>A Claude API layer that tiers from Haiku to Sonnet.</li>
+              <li>It runs on a holiday-aware trading calendar through GitHub Actions, with 155 offline tests.</li>
+            </ul>
+            <div class="stack"><span>Python</span><span>Claude API</span><span>GitHub Actions</span><span>CI</span></div>
+            <p class="note">Pilot for desk use. No public demo.</p>
+          </div>
+        </template>
+
         <template id="d-cos">
           <div class="dossier">
             <span class="ey op">Work sample. Operate.</span>
@@ -814,17 +888,22 @@
             <button class="jhead" aria-expanded="false">
               <span class="jmeta"><span class="jdate">Since Sep 2024</span><span class="jloc">New York, NY</span></span>
               <span class="jmain">
-                <span class="jrole">Trader <span class="jco">· Trillium Trading</span></span>
+                <span class="jrole">Forward Deployed Engineer, AI Operations <span class="jco">· Trillium Trading</span></span>
               </span>
               <span class="jtoggle" aria-hidden="true">+</span>
             </button>
             <div class="jdetail">
               <ul>
-                <li>Manage an intraday U.S. equities book, synthesizing Level 2 order flow, tape, technical charts, and real-time news to execute discretionary trades and manage risk.</li>
-                <li>Run an asymmetric, catalyst-driven book, concentrating maximum size into a few high-conviction setups with defined downside risk on each position.</li>
-                <li>Built a proprietary Bloomberg-style market-news feed with Claude-assisted development, web scrapers, and language-model APIs that shaves critical seconds off intra-trade information processing.</li>
-                <li>Built a personal operating system (Atomic Habits framework) plus trade-prep and review tooling: a notes aggregator that cuts ~2 hours of daily note-taking and an AI coach that flags behavioral patterns from daily report cards.</li>
-                <li>Mentored four junior traders on setups, risk rules, habit formation, and structured review; all four subsequently recorded multiple consecutive profitable months during their first year of trading.</li>
+                <li>I'm Head of AI for the firm. I own the AI projects and automations across traders, engineering, executives, and accounting. I report to the engineering lead, and I own the strategy, the priority order, and the delivery.</li>
+                <li>I turn discretionary trading workflows into production systems. I capture how traders make decisions, encode that into tools and rules, and own the path from a pilot to firm-wide use.</li>
+                <li>I'm the front-facing engineer for the traders. I gather requirements, direct AI coding agents to build, review the generated code, and hand validated prototypes to engineering to productionize.</li>
+                <li>I own end-to-end delivery of the firm's AI tools. I design and pilot, ship to production with Entra SSO and nginx where it applies, run the day-to-day AI Ops stand-ups with the engineering lead, and keep Confluence and Jira current.</li>
+              </ul>
+              <p class="jtrack">Trader</p>
+              <ul>
+                <li>I worked inside live trading systems on a short-horizon U.S. equities book. I watched positions, inventory, and risk limits, and adjusted size and exposure when the book drifted from the plan.</li>
+                <li>I traded single-name U.S. equities on a catalyst and event-driven book: earnings, M&amp;A, index rebalance, activist and short reports, biotech, and newsflow. Each position had rules-based exits and defined downside.</li>
+                <li>I mentored four junior traders on setups, risk rules, habit formation, and structured review so each could run a consistent process on their own, day to day.</li>
               </ul>
             </div>
           </div>
